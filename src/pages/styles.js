@@ -82,6 +82,19 @@ background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
 width: 30%;
-
 `
+
+//selectStyled//
+
+export const Select = styled.select`
+	width: ${props=>props.width || '150px'};
+	padding: 0.7rem;
+	outline: none;
+	margin: ${props=>props.margin || '10px 0 0 10px'};
+	border: 1px solid #cacaca;
+	&:focus {
+		border-color: #00c293;
+	}
+`
+export const Option = styled.option``
 

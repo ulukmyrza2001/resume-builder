@@ -3,23 +3,13 @@ import Input from '../../../components/UI/Input'
 import styled from 'styled-components'
 import { generateArrayOfYears } from '../../../utils/helpers/generatedYear'
 import { month } from '../../../utils/constants/constants'
-import {FormStyled,FormControl,SubTxt,Title,Label,Div,Checkbox,BtnGroup,BtnBack,BtnNext} from '../../styles'
+import {Select,Option,FormStyled,FormControl,SubTxt,Title,Label,Div,Checkbox,BtnGroup,BtnBack,BtnNext} from '../../styles'
 import Flex from '../../../components/UI/Flex'
 
-const Month = () => {
+const Selection = ({data,width,margin}) => {
 	return (
-		<Select>
-			{month.map((el) => (
-				<Option key={el}>{el}</Option>
-			))}
-		</Select>
-	)
-}
-const Year = () => {
-	const years = generateArrayOfYears()
-	return (
-		<Select>
-			{years.map((el) => (
+		<Select width = {width} margin = {margin}>
+			{data.map((el) => (
 				<Option key={el}>{el}</Option>
 			))}
 		</Select>
@@ -27,50 +17,44 @@ const Year = () => {
 }
 
 const Form = () => {
+	const years = generateArrayOfYears()
 	return (
 		<FormStyled>
-			<Title>Work Experience</Title>
-			<SubTxt>Start with you most recent work experience</SubTxt>
+			<Title>Education</Title>
+			<SubTxt>Where did you go to school?</SubTxt>
 			<FormControl>
-				<Label>Job Title</Label>
-				<Input name='name' type='text' />
-			</FormControl>
-			<FormControl>
-				<Label>Employer</Label>
-				<Input name='address' type='text' />
+				<Label>School Name</Label>
+				<Input name='schoolName' type='text' />
 			</FormControl>
 			<Div>
 				<FormControl>
 					<Label>City</Label>
-					<Input name='city' type='text' width='300px' />
+					<Input name='educationCity' type='text' width='300px' />
 				</FormControl>
 				<FormControl>
 					<Label>State</Label>
-					<Input name='' type='text' />
+					<Input name='educationState' type='text' />
 				</FormControl>
 			</Div>
 			<Div>
 				<Checkbox type='checkbox' />
 				<Label>Show country</Label>
 			</Div>
+			<FormControl>
+				<Label>Degree</Label>
+				<Selection margin = '0' width = '100%' data = {[]} />
+			</FormControl>
+			<FormControl>
+				<Label>Field of Study</Label>
+				<Input name='field' type='text' />
+			</FormControl>
 			<Flex direction={'column'}>
 				<Flex align='center' justify='space-between'>
-					<Label>Start Date</Label>
+					<Label>Graduation Date</Label>
 					<Div>
-						<Month />
-						<Year />
+						<Selection data = {month} />
+						<Selection data = {years} />
 					</Div>
-				</Flex>
-				<Flex align='center' justify='space-between'>
-					<Label>End Date</Label>
-					<Div>
-						<Month />
-						<Year />
-					</Div>
-				</Flex>
-				<Flex align='center' justify='center'>
-					<Checkbox type='checkbox' />
-					<Label>I currently work here</Label>
 				</Flex>
 			</Flex>
 			<BtnGroup>
@@ -81,16 +65,6 @@ const Form = () => {
 	)
 }
 
-const Select = styled.select`
-	width: 150px;
-	padding: 0.7rem;
-	outline: none;
-	margin: 10px 0 0 10px;
-	border: 1px solid #cacaca;
-	&:focus {
-		border-color: #00c293;
-	}
-`
-const Option = styled.option``
+
 
 export default Form

@@ -3,7 +3,7 @@ import LeftContent from './leftContent'
 import RightContent from './rightContent'
 import { PageStyled } from '../styles'
 
-const Experience = () => {
+const Education = () => {
   return (
     <PageStyled>
       <LeftContent/>
@@ -14,4 +14,4 @@ const Experience = () => {
 
 
 
-export default Experience
+export default Education

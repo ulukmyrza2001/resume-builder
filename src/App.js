@@ -4,6 +4,7 @@ import MainHeader from './components/layout/MainHeader'
 import Contact from './pages/contact'
 import Experience from './pages/experience'
 import Summary from './pages/summary'
+import Education from './pages/education'
 
 function App() {
 	return (
@@ -15,6 +16,7 @@ function App() {
 					<Route path='/contact' element={<Contact />} />
 					<Route path='/experience' element={<Experience />} />
 					<Route path='/summary' element = {<Summary/>} />
+					<Route path='/education' element = {<Education/>} />
 				</Routes>
 			</MainHeader>
 		</div>

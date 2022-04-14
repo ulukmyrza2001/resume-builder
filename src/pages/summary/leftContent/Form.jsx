@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import styled from 'styled-components'
-import { FormStyled, SubTxt, Title } from '../../styles'
+import { FormStyled, SubTxt, Title,BtnGroup,BtnNext,BtnBack } from '../../styles'
 import Flex from '../../../components/UI/Flex'
 
 const Form = () => {
@@ -13,18 +13,22 @@ const Form = () => {
 		<FormStyled>
 			<Title>Professional Summary</Title>
 			<SubTxt>Finish your resue with short summary</SubTxt>
-			<AddSkills>
+			<AddSummary>
 				<Flex align='center' justify='end'>
 					<AiOutlinePlusCircle />
 					Add Pre-written Examples
 				</Flex>
-			</AddSkills>
+			</AddSummary>
 			<Textarea
 				placeholder='Click here to write you skills. Insert our pre-written examples with the Add Button'
 				onChange={d}
 				cols='60'
 				rows='15'
 			></Textarea>
+			<BtnGroup>
+				<BtnBack>Back</BtnBack>
+				<BtnNext>Next</BtnNext>
+			</BtnGroup>
 		</FormStyled>
 	)
 }
@@ -41,7 +45,7 @@ const Textarea = styled.textarea`
 		border-color: #00c293;
 	}
 `
-const AddSkills = styled.h4`
+const AddSummary = styled.h4`
 	color: #00c293;
 	cursor: pointer;
 	margin-bottom: 3px;

@@ -3,23 +3,26 @@ import Input from '../../../components/UI/Input'
 import styled from 'styled-components'
 import { generateArrayOfYears } from '../../../utils/helpers/generatedYear'
 import { month } from '../../../utils/constants/constants'
-import {FormStyled,FormControl,SubTxt,Title,Label,Div,Checkbox,BtnGroup,BtnBack,BtnNext} from '../../styles'
+import {
+	FormStyled,
+	FormControl,
+	SubTxt,
+	Title,
+	Label,
+	Div,
+	Checkbox,
+	BtnGroup,
+	BtnBack,
+	BtnNext,
+	Select,
+	Option
+} from '../../styles'
 import Flex from '../../../components/UI/Flex'
 
-const Month = () => {
+const Selection = ({ data, width, margin }) => {
 	return (
-		<Select>
-			{month.map((el) => (
-				<Option key={el}>{el}</Option>
-			))}
-		</Select>
-	)
-}
-const Year = () => {
-	const years = generateArrayOfYears()
-	return (
-		<Select>
-			{years.map((el) => (
+		<Select width={width} margin={margin}>
+			{data.map((el) => (
 				<Option key={el}>{el}</Option>
 			))}
 		</Select>
@@ -27,6 +30,7 @@ const Year = () => {
 }
 
 const Form = () => {
+	const years = generateArrayOfYears()
 	return (
 		<FormStyled>
 			<Title>Work Experience</Title>
@@ -57,15 +61,15 @@ const Form = () => {
 				<Flex align='center' justify='space-between'>
 					<Label>Start Date</Label>
 					<Div>
-						<Month />
-						<Year />
+						<Selection data={month} />
+						<Selection data={years} />
 					</Div>
 				</Flex>
 				<Flex align='center' justify='space-between'>
 					<Label>End Date</Label>
 					<Div>
-						<Month />
-						<Year />
+						<Selection data={month} />
+						<Selection data={years} />
 					</Div>
 				</Flex>
 				<Flex align='center' justify='center'>
@@ -80,17 +84,5 @@ const Form = () => {
 		</FormStyled>
 	)
 }
-
-const Select = styled.select`
-	width: 150px;
-	padding: 0.7rem;
-	outline: none;
-	margin: 10px 0 0 10px;
-	border: 1px solid #cacaca;
-	&:focus {
-		border-color: #00c293;
-	}
-`
-const Option = styled.option``
 
 export default Form
