@@ -1,8 +1,23 @@
-import React, { useState } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Chart = () => {
 	const [chart, setChart] = useState(100)
+	const {pathname} = useLocation()
+	useLayoutEffect(()=>{
+        if(pathname === '/contact'){
+			setChart(20)
+		}else if(pathname === '/experience'){
+			setChart(40)
+		}else if(pathname === '/education'){
+			setChart(60)
+		}else if(pathname === '/skills'){
+			setChart(80)
+		}else if(pathname === '/summary'){
+			setChart(100)
+		}
+	},[pathname])
 	return (
 		<ChartStyled>
 			<Div chart={chart}>

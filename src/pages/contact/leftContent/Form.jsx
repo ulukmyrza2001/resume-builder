@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import Input from '../../../components/UI/Input'
 import {
 	FormStyled,
@@ -56,7 +57,8 @@ const Form = () => {
 			</Div>
 			<BtnGroup>
 				<BtnBack>Back</BtnBack>
-				<BtnNext>Nexts</BtnNext>
+				<Link to ='/experience'><BtnNext type = 'button'>Next</BtnNext></Link>
+				
 			</BtnGroup>
 		</FormStyled>
 	)

@@ -1,6 +1,7 @@
 import React from 'react'
 import Input from '../../../components/UI/Input'
 import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { generateArrayOfYears } from '../../../utils/helpers/generatedYear'
 import { month } from '../../../utils/constants/constants'
 import {Select,Option,FormStyled,FormControl,SubTxt,Title,Label,Div,Checkbox,BtnGroup,BtnBack,BtnNext} from '../../styles'
@@ -58,8 +59,8 @@ const Form = () => {
 				</Flex>
 			</Flex>
 			<BtnGroup>
-				<BtnBack>Back</BtnBack>
-				<BtnNext>Next</BtnNext>
+			    <Link to = '/experience'><BtnBack type='button'>Back</BtnBack></Link>
+				<Link to ='/skills'><BtnNext type = 'button'>Next</BtnNext></Link>
 			</BtnGroup>
 		</FormStyled>
 	)

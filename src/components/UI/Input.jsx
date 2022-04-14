@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-const Input = ({ width, type, value, onChange, name }) => {
+const Input = ({ width, type, value, onChange, name,placeholder }) => {
 	return (
 		<InputStyled
 			autoComplete='off'
@@ -9,6 +9,7 @@ const Input = ({ width, type, value, onChange, name }) => {
 			onChange={onChange}
 			type={type}
 			width={width}
+			placeholder = {placeholder}
 		/>
 	)
 }

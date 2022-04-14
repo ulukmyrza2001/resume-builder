@@ -3,6 +3,7 @@ import { AiOutlinePlusCircle } from 'react-icons/ai'
 import styled from 'styled-components'
 import { FormStyled, SubTxt, Title,BtnGroup,BtnNext,BtnBack } from '../../styles'
 import Flex from '../../../components/UI/Flex'
+import { Link } from 'react-router-dom'
 
 const Form = () => {
 	const [value, setValue] = useState([])
@@ -26,8 +27,8 @@ const Form = () => {
 				rows='15'
 			></Textarea>
 			<BtnGroup>
-				<BtnBack>Back</BtnBack>
-				<BtnNext>Next</BtnNext>
+			    <Link to = '/skills'><BtnBack type='button'>Back</BtnBack></Link>
+				<Link to ='/summary'><BtnNext type = 'button'>Next</BtnNext></Link>
 			</BtnGroup>
 		</FormStyled>
 	)

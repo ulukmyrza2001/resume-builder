@@ -7,7 +7,9 @@ display: flex;
 flex-direction: ${props => props.direction || 'row'};
 align-items: ${props => props.align || 'stretch'};
 justify-content: ${props => props.justify || 'stretch'};
-margin:${({margin}) => margin || '0'} ;
+flex-wrap:${props => props.wrap || 'nowrap'} ;
+gap:${props => props.gap || '0px'} ;
+margin:${({margin}) => margin || '0'};
 `
 
 const Flex = (props) => {

@@ -5,6 +5,7 @@ import Contact from './pages/contact'
 import Experience from './pages/experience'
 import Summary from './pages/summary'
 import Education from './pages/education'
+import Skills from './pages/skills'
 
 function App() {
 	return (
@@ -12,11 +13,12 @@ function App() {
 			<MainHeader>
 				<SampleResume />
 				<Routes>
-					<Route path='/' element = {<Navigate to = '/experience' />} />
+					<Route path='/' element = {<Navigate to = '/contact' />} />
 					<Route path='/contact' element={<Contact />} />
 					<Route path='/experience' element={<Experience />} />
-					<Route path='/summary' element = {<Summary/>} />
 					<Route path='/education' element = {<Education/>} />
+					<Route path='/skills' element = {<Skills/>}/>
+					<Route path='/summary' element = {<Summary/>} />
 				</Routes>
 			</MainHeader>
 		</div>
