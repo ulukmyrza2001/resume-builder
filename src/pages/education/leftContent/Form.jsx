@@ -6,10 +6,11 @@ import { generateArrayOfYears } from '../../../utils/helpers/generatedYear'
 import { month } from '../../../utils/constants/constants'
 import {Select,Option,FormStyled,FormControl,SubTxt,Title,Label,Div,Checkbox,BtnGroup,BtnBack,BtnNext} from '../../styles'
 import Flex from '../../../components/UI/Flex'
+import useInput from '../../../hooks/useInput'
 
-const Selection = ({data,width,margin}) => {
+const Selection = ({data,width,margin,onChange,name}) => {
 	return (
-		<Select width = {width} margin = {margin}>
+		<Select name = {name} onChange = {onChange} width = {width} margin = {margin}>
 			{data.map((el) => (
 				<Option key={el}>{el}</Option>
 			))}
@@ -19,22 +20,32 @@ const Selection = ({data,width,margin}) => {
 
 const Form = () => {
 	const years = generateArrayOfYears()
+	const obj = {
+		schoolName: '',
+		educationDegree: '',
+		educationCity: '',
+		educationState: '',
+		educationMonth: '',
+		educationYear: '',
+		field : ''
+	}
+   const input = useInput(obj)
 	return (
 		<FormStyled>
 			<Title>Education</Title>
 			<SubTxt>Where did you go to school?</SubTxt>
 			<FormControl>
 				<Label>School Name</Label>
-				<Input name='schoolName' type='text' />
+				<Input onChange={input.onChange} name='schoolName' type='text' />
 			</FormControl>
 			<Div>
 				<FormControl>
 					<Label>City</Label>
-					<Input name='educationCity' type='text' width='300px' />
+					<Input onChange={input.onChange} name='educationCity' type='text' width='300px' />
 				</FormControl>
 				<FormControl>
 					<Label>State</Label>
-					<Input name='educationState' type='text' />
+					<Input onChange={input.onChange} name='educationState' type='text' />
 				</FormControl>
 			</Div>
 			<Div>
@@ -43,18 +54,18 @@ const Form = () => {
 			</Div>
 			<FormControl>
 				<Label>Degree</Label>
-				<Selection margin = '0' width = '100%' data = {[]} />
+				<Selection onChange={input.onChange} name = 'educationDegree' margin = '0' width = '100%' data = {[]} />
 			</FormControl>
 			<FormControl>
 				<Label>Field of Study</Label>
-				<Input name='field' type='text' />
+				<Input onChange={input.onChange} name='field' type='text' />
 			</FormControl>
 			<Flex direction={'column'}>
 				<Flex align='center' justify='space-between'>
 					<Label>Graduation Date</Label>
 					<Div>
-						<Selection data = {month} />
-						<Selection data = {years} />
+						<Selection onChange={input.onChange} name = 'educationMonth' data = {month} />
+						<Selection onChange={input.onChange} name = 'educationYear' data = {years} />
 					</Div>
 				</Flex>
 			</Flex>

@@ -1,50 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { GrClose } from 'react-icons/gr'
 import { AiOutlineExpand } from 'react-icons/ai'
 import Backdrop from './UI/Backdrop'
-
-const resume = [
-	{
-		title: 'Ulukmyrza Zhanybekov',
-		address: 'asdfsdf',
-		city: 'Bishkek',
-		state: 'CA 19900',
-		zipCode: 'XDFSDF',
-		email: 'uluk@gmail.com',
-		phone: '09999999999',
-		summary:
-			'aasdfajlhasdhfa;sdhf ahha;sdhfjasdhfhsdlkfh hkjhjkhjkahskjdfhkjhsakdjfhashdkfh kjhjashdlfhlasdhflkahsdk khalskdhflasdkfh kjhlk',
-		skills: ['java', 'javascript', 'php', 'python', 'c++', 'react'],
-		jobTtitle: 'frontend developer',
-		employer: 'sdfasdfsdf',
-		experienceCity: 'fasdfasdfsdf',
-		experienceState: 'SLDFJALSDSLFJSDF lsjdf',
-		startYears: '2022',
-		startMonth: 'Mar',
-		education: 'asdfasdfasdfasdfasdfasdfadfasdfasdf',
-		endYear: '2023',
-		endMonth: 'Jun',
-		schoolName: '№5',
-		educationCity: 'Osh',
-		educationState: 'sdfadfsdf',
-		educationDegree: 'GED',
-		fieldOfStudy: 'sdfasdfasdfdfrgslehlakejfhqkehrle',
-		educationYear: '2005',
-		educationMonth: 'jun',
-	},
-]
+import { useSelector } from 'react-redux'
 
 const SampleResume = () => {
+	const {resumeData : resume} = useSelector(state=>state.resume)
 	const [showDetail, setShowDetail] = useState(false)
 
 	const showDetailResumeHandler = () => setShowDetail(true)
 
 	const hideDetailResumeHandler = () => setShowDetail(false)
 
-	return resume.map((el) => (
-		<React.Fragment key={el}>
+	useEffect(()=>{
+		localStorage.setItem('resume',JSON.stringify(resume))
+	},[resume])
+
+	return <React.Fragment>
 			{showDetail && <Backdrop />}
 			<GlobalStyle detail={showDetail} />
 			<ContainerResume detail={showDetail}>
@@ -59,52 +33,55 @@ const SampleResume = () => {
 				>
 					<AiOutlineExpand color='white' fontSize={'20px'} />
 				</DetailResume>
-				<Title detail={showDetail}>{el.title}</Title>
+				<Title detail={showDetail}>{resume.name}</Title>
 				<hr />
 				<Text>
-					{el.address},{el.city},{el.state},{el.zipCode}
+					{resume.address},{resume.city},{resume.state},{resume.zip}
 				</Text>
-				<Text>{el.email}</Text>
-				<Text>{el.phone}</Text>
+				<Text>{resume.email}</Text>
+				<Text>{resume.phone}</Text>
 				<SubTtile detail={showDetail}>Professional Summary</SubTtile>
 				<hr />
-				<Text>{el.summary}</Text>
+				<List>
+				    {resume.summary.map((el) => (
+						<Text key={el}>{el}</Text>
+					))}
+				</List>
 				<SubTtile detail={showDetail}>Skills</SubTtile>
 				<hr />
 				<List>
-					{el.skills.map((el) => (
-						<Li key={el}>{el}</Li>
+					{resume.skills.map((skill) => (
+						<Li key={skill.id}>{skill.skill}</Li>
 					))}
 				</List>
 				<SubTtile detail={showDetail}>Experience</SubTtile>
 				<hr />
 				<Div>
-					<Address>{el.jobTtitle}</Address>
+					<Address>{resume.jobTitle}</Address>
 					<Address>
-						{el.startMonth}&nbsp;{el.startYears},{el.endMonth}&nbsp;
-						{el.endYear}
+						{resume.startMonth}&nbsp;{resume.startYears},{resume.endMonth}&nbsp;
+						{resume.endYear}
 					</Address>
 				</Div>
 				<Address>
-					{el.employer},{el.experienceCity},{el.experienceState}
+					{resume.employer},{resume.experienceCity},{resume.experienceState}
 				</Address>
-				<Text>{el.education}</Text>
+				<Text>{resume.education}</Text>
 				<SubTtile detail={showDetail}>Education</SubTtile>
 				<hr />
 				<Div>
 					<Address>
-						{el.educationDegree},{el.fieldOfStudy}
+						{resume.educationDegree},{resume.field}
 					</Address>
 					<Address>
-						{el.educationMonth}&nbsp;{el.educationYear}
+						{resume.educationMonth}&nbsp;{resume.educationYear}
 					</Address>
 				</Div>
 				<Address>
-					{el.schoolName},{el.educationCity},{el.educationState}
+					{resume.schoolName},{resume.educationCity},{resume.educationState}
 				</Address>
 			</ContainerResume>
 		</React.Fragment>
-	))
 }
 
 const DetailResume = styled.div`
@@ -144,8 +121,11 @@ const SubTtile = styled.h2`
 	margin-bottom: 2px;
 `
 const Text = styled.p``
+
 const Address = styled.address``
+
 const List = styled.ul``
+
 const Li = styled.li`
 	margin-left: 20px;
 `

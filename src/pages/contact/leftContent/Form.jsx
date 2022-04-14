@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import Input from '../../../components/UI/Input'
+import useInput from '../../../hooks/useInput'
 import {
 	FormStyled,
 	FormControl,
@@ -15,30 +16,41 @@ import {
 } from '../../styles'
 
 const Form = () => {
+	const obj = {
+		name: '',
+		address: '',
+		city: '',
+		state: '',
+		zip: '',
+		email: '',
+		phone: '',
+	}
+   const input = useInput(obj)
+	
 	return (
 		<FormStyled>
 			<Title>Let's complete your Resume Heading</Title>
 			<SubTxt>How do you want employers to contact you?</SubTxt>
 			<FormControl>
 				<Label>Name</Label>
-				<Input name='name' type='text' />
+				<Input onChange = {input.onChange} name='name' />
 			</FormControl>
 			<FormControl>
 				<Label>Address</Label>
-				<Input name='address' type='text' />
+				<Input onChange = {input.onChange} name='address' />
 			</FormControl>
 			<Div>
 				<FormControl>
 					<Label>City</Label>
-					<Input name='city' type='text' width='220px' />
+					<Input onChange = {input.onChange} name='city' width='220px' />
 				</FormControl>
 				<FormControl>
 					<Label>State</Label>
-					<Input name='' type='text' width='100px' />
+					<Input onChange = {input.onChange} name='state' width='100px' />
 				</FormControl>
 				<FormControl>
 					<Label>ZIP code </Label>
-					<Input name='zip' type='text' />
+					<Input onChange = {input.onChange} name='zip' />
 				</FormControl>
 			</Div>
 			<Div>
@@ -48,17 +60,18 @@ const Form = () => {
 			<Div>
 				<FormControl>
 					<Label>Email</Label>
-					<Input name='email' type='email' width='260px' />
+					<Input onChange = {input.onChange} name='email' type='email' width='260px' />
 				</FormControl>
 				<FormControl>
 					<Label>Phone</Label>
-					<Input name='phone' type='number' />
+					<Input onChange = {input.onChange} name='phone' type='number' />
 				</FormControl>
 			</Div>
 			<BtnGroup>
 				<BtnBack>Back</BtnBack>
-				<Link to ='/experience'><BtnNext type = 'button'>Next</BtnNext></Link>
-				
+				<Link to='/experience'>
+					<BtnNext type='button'>Next</BtnNext>
+				</Link>
 			</BtnGroup>
 		</FormStyled>
 	)

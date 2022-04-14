@@ -14,7 +14,7 @@ export const month = [
     'Dec',
 ]
 
-export const skills = [
+export const SKILLS = [
     'Algorithms',
     'Analytical Skills',
     'Big Data',

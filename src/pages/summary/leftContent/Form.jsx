@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import styled from 'styled-components'
 import { FormStyled, SubTxt, Title,BtnGroup,BtnNext,BtnBack } from '../../styles'
 import Flex from '../../../components/UI/Flex'
 import { Link } from 'react-router-dom'
+import useInput from '../../../hooks/useInput'
 
 const Form = () => {
-	const [value, setValue] = useState([])
-	const d = (e) => {
-		setValue(e.target.value.split(/\n/))
-	}
+	const input = useInput()
+	console.log(input.values);
 	return (
 		<FormStyled>
 			<Title>Professional Summary</Title>
@@ -22,9 +21,10 @@ const Form = () => {
 			</AddSummary>
 			<Textarea
 				placeholder='Click here to write you skills. Insert our pre-written examples with the Add Button'
-				onChange={d}
+				onChange={input.onChange}
 				cols='60'
 				rows='15'
+				name = 'summary'
 			></Textarea>
 			<BtnGroup>
 			    <Link to = '/skills'><BtnBack type='button'>Back</BtnBack></Link>

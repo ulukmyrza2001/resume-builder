@@ -7,7 +7,7 @@ const Input = ({ width, type, value, onChange, name,placeholder }) => {
 			name={name}
 			value={value}
 			onChange={onChange}
-			type={type}
+			type={type || 'text'}
 			width={width}
 			placeholder = {placeholder}
 		/>

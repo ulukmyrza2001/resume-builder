@@ -15,7 +15,7 @@ export const LeftContainer = styled.div`
 
 //form styled//
 
-export const FormStyled = styled.form`
+export const FormStyled = styled.div`
 	width: 450px;
 `
 export const Title = styled.h1`
@@ -28,6 +28,7 @@ export const SubTxt = styled.div`
 	margin-bottom: 20px;
 `
 export const FormControl = styled.div`
+    position:relative;
 	display: flex;
 	flex-direction: column;
 `

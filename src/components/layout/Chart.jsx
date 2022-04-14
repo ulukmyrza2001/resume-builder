@@ -4,20 +4,22 @@ import styled from 'styled-components'
 
 const Chart = () => {
 	const [chart, setChart] = useState(100)
-	const {pathname} = useLocation()
-	useLayoutEffect(()=>{
-        if(pathname === '/contact'){
-			setChart(20)
-		}else if(pathname === '/experience'){
-			setChart(40)
-		}else if(pathname === '/education'){
-			setChart(60)
-		}else if(pathname === '/skills'){
-			setChart(80)
-		}else if(pathname === '/summary'){
+	const { pathname } = useLocation()
+	useLayoutEffect(() => {
+		if (pathname === '/contact') {
+			setChart(17)
+		} else if (pathname === '/experience') {
+			setChart(34)
+		} else if (pathname === '/education') {
+			setChart(50)
+		} else if (pathname === '/skills') {
+			setChart(66)
+		} else if (pathname === '/summary') {
+			setChart(83)
+		} else if (pathname === '/finish') {
 			setChart(100)
 		}
-	},[pathname])
+	}, [pathname])
 	return (
 		<ChartStyled>
 			<Div chart={chart}>
@@ -39,6 +41,9 @@ const Chart = () => {
 				</Step>
 				<Step className='step6'>
 					<Title>SUMMARY</Title>
+				</Step>
+				<Step className='step7'>
+					<Title>FINISH</Title>
 				</Step>
 			</Div>
 		</ChartStyled>
@@ -64,45 +69,29 @@ const Div = styled.div`
 
 	.step1 {
 		background-color: ${(props) =>
-			props.chart === 0 ||
-			props.chart === 20 ||
-			props.chart === 40 ||
-			props.chart === 60 ||
-			props.chart === 80 ||
-			props.chart === 100
-				? '#00c293'
-				: '#d9d9d9'};
+			props.chart > 0 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
 	}
 	.step2 {
 		background-color: ${(props) =>
-			props.chart === 20 ||
-			props.chart === 40 ||
-			props.chart === 60 ||
-			props.chart === 80 ||
-			props.chart === 100
-				? '#00c293'
-				: '#d9d9d9'};
+			props.chart >= 17 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
 	}
 	.step3 {
 		background-color: ${(props) =>
-			props.chart === 40 ||
-			props.chart === 60 ||
-			props.chart === 80 ||
-			props.chart === 100
-				? '#00c293'
-				: '#d9d9d9'};
+			props.chart >= 34 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
 	}
 	.step4 {
 		background-color: ${(props) =>
-			props.chart === 60 || props.chart === 80 || props.chart === 100
-				? '#00c293'
-				: '#d9d9d9'};
+			props.chart >= 50 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
 	}
 	.step5 {
 		background-color: ${(props) =>
-			props.chart === 80 || props.chart === 100 ? '#00c293' : '#d9d9d9'};
+			props.chart >= 66 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
 	}
 	.step6 {
+		background-color: ${(props) =>
+			props.chart >= 83 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
+	}
+	.step7 {
 		background-color: ${(props) =>
 			props.chart === 100 ? '#00c293' : '#d9d9d9'};
 	}
