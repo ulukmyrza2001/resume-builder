@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const Chart = () => {
-	const [chart, setChart] = useState(60)
+	const [chart, setChart] = useState(100)
 	return (
 		<ChartStyled>
 			<Div chart={chart}>

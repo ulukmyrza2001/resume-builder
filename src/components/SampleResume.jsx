@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import {GrClose} from 'react-icons/gr'
+import { GrClose } from 'react-icons/gr'
 import { AiOutlineExpand } from 'react-icons/ai'
 import Backdrop from './UI/Backdrop'
 
@@ -14,7 +14,8 @@ const resume = [
 		zipCode: 'XDFSDF',
 		email: 'uluk@gmail.com',
 		phone: '09999999999',
-		summary: 'aasdfajlhasdhfa;sdhf ahha;sdhfjasdhfhsdlkfh hkjhjkhjkahskjdfhkjhsakdjfhashdkfh kjhjashdlfhlasdhflkahsdk khalskdhflasdkfh kjhlk',
+		summary:
+			'aasdfajlhasdhfa;sdhf ahha;sdhfjasdhfhsdlkfh hkjhjkhjkahskjdfhkjhsakdjfhashdkfh kjhjashdlfhlasdhflkahsdk khalskdhflasdkfh kjhlk',
 		skills: ['java', 'javascript', 'php', 'python', 'c++', 'react'],
 		jobTtitle: 'frontend developer',
 		employer: 'sdfasdfsdf',
@@ -43,11 +44,15 @@ const SampleResume = () => {
 	const hideDetailResumeHandler = () => setShowDetail(false)
 
 	return resume.map((el) => (
-		<React.Fragment>
+		<React.Fragment key={el}>
 			{showDetail && <Backdrop />}
 			<GlobalStyle detail={showDetail} />
 			<ContainerResume detail={showDetail}>
-				{showDetail && <CloseDetail onClick={hideDetailResumeHandler}><GrClose/></CloseDetail>}
+				{showDetail && (
+					<CloseDetail onClick={hideDetailResumeHandler}>
+						<GrClose />
+					</CloseDetail>
+				)}
 				<DetailResume
 					detail={showDetail}
 					onClick={showDetailResumeHandler}
@@ -102,11 +107,6 @@ const SampleResume = () => {
 	))
 }
 
-
-
-
-
-
 const DetailResume = styled.div`
 	width: 50px;
 	height: 50px;
@@ -122,8 +122,8 @@ const DetailResume = styled.div`
 	cursor: pointer;
 `
 const ContainerResume = styled.div`
-	width: ${(props) => (props.detail ? '50%' : '330px')};
-	height: ${(props) => (props.detail ? '150vh' : '500px')};
+	width: ${(props) => (props.detail ? '800px' : '330px')};
+	height: ${(props) => (props.detail ? '1000px' : '500px')};
 	padding: ${(props) => (props.detail ? '50px' : '20px')};
 	position: absolute;
 	background-color: #ffff;
@@ -171,7 +171,7 @@ const CloseDetail = styled.div`
 	right: -70px;
 	padding: 14px;
 	cursor: pointer;
-	box-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
 `
 
 export default SampleResume

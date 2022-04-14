@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Input = ({ width, type, value, onChange, name }) => {
 	return (
 		<InputStyled
-      autoComplete='off'
+			autoComplete='off'
 			name={name}
 			value={value}
 			onChange={onChange}
