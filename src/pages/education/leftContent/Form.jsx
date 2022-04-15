@@ -1,6 +1,5 @@
 import React from 'react'
 import Input from '../../../components/UI/Input'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { generateArrayOfYears } from '../../../utils/helpers/generatedYear'
 import { month } from '../../../utils/constants/constants'
@@ -20,7 +19,7 @@ const Selection = ({data,width,margin,onChange,name}) => {
 
 const Form = () => {
    const years = generateArrayOfYears()
-   const input = useInput(obj)
+   const input = useInput()
 	return (
 		<FormStyled>
 			<Title>Education</Title>

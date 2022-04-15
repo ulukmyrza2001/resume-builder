@@ -35,22 +35,23 @@ const resumeSlice = createSlice({
 	initialState,
 	reducers: {
 		createResume(state, action) {
-			if (action.payload.name === 'skills') {
-				return
-			}else if(action.payload.name === 'summary'){
-				const summarySplited = action.payload.data.split(/\n/)
-				state.resumeData = state.resumeData = {
-					...state.resumeData,
-					summary: [
-						...summarySplited
-					],
-				}
-			} else {
-				state.resumeData = {
-					...state.resumeData,
-					[action.payload.name]: action.payload.data,
-				}
-			}
+			console.log(action.payload);
+			// if (action.payload.name === 'skills') {
+			// 	return
+			// }else if(action.payload.name === 'summary'){
+			// 	const summarySplited = action.payload.data.split(/\n/)
+			// 	state.resumeData = state.resumeData = {
+			// 		...state.resumeData,
+			// 		summary: [
+			// 			...summarySplited
+			// 		],
+			// 	}
+			// } else {
+			// 	state.resumeData = {
+			// 		...state.resumeData,
+			// 		[action.payload.name]: action.payload.data,
+			// 	}
+			// }
 		},
 		createSkill(state, action) {
 			state.resumeData = {

@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Input from '../../../components/UI/Input'
 import useInput from '../../../hooks/useInput'
+import { resumeActions } from '../../../store/resumeSlice'
 import {
 	FormStyled,
 	FormControl,
@@ -16,31 +18,49 @@ import {
 } from '../../styles'
 
 const Form = () => {
-   const input = useInput() 
+	const dispatch = useDispatch()
+	const input = useInput()
+	useEffect(() => {
+		dispatch(resumeActions.createResume(input.values))
+	}, [input.values])
+
+	console.log(input)
 	return (
 		<FormStyled>
 			<Title>Let's complete your Resume Heading</Title>
 			<SubTxt>How do you want employers to contact you?</SubTxt>
 			<FormControl>
 				<Label>Name</Label>
-				<Input onChange = {input.onChange} name='name' />
+				<Input
+					onChange={input.onChange}
+					name='name'
+					value={input.name}
+				/>
 			</FormControl>
 			<FormControl>
 				<Label>Address</Label>
-				<Input onChange = {input.onChange} name='address' />
+				<Input onChange={input.onChange} name='address' />
 			</FormControl>
 			<Div>
 				<FormControl>
 					<Label>City</Label>
-					<Input onChange = {input.onChange} name='city' width='220px' />
+					<Input
+						onChange={input.onChange}
+						name='city'
+						width='220px'
+					/>
 				</FormControl>
 				<FormControl>
 					<Label>State</Label>
-					<Input onChange = {input.onChange} name='state' width='100px' />
+					<Input
+						onChange={input.onChange}
+						name='state'
+						width='100px'
+					/>
 				</FormControl>
 				<FormControl>
 					<Label>ZIP code </Label>
-					<Input onChange = {input.onChange} name='zip' />
+					<Input onChange={input.onChange} name='zip' />
 				</FormControl>
 			</Div>
 			<Div>
@@ -50,11 +70,20 @@ const Form = () => {
 			<Div>
 				<FormControl>
 					<Label>Email</Label>
-					<Input onChange = {input.onChange} name='email' type='email' width='260px' />
+					<Input
+						onChange={input.onChange}
+						name='email'
+						type='email'
+						width='260px'
+					/>
 				</FormControl>
 				<FormControl>
 					<Label>Phone</Label>
-					<Input onChange = {input.onChange} name='phone' type='number' />
+					<Input
+						onChange={input.onChange}
+						name='phone'
+						type='number'
+					/>
 				</FormControl>
 			</Div>
 			<BtnGroup>

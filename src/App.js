@@ -18,11 +18,11 @@ function App() {
 				<Routes>
 					<Route path='/' element = {<Navigate to = '/contact' />} />
 					<Route path='/contact' element={<Contact />} />
-					<Route path='/experience' element={<Experience />} />
+					{/* <Route path='/experience' element={<Experience />} />
 					<Route path='/education' element = {<Education/>} />
 					<Route path='/skills' element = {<Skills/>}/>
 					<Route path='/summary' element = {<Summary/>} />
-					<Route path='/finish' element = {<FinishPage/>} />
+					<Route path='/finish' element = {<FinishPage/>} /> */}
 				</Routes>
 			</MainHeader>
 		</div>
