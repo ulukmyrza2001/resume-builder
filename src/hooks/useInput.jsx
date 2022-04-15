@@ -1,35 +1,32 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { resumeActions } from '../store/resumeSlice'
 
-
-const useInput = (inputValue = '') => {
-	const [values, setValues] = useState(inputValue)
-	const dispatch = useDispatch()
+const useInput = (saveResumeDataToStore) => {
+	const [values, setValues] = useState('')
 	const [inputTouched, setInputTouched] = useState(false)
-	// let error = ''
+	const [name,setName] = useState('')
 
-	const valueIsValid = values.trim() !== ''
+	const valueIsValid = name && values[name].trim() !== ''
 	const valueInputIsInValid = valueIsValid && inputTouched
 
 	return {
 		onChange: (e) => {
 		    const { name, value } = e.target
-			setValues(value)
-			dispatch(resumeActions.createResume({data : value,name}))
+			setValues({...values,[name] : value})
+			saveResumeDataToStore && saveResumeDataToStore({data : value,name})
+			setName(name)
 		},
 		onBlur: () => {
 			setInputTouched(true)
 		},
 		onClear: () => {
 			setInputTouched(false)
-			setValues('')
+			setValues(values,values[name] = '')
 		},
 		valueIsValid,
 		valueInputIsInValid,
 		values,
 		setValues,
-		// error,
+		setName,
 	}
 }
 

@@ -1,6 +1,5 @@
 import React from 'react'
 import Input from '../../../components/UI/Input'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { generateArrayOfYears } from '../../../utils/helpers/generatedYear'
 import { month } from '../../../utils/constants/constants'
@@ -20,6 +19,8 @@ import {
 	Option
 } from '../../styles'
 import Flex from '../../../components/UI/Flex'
+import { useDispatch } from 'react-redux'
+import { resumeActions } from '../../../store/resumeSlice'
 
 const Selection = ({ data, width, margin,name,onChange }) => {
 	return (
@@ -33,7 +34,11 @@ const Selection = ({ data, width, margin,name,onChange }) => {
 
 const Form = () => {
 	const years = generateArrayOfYears()
-   const input = useInput()
+	const dispatch = useDispatch()
+
+	const saveResumeDataToStore = (dataResume) => dispatch(resumeActions.createResume(dataResume))
+ 
+	const input = useInput(saveResumeDataToStore)
 	return (
 		<FormStyled>
 			<Title>Work Experience</Title>

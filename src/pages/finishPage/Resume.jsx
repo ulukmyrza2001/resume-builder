@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import { AiOutlineExpand } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 
 const Resume = () => {

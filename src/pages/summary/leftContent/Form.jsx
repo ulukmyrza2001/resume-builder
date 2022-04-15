@@ -5,9 +5,14 @@ import { FormStyled, SubTxt, Title,BtnGroup,BtnNext,BtnBack } from '../../styles
 import Flex from '../../../components/UI/Flex'
 import { Link } from 'react-router-dom'
 import useInput from '../../../hooks/useInput'
+import { useDispatch } from 'react-redux'
+import { resumeActions } from '../../../store/resumeSlice'
 
 const Form = () => {
-	const input = useInput()
+	const dispatch = useDispatch()
+	const saveResumeDataToStore = (dataResume) => dispatch(resumeActions.createResume(dataResume))
+
+	const input = useInput(saveResumeDataToStore)
 	return (
 		<FormStyled>
 			<Title>Professional Summary</Title>

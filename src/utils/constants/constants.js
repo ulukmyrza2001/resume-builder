@@ -85,7 +85,6 @@ export const SKILLS = [
     'Digital Media',
     'Facebook',
     'Instagram',
-    'Networking',
     'Pinterest',
     'SEO',
     'Social Media Platforms',

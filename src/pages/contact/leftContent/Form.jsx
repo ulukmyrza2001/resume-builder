@@ -1,7 +1,9 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Input from '../../../components/UI/Input'
 import useInput from '../../../hooks/useInput'
+import { resumeActions } from '../../../store/resumeSlice'
 import {
 	FormStyled,
 	FormControl,
@@ -16,7 +18,11 @@ import {
 } from '../../styles'
 
 const Form = () => {
-   const input = useInput() 
+	const dispatch = useDispatch()
+	const saveResumeDataToStore = (dataResume) =>{
+		dispatch(resumeActions.createResume(dataResume))
+	}
+   const input = useInput(saveResumeDataToStore) 
 	return (
 		<FormStyled>
 			<Title>Let's complete your Resume Heading</Title>

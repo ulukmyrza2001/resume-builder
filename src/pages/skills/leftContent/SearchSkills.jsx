@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { SKILLS } from '../../../utils/constants/constants'
 
 
-const SearchSkills = ({ value, onClick, showSearchList }) => {
+const SearchSkills = ({ value = '', onClick, showSearchList }) => {
 	return (
 		value &&
 		showSearchList &&

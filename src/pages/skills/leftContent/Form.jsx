@@ -31,18 +31,19 @@ const Skills = ({ skills, onClick }) => {
 const Form = () => {
 	const dispatch = useDispatch()
 	const skills = useSelector((state) => state.resume.resumeData.skills)
-	const input = useInput()
+	const {values,setValues,onChange,onClear} = useInput()
 	const [showSearchList,setShowSearchList] = useState(true)
 
 	const handleSubmit = () => {
-		dispatch(resumeActions.createSkill(input.values))
-		input.onClear()
+		if(values.skills.trim() === '') return
+		dispatch(resumeActions.createSkill(values.skills))
+		onClear()
 		setShowSearchList(true)
 	}
 	const deleteSkills = (id) => dispatch(resumeActions.deleteSkill(id))
 	
 	const addSkillsSearchingHandler = (e) =>{
-		input.setValues(e.target.textContent)
+		setValues({...values,skills : e.target.textContent})
 		setShowSearchList(false)
 	}
 	return (
@@ -56,15 +57,15 @@ const Form = () => {
 				<Label>Skills</Label>
 				<Flex>
 					<Input
-						value={input.values}
+						value={values.skills}
 						placeholder='Search skills/add skills'
 						name='skills'
-						onChange={input.onChange}
+						onChange={onChange}
 					/>
 					<BtnNext onClick={handleSubmit}>add skill</BtnNext>
 				</Flex>
 				<ContainerSkilll>
-					<SearchSkills showSearchList = {showSearchList} onClick={addSkillsSearchingHandler} value={input.values} />
+					<SearchSkills showSearchList = {showSearchList} onClick={addSkillsSearchingHandler} value={values.skills} />
 				</ContainerSkilll>
 			</FormControl>
 			<BtnGroup>

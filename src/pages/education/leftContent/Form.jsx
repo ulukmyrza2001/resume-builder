@@ -1,12 +1,13 @@
 import React from 'react'
 import Input from '../../../components/UI/Input'
-import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { generateArrayOfYears } from '../../../utils/helpers/generatedYear'
 import { month } from '../../../utils/constants/constants'
 import {Select,Option,FormStyled,FormControl,SubTxt,Title,Label,Div,Checkbox,BtnGroup,BtnBack,BtnNext} from '../../styles'
 import Flex from '../../../components/UI/Flex'
 import useInput from '../../../hooks/useInput'
+import { resumeActions } from '../../../store/resumeSlice'
+import { useDispatch } from 'react-redux'
 
 const Selection = ({data,width,margin,onChange,name}) => {
 	return (
@@ -19,8 +20,13 @@ const Selection = ({data,width,margin,onChange,name}) => {
 }
 
 const Form = () => {
+	const dispatch = useDispatch()
+
+   const saveResumeDataToStore = (dataResume) => dispatch(resumeActions.createResume(dataResume))
+
+   const input = useInput(saveResumeDataToStore)
+
    const years = generateArrayOfYears()
-   const input = useInput(obj)
 	return (
 		<FormStyled>
 			<Title>Education</Title>
@@ -43,10 +49,6 @@ const Form = () => {
 				<Checkbox type='checkbox' />
 				<Label>Show country</Label>
 			</Div>
-			<FormControl>
-				<Label>Degree</Label>
-				<Selection onChange={input.onChange} name = 'educationDegree' margin = '0' width = '100%' data = {[]} />
-			</FormControl>
 			<FormControl>
 				<Label>Field of Study</Label>
 				<Input onChange={input.onChange} name='field' type='text' />

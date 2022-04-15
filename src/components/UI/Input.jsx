@@ -5,7 +5,7 @@ const Input = ({ width, type, value, onChange, name,placeholder }) => {
 		<InputStyled
 			autoComplete='off'
 			name={name}
-			value={value}
+			value = {value || ''}
 			onChange={onChange}
 			type={type || 'text'}
 			width={width}
