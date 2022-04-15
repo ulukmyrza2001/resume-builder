@@ -16,17 +16,7 @@ import {
 } from '../../styles'
 
 const Form = () => {
-	const obj = {
-		name: '',
-		address: '',
-		city: '',
-		state: '',
-		zip: '',
-		email: '',
-		phone: '',
-	}
-   const input = useInput(obj)
-	
+   const input = useInput() 
 	return (
 		<FormStyled>
 			<Title>Let's complete your Resume Heading</Title>

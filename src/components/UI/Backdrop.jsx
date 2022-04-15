@@ -13,6 +13,7 @@ const BackdropStyled = styled.div`
    left: 0;
    bottom: 0;
    right: 0;  
-   background-color: #1f4e58ea
+   background-color: #1f4e58ea;
+   z-index: 10;
 `
 export default Backdrop

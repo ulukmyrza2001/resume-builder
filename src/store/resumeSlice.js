@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
 	resumeData: JSON.parse(localStorage.getItem('resume')) || {
-		name: 'CONTACT',
+		name: 'CONTACT INFORMATION',
 		address: '',
 		city: '',
 		state: '',
@@ -35,7 +35,6 @@ const resumeSlice = createSlice({
 	initialState,
 	reducers: {
 		createResume(state, action) {
-			console.log(action.payload);
 			if (action.payload.name === 'skills') {
 				return
 			}else if(action.payload.name === 'summary'){

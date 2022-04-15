@@ -8,7 +8,6 @@ import useInput from '../../../hooks/useInput'
 
 const Form = () => {
 	const input = useInput()
-	console.log(input.values);
 	return (
 		<FormStyled>
 			<Title>Professional Summary</Title>
@@ -28,7 +27,7 @@ const Form = () => {
 			></Textarea>
 			<BtnGroup>
 			    <Link to = '/skills'><BtnBack type='button'>Back</BtnBack></Link>
-				<Link to ='/summary'><BtnNext type = 'button'>Next</BtnNext></Link>
+				<Link to ='/finish'><BtnNext type = 'button'>Next</BtnNext></Link>
 			</BtnGroup>
 		</FormStyled>
 	)

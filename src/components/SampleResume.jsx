@@ -100,7 +100,7 @@ const DetailResume = styled.div`
 `
 const ContainerResume = styled.div`
 	width: ${(props) => (props.detail ? '800px' : '330px')};
-	height: ${(props) => (props.detail ? '1000px' : '500px')};
+	height: ${(props) => (props.detail ? '1000px' : '470px')};
 	padding: ${(props) => (props.detail ? '50px' : '20px')};
 	position: absolute;
 	background-color: #ffff;

@@ -3,7 +3,9 @@ import Resume from './Resume'
 import styled from 'styled-components'
 import { BtnNext, BtnBack } from '../styles'
 import { MdFileDownload } from 'react-icons/md'
+import {MdOutlineKeyboardBackspace} from 'react-icons/md'
 import { Preview, print } from 'react-html2pdf'
+import Flex from '../../components/UI/Flex'
 
 const FinishPage = () => {
 	const downloadPDFhandler = () => {
@@ -12,11 +14,14 @@ const FinishPage = () => {
 	return (
 		<Finish>
 			<HeaderFinishPage>
-				<BtnBack>Preview</BtnBack>
+				<BtnBack><MdOutlineKeyboardBackspace/>Preview</BtnBack>
+				<Flex>
 				<BtnDownload onClick={downloadPDFhandler}>
 					<MdFileDownload fontSize={20} />
 					Download
 				</BtnDownload>
+				<BtnNext>Create New Resume</BtnNext>
+				</Flex>
 			</HeaderFinishPage>
 			<Preview id = {'resume'}>
 				<Resume />

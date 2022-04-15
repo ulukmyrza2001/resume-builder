@@ -28,14 +28,13 @@ export const SubTxt = styled.div`
 	margin-bottom: 20px;
 `
 export const FormControl = styled.div`
-    position:relative;
+	position: relative;
 	display: flex;
 	flex-direction: column;
 `
 export const Div = styled.div`
 	display: flex;
 	align-items: center;
-	
 `
 export const Label = styled.label`
 	font-size: 14px;
@@ -61,6 +60,11 @@ export const BtnBack = styled.button`
 	font-weight: bold;
 	letter-spacing: 0.5px;
 	background-color: #fafafa;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+	cursor: pointer;
 	&:hover {
 		border-color: #c5c5c5;
 		background-color: #f5f2f2;
@@ -78,24 +82,23 @@ export const BtnNext = styled(BtnBack)`
 //rightStyled//
 
 export const BackgroundRightContent = styled.div`
-background-image:var(--left-content);
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-width: 30%;
+	background-image: var(--left-content);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	width: 30%;
 `
 
 //selectStyled//
 
 export const Select = styled.select`
-	width: ${props=>props.width || '150px'};
+	width: ${(props) => props.width || '150px'};
 	padding: 0.7rem;
 	outline: none;
-	margin: ${props=>props.margin || '10px 0 0 10px'};
+	margin: ${(props) => props.margin || '10px 0 0 10px'};
 	border: 1px solid #cacaca;
 	&:focus {
 		border-color: #00c293;
 	}
 `
 export const Option = styled.option``
-

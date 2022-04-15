@@ -19,16 +19,7 @@ const Selection = ({data,width,margin,onChange,name}) => {
 }
 
 const Form = () => {
-	const years = generateArrayOfYears()
-	const obj = {
-		schoolName: '',
-		educationDegree: '',
-		educationCity: '',
-		educationState: '',
-		educationMonth: '',
-		educationYear: '',
-		field : ''
-	}
+   const years = generateArrayOfYears()
    const input = useInput(obj)
 	return (
 		<FormStyled>
