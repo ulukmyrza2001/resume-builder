@@ -3,11 +3,12 @@ import Input from '../../../components/UI/Input'
 import { Link } from 'react-router-dom'
 import { generateArrayOfYears } from '../../../utils/helpers/generatedYear'
 import { month } from '../../../utils/constants/constants'
-import {Select,Option,FormStyled,FormControl,SubTxt,Title,Label,Div,Checkbox,BtnGroup,BtnBack,BtnNext} from '../../styles'
+import {Select,Option,FormStyled,FormControl,SubTxt,Title,Label,Div,BtnGroup,BtnBack,BtnNext} from '../../styles'
 import Flex from '../../../components/UI/Flex'
 import useInput from '../../../hooks/useInput'
 import { resumeActions } from '../../../store/resumeSlice'
 import { useDispatch } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const Selection = ({data,width,margin,onChange,name}) => {
 	return (
@@ -20,6 +21,8 @@ const Selection = ({data,width,margin,onChange,name}) => {
 }
 
 const Form = () => {
+   const {t} = useTranslation()
+
 	const dispatch = useDispatch()
 
    const saveResumeDataToStore = (dataResume) => dispatch(resumeActions.createResume(dataResume))
@@ -29,33 +32,29 @@ const Form = () => {
    const years = generateArrayOfYears()
 	return (
 		<FormStyled>
-			<Title>Education</Title>
-			<SubTxt>Where did you go to school?</SubTxt>
+			<Title>{t('educationTitle')}</Title>
+			<SubTxt>{t('educationSubText')}</SubTxt>
 			<FormControl>
-				<Label>School Name</Label>
+				<Label>{t('schoolName')}</Label>
 				<Input onChange={input.onChange} name='schoolName' type='text' />
 			</FormControl>
 			<Div>
 				<FormControl>
-					<Label>City</Label>
+					<Label>{t('eduCity')}</Label>
 					<Input onChange={input.onChange} name='educationCity' type='text' width='300px' />
 				</FormControl>
 				<FormControl>
-					<Label>State</Label>
+					<Label>{t('eduState')}</Label>
 					<Input onChange={input.onChange} name='educationState' type='text' />
 				</FormControl>
 			</Div>
-			<Div>
-				<Checkbox type='checkbox' />
-				<Label>Show country</Label>
-			</Div>
 			<FormControl>
-				<Label>Field of Study</Label>
+				<Label>{t('field')}</Label>
 				<Input onChange={input.onChange} name='field' type='text' />
 			</FormControl>
 			<Flex direction={'column'}>
 				<Flex align='center' justify='space-between'>
-					<Label>Graduation Date</Label>
+					<Label>{t('graduationDate')}</Label>
 					<Div>
 						<Selection onChange={input.onChange} name = 'educationMonth' data = {month} />
 						<Selection onChange={input.onChange} name = 'educationYear' data = {years} />
@@ -63,8 +62,8 @@ const Form = () => {
 				</Flex>
 			</Flex>
 			<BtnGroup>
-			    <Link to = '/experience'><BtnBack type='button'>Back</BtnBack></Link>
-				<Link to ='/skills'><BtnNext type = 'button'>Next</BtnNext></Link>
+			    <Link to = '/experience'><BtnBack type='button'>{t('back')}</BtnBack></Link>
+				<Link to ='/skills'><BtnNext type = 'button'>{t('next')}</BtnNext></Link>
 			</BtnGroup>
 		</FormStyled>
 	)

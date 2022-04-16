@@ -5,8 +5,10 @@ import { GrClose } from 'react-icons/gr'
 import { AiOutlineExpand } from 'react-icons/ai'
 import Backdrop from './UI/Backdrop'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const SampleResume = () => {
+	const {t} = useTranslation()
 	const {resumeData : resume} = useSelector(state=>state.resume)
 	const [showDetail, setShowDetail] = useState(false)
 
@@ -33,28 +35,28 @@ const SampleResume = () => {
 				>
 					<AiOutlineExpand color='white' fontSize={'20px'} />
 				</DetailResume>
-				<Title detail={showDetail}>{resume.name}</Title>
+				<Title detail={showDetail}>{resume.name || t('contactInformation') }</Title>
 				<hr />
 				<Text>
 					{resume.address},{resume.city},{resume.state},{resume.zip}
 				</Text>
 				<Text>{resume.email}</Text>
 				<Text>{resume.phone}</Text>
-				<SubTtile detail={showDetail}>Professional Summary</SubTtile>
+				<SubTtile detail={showDetail}>{t('summaryTtile')}</SubTtile>
 				<hr />
 				<List>
 				    {resume.summary.map((el) => (
 						<Text key={el}>{el}</Text>
 					))}
 				</List>
-				<SubTtile detail={showDetail}>Skills</SubTtile>
+				<SubTtile detail={showDetail}>{t('skills')}</SubTtile>
 				<hr />
 				<List>
 					{resume.skills.map((skill) => (
 						<Li key={skill.id}>{skill.skill}</Li>
 					))}
 				</List>
-				<SubTtile detail={showDetail}>Experience</SubTtile>
+				<SubTtile detail={showDetail}>{t('experience')}</SubTtile>
 				<hr />
 				<Div>
 					<Address>{resume.jobTitle}</Address>
@@ -67,7 +69,7 @@ const SampleResume = () => {
 					{resume.employer},{resume.experienceCity},{resume.experienceState}
 				</Address>
 				<Text>{resume.education}</Text>
-				<SubTtile detail={showDetail}>Education</SubTtile>
+				<SubTtile detail={showDetail}>{t('education')}</SubTtile>
 				<hr />
 				<Div>
 					<Address>

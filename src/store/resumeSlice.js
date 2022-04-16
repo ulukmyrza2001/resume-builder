@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
 	resumeData: JSON.parse(localStorage.getItem('resume')) || {
-		name: 'CONTACT INFORMATION',
+		name: '',
 		address: '',
 		city: '',
 		state: '',

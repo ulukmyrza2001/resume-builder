@@ -18,6 +18,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux'
 import { resumeActions } from '../../../store/resumeSlice'
 import SearchSkills from './SearchSkills'
+import { useTranslation } from 'react-i18next'
 
 const Skills = ({ skills, onClick }) => {
 	return skills.map((el) => (
@@ -29,6 +30,7 @@ const Skills = ({ skills, onClick }) => {
 }
 
 const Form = () => {
+	const {t} = useTranslation()
 	const dispatch = useDispatch()
 	const skills = useSelector((state) => state.resume.resumeData.skills)
 	const {values,setValues,onChange,onClear} = useInput()
@@ -48,21 +50,21 @@ const Form = () => {
 	}
 	return (
 		<FormStyled>
-			<Title>Skills</Title>
-			<SubTxt>Hightlight 6-8 of your top skills.</SubTxt>
+			<Title>{t('skillsTitle')}</Title>
+			<SubTxt>{t('skillsSubTitle')}</SubTxt>
 			<Flex wrap='wrap' gap='5px'>
 				<Skills skills={skills} onClick={deleteSkills} />
 			</Flex>
 			<FormControl>
-				<Label>Skills</Label>
+				<Label>{t('skill')}</Label>
 				<Flex>
 					<Input
 						value={values.skills}
-						placeholder='Search skills/add skills'
+						placeholder={t('placeHolderSkills')}
 						name='skills'
 						onChange={onChange}
 					/>
-					<BtnNext onClick={handleSubmit}>add skill</BtnNext>
+					<BtnNext onClick={handleSubmit}>{t('addSkills')}</BtnNext>
 				</Flex>
 				<ContainerSkilll>
 					<SearchSkills showSearchList = {showSearchList} onClick={addSkillsSearchingHandler} value={values.skills} />
@@ -70,10 +72,10 @@ const Form = () => {
 			</FormControl>
 			<BtnGroup>
 				<Link to='/education'>
-					<BtnBack type='button'>Back</BtnBack>
+					<BtnBack type='button'>{t('back')}</BtnBack>
 				</Link>
 				<Link to='/summary'>
-					<BtnNext type='button'>Next</BtnNext>
+					<BtnNext type='button'>{t('next')}</BtnNext>
 				</Link>
 			</BtnGroup>
 		</FormStyled>

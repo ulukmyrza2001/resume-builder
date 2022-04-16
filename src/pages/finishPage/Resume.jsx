@@ -2,8 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
 
 const Resume = () => {
+	const {t} = useTranslation()
 	const { resumeData: resume } = useSelector((state) => state.resume)
 
 	return (
@@ -17,21 +19,21 @@ const Resume = () => {
 				</Text>
 				<Text>{resume.email}</Text>
 				<Text>{resume.phone}</Text>
-				<SubTtile>Professional Summary</SubTtile>
+				<SubTtile>{t('summaryTtile')}</SubTtile>
 				<hr />
 				<List>
 					{resume.summary.map((el) => (
 						<Text key={el}>{el}</Text>
 					))}
 				</List>
-				<SubTtile>Skills</SubTtile>
+				<SubTtile>{t('skills')}</SubTtile>
 				<hr />
 				<List>
 					{resume.skills.map((skill) => (
 						<Li key={skill.id}>{skill.skill}</Li>
 					))}
 				</List>
-				<SubTtile>Experience</SubTtile>
+				<SubTtile>{t('experience')}</SubTtile>
 				<hr />
 				<Div>
 					<Address>{resume.jobTitle}</Address>
@@ -46,7 +48,7 @@ const Resume = () => {
 					{resume.experienceState}
 				</Address>
 				<Text>{resume.education}</Text>
-				<SubTtile>Education</SubTtile>
+				<SubTtile>{t('education')}</SubTtile>
 				<hr />
 				<Div>
 					<Address>

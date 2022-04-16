@@ -21,6 +21,7 @@ import {
 import Flex from '../../../components/UI/Flex'
 import { useDispatch } from 'react-redux'
 import { resumeActions } from '../../../store/resumeSlice'
+import { useTranslation } from 'react-i18next'
 
 const Selection = ({ data, width, margin,name,onChange }) => {
 	return (
@@ -33,6 +34,7 @@ const Selection = ({ data, width, margin,name,onChange }) => {
 }
 
 const Form = () => {
+	const {t} = useTranslation()
 	const years = generateArrayOfYears()
 	const dispatch = useDispatch()
 
@@ -41,40 +43,36 @@ const Form = () => {
 	const input = useInput(saveResumeDataToStore)
 	return (
 		<FormStyled>
-			<Title>Work Experience</Title>
-			<SubTxt>Start with you most recent work experience</SubTxt>
+			<Title>{t('experienceTitle')}</Title>
+			<SubTxt>{t('experienceSubText')}</SubTxt>
 			<FormControl>
-				<Label>Job Title</Label>
+				<Label>{t('jobTitle')}</Label>
 				<Input onChange={input.onChange} name='jobTitle' type='text' />
 			</FormControl>
 			<FormControl>
-				<Label>Employer</Label>
+				<Label>{t('employer')}</Label>
 				<Input onChange={input.onChange} name='employer' type='text' />
 			</FormControl>
 			<Div>
 				<FormControl>
-					<Label>City</Label>
+					<Label>{t('expCity')}</Label>
 					<Input onChange={input.onChange} name='experienceCity' type='text' width='300px' />
 				</FormControl>
 				<FormControl>
-					<Label>State</Label>
+					<Label>{t('expState')}</Label>
 					<Input onChange={input.onChange} name='experienceState' type='text' />
 				</FormControl>
 			</Div>
-			<Div>
-				<Checkbox type='checkbox' />
-				<Label>Show country</Label>
-			</Div>
 			<Flex direction={'column'}>
 				<Flex align='center' justify='space-between'>
-					<Label>Start Date</Label>
+					<Label>{t('startDate')}</Label>
 					<Div>
 						<Selection onChange={input.onChange} name = 'startMonth' data={month} />
 						<Selection onChange={input.onChange} name = 'startYears' data={years} />
 					</Div>
 				</Flex>
 				<Flex align='center' justify='space-between'>
-					<Label>End Date</Label>
+					<Label>{t('endDate')}</Label>
 					<Div>
 						<Selection onChange={input.onChange} name = 'endMonth' data={month} />
 						<Selection onChange={input.onChange} name = 'endYear' data={years} />
@@ -86,8 +84,8 @@ const Form = () => {
 				</Flex>
 			</Flex>
 			<BtnGroup>
-				<Link to = '/contact'><BtnBack type='button'>Back</BtnBack></Link>
-				<Link to ='/education'><BtnNext type = 'button'>Next</BtnNext></Link>
+				<Link to = '/contact'><BtnBack type='button'>{t('back')}</BtnBack></Link>
+				<Link to ='/education'><BtnNext type = 'button'>{t('next')}</BtnNext></Link>
 			</BtnGroup>
 		</FormStyled>
 	)

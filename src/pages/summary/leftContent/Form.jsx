@@ -7,16 +7,18 @@ import { Link } from 'react-router-dom'
 import useInput from '../../../hooks/useInput'
 import { useDispatch } from 'react-redux'
 import { resumeActions } from '../../../store/resumeSlice'
+import { useTranslation } from 'react-i18next'
 
 const Form = () => {
+	const {t} = useTranslation()
 	const dispatch = useDispatch()
 	const saveResumeDataToStore = (dataResume) => dispatch(resumeActions.createResume(dataResume))
 
 	const input = useInput(saveResumeDataToStore)
 	return (
 		<FormStyled>
-			<Title>Professional Summary</Title>
-			<SubTxt>Finish your resue with short summary</SubTxt>
+			<Title>{t('summaryTtile')}</Title>
+			<SubTxt>{t('summarySubText')}</SubTxt>
 			<AddSummary>
 				<Flex align='center' justify='end'>
 					<AiOutlinePlusCircle />
@@ -24,15 +26,15 @@ const Form = () => {
 				</Flex>
 			</AddSummary>
 			<Textarea
-				placeholder='Click here to write you skills. Insert our pre-written examples with the Add Button'
+				placeholder={t('summaryPlaceholder')}
 				onChange={input.onChange}
 				cols='60'
 				rows='15'
 				name = 'summary'
 			></Textarea>
 			<BtnGroup>
-			    <Link to = '/skills'><BtnBack type='button'>Back</BtnBack></Link>
-				<Link to ='/finish'><BtnNext type = 'button'>Next</BtnNext></Link>
+			    <Link to = '/skills'><BtnBack type='button'>{t('back')}</BtnBack></Link>
+				<Link to ='/finish'><BtnNext type = 'button'>{t('next')}</BtnNext></Link>
 			</BtnGroup>
 		</FormStyled>
 	)

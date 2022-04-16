@@ -1,4 +1,5 @@
 import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Input from '../../../components/UI/Input'
@@ -19,54 +20,51 @@ import {
 
 const Form = () => {
 	const dispatch = useDispatch()
+	const {t} = useTranslation()
 	const saveResumeDataToStore = (dataResume) =>{
 		dispatch(resumeActions.createResume(dataResume))
 	}
    const input = useInput(saveResumeDataToStore) 
 	return (
 		<FormStyled>
-			<Title>Let's complete your Resume Heading</Title>
-			<SubTxt>How do you want employers to contact you?</SubTxt>
+			<Title>{t('contactTitle')}</Title>
+			<SubTxt>{t('contactSubText')}</SubTxt>
 			<FormControl>
-				<Label>Name</Label>
+				<Label>{t('name')}</Label>
 				<Input onChange = {input.onChange} name='name' />
 			</FormControl>
 			<FormControl>
-				<Label>Address</Label>
+				<Label>{t('address')}</Label>
 				<Input onChange = {input.onChange} name='address' />
 			</FormControl>
 			<Div>
 				<FormControl>
-					<Label>City</Label>
+					<Label>{t('city')}</Label>
 					<Input onChange = {input.onChange} name='city' width='220px' />
 				</FormControl>
 				<FormControl>
-					<Label>State</Label>
+					<Label>{t('state')}</Label>
 					<Input onChange = {input.onChange} name='state' width='100px' />
 				</FormControl>
 				<FormControl>
-					<Label>ZIP code </Label>
+					<Label>{t('zipcode')}</Label>
 					<Input onChange = {input.onChange} name='zip' />
 				</FormControl>
 			</Div>
 			<Div>
-				<Checkbox type='checkbox' />
-				<Label>Show country</Label>
-			</Div>
-			<Div>
 				<FormControl>
-					<Label>Email</Label>
+					<Label>{t('email')}</Label>
 					<Input onChange = {input.onChange} name='email' type='email' width='260px' />
 				</FormControl>
 				<FormControl>
-					<Label>Phone</Label>
+					<Label>{t('phone')}</Label>
 					<Input onChange = {input.onChange} name='phone' type='number' />
 				</FormControl>
 			</Div>
 			<BtnGroup>
-				<BtnBack>Back</BtnBack>
+				<BtnBack>{t('back')}</BtnBack>
 				<Link to='/experience'>
-					<BtnNext type='button'>Next</BtnNext>
+					<BtnNext type='button'>{t('next')}</BtnNext>
 				</Link>
 			</BtnGroup>
 		</FormStyled>

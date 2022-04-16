@@ -1,12 +1,12 @@
 import React from 'react'
 import Chart from './Chart'
-import Header from './Header'
+import Header from './header/Header'
 
-const MainHeader = ({children}) => {
+const MainHeader = ({ children }) => {
 	return (
 		<>
 			<Header>MainHeader</Header>
-      <Chart/>
+			<Chart />
 			<main>{children}</main>
 		</>
 	)

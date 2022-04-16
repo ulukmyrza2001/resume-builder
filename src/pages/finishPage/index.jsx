@@ -9,8 +9,10 @@ import Flex from '../../components/UI/Flex'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { resumeActions } from '../../store/resumeSlice'
+import { useTranslation } from 'react-i18next'
 
 const FinishPage = () => {
+	const {t} = useTranslation()
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const downloadPDFhandler = () => print('a', 'resume')
@@ -24,13 +26,13 @@ const FinishPage = () => {
 	return (
 		<Finish>
 			<HeaderFinishPage>
-				<BtnBack><MdOutlineKeyboardBackspace/>Preview</BtnBack>
+				<BtnBack><MdOutlineKeyboardBackspace/>{t('back')}</BtnBack>
 				<Flex>
 				<BtnDownload onClick={downloadPDFhandler}>
 					<MdFileDownload fontSize={20} />
-					Download
+					{t('download')}
 				</BtnDownload>
-				<BtnNext onClick = {newResumeHandler}>Create New Resume</BtnNext>
+				<BtnNext onClick = {newResumeHandler}>{t('newResume')}</BtnNext>
 				</Flex>
 			</HeaderFinishPage>
 			<Preview id = {'resume'}>
