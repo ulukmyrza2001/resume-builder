@@ -35,9 +35,7 @@ const resumeSlice = createSlice({
 	initialState,
 	reducers: {
 		createResume(state, action) {
-			if (action.payload.name === 'skills') {
-				return
-			}else if(action.payload.name === 'summary'){
+			if(action.payload.name === 'summary'){
 				const summarySplited = action.payload.data.split(/\n/)
 				state.resumeData = state.resumeData = {
 					...state.resumeData,
@@ -67,6 +65,9 @@ const resumeSlice = createSlice({
 				...state.resumeData,
 				skills:filteredSkills,
 			}
+		},
+		saveResume(state){
+		   state.resumes = [...state.resumes,state.resumeData]
 		}
 	},
 })

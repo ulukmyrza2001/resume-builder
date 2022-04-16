@@ -6,11 +6,21 @@ import { MdFileDownload } from 'react-icons/md'
 import {MdOutlineKeyboardBackspace} from 'react-icons/md'
 import { Preview, print } from 'react-html2pdf'
 import Flex from '../../components/UI/Flex'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { resumeActions } from '../../store/resumeSlice'
 
 const FinishPage = () => {
-	const downloadPDFhandler = () => {
-		print('a', 'resume')
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+	const downloadPDFhandler = () => print('a', 'resume')
+
+	const newResumeHandler = () =>{
+		localStorage.removeItem('resume')
+		navigate('/contact')
+		dispatch(resumeActions.saveResume())
 	}
+	
 	return (
 		<Finish>
 			<HeaderFinishPage>
@@ -20,7 +30,7 @@ const FinishPage = () => {
 					<MdFileDownload fontSize={20} />
 					Download
 				</BtnDownload>
-				<BtnNext>Create New Resume</BtnNext>
+				<BtnNext onClick = {newResumeHandler}>Create New Resume</BtnNext>
 				</Flex>
 			</HeaderFinishPage>
 			<Preview id = {'resume'}>

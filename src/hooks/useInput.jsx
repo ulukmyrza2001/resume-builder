@@ -5,6 +5,7 @@ const useInput = (saveResumeDataToStore) => {
 	const [inputTouched, setInputTouched] = useState(false)
 	const [name,setName] = useState('')
 
+
 	const valueIsValid = name && values[name].trim() !== ''
 	const valueInputIsInValid = valueIsValid && inputTouched
 
@@ -20,7 +21,7 @@ const useInput = (saveResumeDataToStore) => {
 		},
 		onClear: () => {
 			setInputTouched(false)
-			setValues(values,values[name] = '')
+			setValues({...values,[name] : ''})
 		},
 		valueIsValid,
 		valueInputIsInValid,
