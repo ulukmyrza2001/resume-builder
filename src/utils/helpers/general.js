@@ -1,6 +1,15 @@
-import { useDispatch } from "react-redux"
-import { resumeActions } from "../../store/resumeSlice"
-const dispatch = useDispatch()
-export const saveResumeDataToStore = (dataResume) =>{
-    dispatch(resumeActions.createResume(dataResume))
+export const saveToLocalStorage = (key, data) => {
+	try {
+		localStorage.setItem(key, JSON.stringify(data))
+	} catch (error) {
+		console.log(error)
+	}
+}
+
+export const getDataFromLocalStorage = (key) =>{
+    try{
+       return JSON.parse(localStorage.getItem(key))
+    }catch(error){
+        //--
+    }
 }

@@ -5,6 +5,7 @@ import ruIcon from '../../../assets/iconsLng/flags.png'
 import kgIcon from '../../../assets/iconsLng/kyrgyzstan.png'
 import { useTranslation } from 'react-i18next'
 import LanguageItem from './LanguageItem'
+import { saveToLocalStorage } from '../../../utils/helpers/general'
 
 const languages = [
 	{
@@ -33,6 +34,7 @@ const Language = () => {
 	const changeLanguage = (code) => {
 		setLang(false)
 		i18n.changeLanguage(code)
+		saveToLocalStorage('lang',code)
 	}
 	return (
 		<LanguageStyled>

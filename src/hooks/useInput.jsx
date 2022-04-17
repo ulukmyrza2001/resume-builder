@@ -2,12 +2,7 @@ import { useState } from 'react'
 
 const useInput = (saveResumeDataToStore) => {
 	const [values, setValues] = useState('')
-	const [inputTouched, setInputTouched] = useState(false)
 	const [name,setName] = useState('')
-
-
-	const valueIsValid = name && values[name].trim() !== ''
-	const valueInputIsInValid = valueIsValid && inputTouched
 
 	return {
 		onChange: (e) => {
@@ -17,14 +12,10 @@ const useInput = (saveResumeDataToStore) => {
 			setName(name)
 		},
 		onBlur: () => {
-			setInputTouched(true)
 		},
 		onClear: () => {
-			setInputTouched(false)
 			setValues({...values,[name] : ''})
 		},
-		valueIsValid,
-		valueInputIsInValid,
 		values,
 		setValues,
 		setName,

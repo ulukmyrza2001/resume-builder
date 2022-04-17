@@ -6,6 +6,8 @@ import { AiOutlineExpand } from 'react-icons/ai'
 import Backdrop from './UI/Backdrop'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { saveToLocalStorage } from '../utils/helpers/general'
+
 
 const SampleResume = () => {
 	const {t} = useTranslation()
@@ -15,9 +17,10 @@ const SampleResume = () => {
 	const showDetailResumeHandler = () => setShowDetail(true)
 
 	const hideDetailResumeHandler = () => setShowDetail(false)
+	
 
 	useEffect(()=>{
-		localStorage.setItem('resume',JSON.stringify(resume))
+		saveToLocalStorage('resume',resume)
 	},[resume])
 
 	return <React.Fragment>
@@ -45,14 +48,14 @@ const SampleResume = () => {
 				<SubTtile detail={showDetail}>{t('summaryTtile')}</SubTtile>
 				<hr />
 				<List>
-				    {resume.summary.map((el) => (
+				    {resume.summary && resume.summary.map((el) => (
 						<Text key={el}>{el}</Text>
 					))}
 				</List>
 				<SubTtile detail={showDetail}>{t('skills')}</SubTtile>
 				<hr />
 				<List>
-					{resume.skills.map((skill) => (
+					{resume.skills && resume.skills.map((skill) => (
 						<Li key={skill.id}>{skill.skill}</Li>
 					))}
 				</List>

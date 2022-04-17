@@ -20,7 +20,7 @@ import { resumeActions } from '../../../store/resumeSlice'
 import SearchSkills from './SearchSkills'
 import { useTranslation } from 'react-i18next'
 
-const Skills = ({ skills, onClick }) => {
+const Skills = ({ skills = [], onClick }) => {
 	return skills.map((el) => (
 		<Skill key={el.id}>
 			{el.skill}&nbsp;
@@ -37,7 +37,7 @@ const Form = () => {
 	const [showSearchList,setShowSearchList] = useState(true)
 
 	const handleSubmit = () => {
-		if(values.skills.trim() === '') return
+		if(!values || values.skills.trim() === '') return
 		dispatch(resumeActions.createSkill(values.skills))
 		onClear()
 		setShowSearchList(true)
@@ -101,7 +101,7 @@ const ContainerSkilll = styled.div`
 	width: 100%;
 	max-height: 200px;
 	position: absolute;
-	top: 85px;
+	top: 95px;
 	overflow-y: scroll;
 	background-color: #ffffff;
 	padding: 5px;

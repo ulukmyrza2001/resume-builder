@@ -10,6 +10,7 @@ i18n.use(LanguageDetector)
 		debug: true,
 		supportedLngs: ['ru', 'en'],
 		fallbackLng: 'en',
+		lng: "en",
 		detection: {
 			order: ['cookie', 'localStorage', 'htmlTag', 'path', 'subdomain'],
 			caches: ['localStorage'],

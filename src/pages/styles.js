@@ -53,9 +53,9 @@ export const BtnGroup = styled.div`
 	margin: 30px 0 50px 0;
 `
 export const BtnBack = styled.button`
-	width: 180px;
+	min-width: 180px;
 	border: 1px solid #cacaca;
-	padding: 1rem 0;
+	padding: 1rem ;
 	text-transform: uppercase;
 	font-weight: bold;
 	letter-spacing: 0.5px;

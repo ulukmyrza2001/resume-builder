@@ -7,10 +7,23 @@ import Summary from './pages/summary'
 import Education from './pages/education'
 import Skills from './pages/skills'
 import FinishPage from './pages/finishPage'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { resumeActions } from './store/resumeSlice'
+import { getDataFromLocalStorage } from './utils/helpers/general'
+import { useTranslation } from 'react-i18next'
 
 
 function App() {
 	const {pathname} = useLocation()
+	const {i18n} = useTranslation()
+	const dispatch = useDispatch()
+	useEffect(()=>{
+		const resumeData = getDataFromLocalStorage('resume')
+		console.log(resumeData);
+		dispatch(resumeActions.getDataFromLocalStorage(resumeData))
+		i18n.changeLanguage(getDataFromLocalStorage('lang'))
+	},[dispatch,i18n])
 	return (
 		<div>
 			<MainHeader>

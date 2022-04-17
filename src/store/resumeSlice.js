@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-	resumeData: JSON.parse(localStorage.getItem('resume')) || {
+	resumeData: {
 		name: '',
 		address: '',
 		city: '',
@@ -34,6 +34,9 @@ const resumeSlice = createSlice({
 	name: 'resume',
 	initialState,
 	reducers: {
+		getDataFromLocalStorage(state,action){
+           state.resumeData = {...action.payload} || state.resumeData
+		},
 		createResume(state, action) {
 			if(action.payload.name === 'summary'){
 				const summarySplited = action.payload.data.split(/\n/)

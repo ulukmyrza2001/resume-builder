@@ -12,7 +12,6 @@ import {
 	Title,
 	Label,
 	Div,
-	Checkbox,
 	BtnGroup,
 	BtnBack,
 	BtnNext,
@@ -20,45 +19,64 @@ import {
 
 const Form = () => {
 	const dispatch = useDispatch()
-	const {t} = useTranslation()
-	const saveResumeDataToStore = (dataResume) =>{
-		dispatch(resumeActions.createResume(dataResume))
-	}
-   const input = useInput(saveResumeDataToStore) 
+
+	const { t } = useTranslation()
+
+	const saveResumeDataToStore = (dataResume) => dispatch(resumeActions.createResume(dataResume))
+	
+	const input = useInput(saveResumeDataToStore)
+
 	return (
 		<FormStyled>
 			<Title>{t('contactTitle')}</Title>
 			<SubTxt>{t('contactSubText')}</SubTxt>
 			<FormControl>
 				<Label>{t('name')}</Label>
-				<Input onChange = {input.onChange} name='name' />
+				<Input onChange={input.onChange} name='name' />
 			</FormControl>
 			<FormControl>
 				<Label>{t('address')}</Label>
-				<Input onChange = {input.onChange} name='address' />
+				<Input onChange={input.onChange} name='address' />
 			</FormControl>
 			<Div>
 				<FormControl>
 					<Label>{t('city')}</Label>
-					<Input onChange = {input.onChange} name='city' width='220px' />
+					<Input
+						onChange={input.onChange}
+						name='city'
+						width='220px'
+					/>
 				</FormControl>
 				<FormControl>
 					<Label>{t('state')}</Label>
-					<Input onChange = {input.onChange} name='state' width='100px' />
+					<Input
+						onChange={input.onChange}
+						name='state'
+						width='100px'
+					/>
 				</FormControl>
 				<FormControl>
 					<Label>{t('zipcode')}</Label>
-					<Input onChange = {input.onChange} name='zip' />
+					<Input onChange={input.onChange} name='zip' />
 				</FormControl>
 			</Div>
 			<Div>
 				<FormControl>
 					<Label>{t('email')}</Label>
-					<Input onChange = {input.onChange} name='email' type='email' width='260px' />
+					<Input
+						onChange={input.onChange}
+						name='email'
+						type='email'
+						width='260px'
+					/>
 				</FormControl>
 				<FormControl>
 					<Label>{t('phone')}</Label>
-					<Input onChange = {input.onChange} name='phone' type='number' />
+					<Input
+						onChange={input.onChange}
+						name='phone'
+						type='number'
+					/>
 				</FormControl>
 			</Div>
 			<BtnGroup>
