@@ -3,10 +3,12 @@ import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { GrClose } from 'react-icons/gr'
 import { AiOutlineExpand } from 'react-icons/ai'
-import Backdrop from './UI/Backdrop'
+import Backdrop from '../UI/Backdrop'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { saveToLocalStorage } from '../utils/helpers/general'
+import { saveToLocalStorage } from '../../utils/helpers/general'
+import Grid from '../UI/Grid'
+import Flex from '../UI/Flex'
 
 const SampleResume = () => {
 	const { t } = useTranslation()
@@ -40,60 +42,100 @@ const SampleResume = () => {
 				<Title detail={showDetail}>
 					{resume.name || t('contactInformation')}
 				</Title>
-				<hr />
+				<HR />
 				<Text>
-					{resume.address},{resume.city},{resume.state},{resume.zip}
+					<Grid columns='1fr 1fr'>
+						<div>
+							<b>{t('address')} : </b> {resume.address}
+						</div>
+						<div>
+							<b>{t('city')} : </b> {resume.city}
+						</div>
+					</Grid>
 				</Text>
-				<Text>{resume.email}</Text>
-				<Text>{resume.phone}</Text>
+				<Grid columns='1fr 1fr'>
+					<Text>
+						<b>{t('state')} : </b> {resume.state}
+					</Text>
+					<Text>
+						<b>{t('zipcode')} : </b> {resume.zip}
+					</Text>
+				</Grid>
+				<Text>
+					<b>{t('email')} : </b> {resume.email}
+				</Text>
+				<Text>
+					<b>{t('phone')} : </b> {resume.phone}
+				</Text>
 				<SubTtile detail={showDetail}>{t('summaryTtile')}</SubTtile>
-				<hr />
+				<HR />
 				<List>
 					{resume.summary &&
 						resume.summary.map((el) => <Text key={el}>{el}</Text>)}
 				</List>
 				<SubTtile detail={showDetail}>{t('skills')}</SubTtile>
-				<hr />
+				<HR />
 				<List>
-					{resume.skills &&
-						resume.skills.map((skill) => (
-							<Li key={skill.id}>{skill.skill}</Li>
-						))}
+					<Grid columns='2fr 2fr'>
+						{resume.skills &&
+							resume.skills.map((skill) => (
+								<Li key={skill.id}>{skill.skill}</Li>
+							))}
+					</Grid>
 				</List>
 				<SubTtile detail={showDetail}>{t('experience')}</SubTtile>
-				<hr />
-				<Div>
-					<Address>{resume.jobTitle}</Address>
-					<Address>
+				<HR />
+				<Flex justify='space-between'>
+					<Text>
+						<b>{t('jobTitle')} : </b> {resume.jobTitle}
+					</Text>
+					<Cursiv>
 						{resume.startMonth}&nbsp;{resume.startYears},
 						{resume.endMonth}&nbsp;
 						{resume.endYear}
-					</Address>
-				</Div>
-				<Address>
-					{resume.employer},{resume.experienceCity},
-					{resume.experienceState}
-				</Address>
+					</Cursiv>
+				</Flex>
+				<Text>
+					<b>{t('employer')} : </b> {resume.employer}
+				</Text>
+				<Grid columns='1fr 1fr'>
+					<Text>
+						<b>{t('city')} : </b> {resume.experienceCity}
+					</Text>
+					<Text>
+						<b>{t('state')} : </b> {resume.experienceState}
+					</Text>
+				</Grid>
 				<Text>{resume.education}</Text>
 				<SubTtile detail={showDetail}>{t('education')}</SubTtile>
-				<hr />
-				<Div>
-					<Address>
-						{resume.educationDegree},{resume.field}
-					</Address>
-					<Address>
+				<HR />
+				<Flex justify='space-between'>
+					<Text>
+						<b>{t('field')} : </b> {resume.field}
+					</Text>
+					<Cursiv>
 						{resume.educationMonth}&nbsp;{resume.educationYear}
-					</Address>
-				</Div>
-				<Address>
-					{resume.schoolName},{resume.educationCity},
-					{resume.educationState}
-				</Address>
+					</Cursiv>
+				</Flex>
+				<Text>
+					<b>{t('schoolName')} : </b> {resume.schoolName}
+				</Text>
+				<Grid columns='1.5fr 1.5fr'>
+					<Text>
+						<b>{t('state')} : </b> {resume.educationState}
+					</Text>
+					<Text>
+						<b>{t('city')} : </b> {resume.educationCity}
+					</Text>
+				</Grid>
 			</ContainerResume>
 		</React.Fragment>
 	)
 }
-
+const HR = styled.hr`
+	color: #b9b9b9;
+	margin-top: 10px;
+`
 const DetailResume = styled.div`
 	width: 50px;
 	height: 50px;
@@ -109,8 +151,9 @@ const DetailResume = styled.div`
 	cursor: pointer;
 `
 const ContainerResume = styled.div`
-	width: ${(props) => (props.detail ? '800px' : '330px')};
-	height: ${(props) => (props.detail ? '1000px' : '470px')};
+	border: 5px solid gray;
+	width: ${(props) => (props.detail ? '800px' : '350px')};
+	height: ${(props) => (props.detail ? '900px' : '470px')};
 	padding: ${(props) => (props.detail ? '50px' : '20px')};
 	position: absolute;
 	background-color: #ffff;
@@ -125,24 +168,23 @@ const ContainerResume = styled.div`
 `
 const Title = styled.h1`
 	font-size: ${(props) => (props.detail ? '40px' : '19px')};
+	text-transform: uppercase;
+	margin-bottom: 10px;
+	text-align: center;
 `
 const SubTtile = styled.h2`
 	font-size: ${(props) => (props.detail ? '30px' : '11px')};
-	margin-bottom: 2px;
+	margin: 10px 0;
 `
-const Text = styled.p``
-
-const Address = styled.address``
+const Text = styled.p`
+	word-wrap: break-word;
+`
+const Cursiv = styled.address``
 
 const List = styled.ul``
 
 const Li = styled.li`
 	margin-left: 20px;
-`
-const Div = styled.div`
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
 `
 const GlobalStyle = createGlobalStyle`
     address,p,li{
@@ -150,6 +192,7 @@ const GlobalStyle = createGlobalStyle`
         line-height: ${(props) => (props.detail ? '35px' : '16px')};
         color: gray;
     }
+	
 `
 const CloseDetail = styled.div`
 	width: 45px;

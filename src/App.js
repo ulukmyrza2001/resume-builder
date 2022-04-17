@@ -1,4 +1,4 @@
-import SampleResume from './components/SampleResume'
+import SampleResume from './components/templateResume/SampleResume'
 import MainHeader from './components/layout/MainHeader'
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'

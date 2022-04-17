@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { getDataFromLocalStorage } from '../utils/helpers/general'
 
 const initialState = {
-	resumeData: {
+	resumeData: getDataFromLocalStorage('resume') || {
 		name: '',
 		address: '',
 		city: '',
@@ -28,23 +29,22 @@ const initialState = {
 		educationMonth: '',
 	},
 	resumes: [],
+	color : '#464746',
 }
 
 const resumeSlice = createSlice({
 	name: 'resume',
 	initialState,
 	reducers: {
-		getDataFromLocalStorage(state,action){
-           state.resumeData = {...action.payload} || state.resumeData
+		getDataFromLocalStorage(state, action) {
+			state.resumeData = { ...action.payload } || state.resumeData
 		},
 		createResume(state, action) {
-			if(action.payload.name === 'summary'){
+			if (action.payload.name === 'summary') {
 				const summarySplited = action.payload.data.split(/\n/)
 				state.resumeData = state.resumeData = {
 					...state.resumeData,
-					summary: [
-						...summarySplited
-					],
+					summary: [...summarySplited],
 				}
 			} else {
 				state.resumeData = {
@@ -58,20 +58,22 @@ const resumeSlice = createSlice({
 				...state.resumeData,
 				skills: [
 					...state.resumeData.skills,
-					{ skill: action.payload, id: Math.random().toString()},
+					{ skill: action.payload, id: Math.random().toString() },
 				],
 			}
 		},
-		deleteSkill(state,action){
-			const filteredSkills = state.resumeData.skills.filter(el=>el.id !== action.payload)
+		deleteSkill(state, action) {
+			const filteredSkills = state.resumeData.skills.filter(
+				(el) => el.id !== action.payload,
+			)
 			state.resumeData = {
 				...state.resumeData,
-				skills:filteredSkills,
+				skills: filteredSkills,
 			}
 		},
-		saveResume(state){
-		   state.resumes = [...state.resumes,state.resumeData]
-		}
+		saveResume(state) {
+			state.resumes = [...state.resumes, state.resumeData]
+		},
 	},
 })
 export const resumeActions = resumeSlice.actions
