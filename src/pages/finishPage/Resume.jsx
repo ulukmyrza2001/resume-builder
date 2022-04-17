@@ -8,11 +8,11 @@ import Flex from '../../components/UI/Flex'
 
 const Resume = () => {
 	const { t } = useTranslation()
-	const { resumeData: resume } = useSelector((state) => state.resume)
+	const { resumeData: resume,color } = useSelector((state) => state.resume)
 
 	return (
 		<React.Fragment>
-			<GlobalStyle />
+			<GlobalStyle color = {color} />
 			<ContainerResume>
 				<Title>{resume.name || t('contactInformation')}</Title>
 				<HR />
@@ -140,6 +140,9 @@ const Li = styled.li`
 `
 
 const GlobalStyle = createGlobalStyle`
+    h2,h1{
+		color : ${props=>props.color || '#464746'};
+	}
     address,p,li{
 		font-size:  15px;
         line-height: 35px;

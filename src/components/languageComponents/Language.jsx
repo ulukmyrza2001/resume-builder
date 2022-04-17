@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import engIcon from '../../../assets/iconsLng/united-kingdom.png'
-import ruIcon from '../../../assets/iconsLng/flags.png'
-import kgIcon from '../../../assets/iconsLng/kyrgyzstan.png'
+import engIcon from '../../assets/iconsLng/united-kingdom.png'
+import ruIcon from '../../assets/iconsLng/flags.png'
+import kgIcon from '../../assets/iconsLng/kyrgyzstan.png'
 import { useTranslation } from 'react-i18next'
 import LanguageItem from './LanguageItem'
-import { saveToLocalStorage } from '../../../utils/helpers/general'
+import { saveToLocalStorage } from '../../utils/helpers/general'
 
 const languages = [
 	{

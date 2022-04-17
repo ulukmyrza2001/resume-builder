@@ -74,6 +74,9 @@ const resumeSlice = createSlice({
 		saveResume(state) {
 			state.resumes = [...state.resumes, state.resumeData]
 		},
+		changeColor(state,action){
+			state.color = action.payload
+		}
 	},
 })
 export const resumeActions = resumeSlice.actions

@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { RiWechatLine } from 'react-icons/ri'
 import { useTranslation } from 'react-i18next'
-import Language from './Language'
+import Language from '../../languageComponents/Language'
 import Flex from '../../UI/Flex'
 
 const Header = () => {

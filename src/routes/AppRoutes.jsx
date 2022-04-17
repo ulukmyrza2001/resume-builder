@@ -8,7 +8,7 @@ const Experience = React.lazy(() => import('../pages/experience'))
 const Summary = React.lazy(() => import('../pages/summary'))
 const Education = React.lazy(() => import('../pages/education'))
 const Skills = React.lazy(() => import('../pages/skills'))
-const FinishPage = React.lazy(() => import('../pages/finishPage'))
+const Finish = React.lazy(() => import('../pages/finishPage'))
 
 function AppRoutes() {
 	const { INDEX, CONTACT, EXPERIENCE, EDUCATION, SKILLS, FINISH, SUMMARY } = ROUTES
@@ -20,7 +20,7 @@ function AppRoutes() {
 			<Route path={EDUCATION.path} element={<Education />} />
 			<Route path={SKILLS.path} element={<Skills />} />
 			<Route path={SUMMARY.path} element={<Summary />} />
-			<Route path={FINISH.path} element={<FinishPage />} />
+			<Route path={FINISH.path} element={<Finish />} />
 		</Routes>
 	)
 }
