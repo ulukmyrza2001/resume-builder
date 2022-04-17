@@ -8,22 +8,21 @@ import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { saveToLocalStorage } from '../utils/helpers/general'
 
-
 const SampleResume = () => {
-	const {t} = useTranslation()
-	const {resumeData : resume} = useSelector(state=>state.resume)
+	const { t } = useTranslation()
+	const { resumeData: resume } = useSelector((state) => state.resume)
 	const [showDetail, setShowDetail] = useState(false)
 
 	const showDetailResumeHandler = () => setShowDetail(true)
 
 	const hideDetailResumeHandler = () => setShowDetail(false)
-	
 
-	useEffect(()=>{
-		saveToLocalStorage('resume',resume)
-	},[resume])
+	useEffect(() => {
+		saveToLocalStorage('resume', resume)
+	}, [resume])
 
-	return <React.Fragment>
+	return (
+		<React.Fragment>
 			{showDetail && <Backdrop />}
 			<GlobalStyle detail={showDetail} />
 			<ContainerResume detail={showDetail}>
@@ -38,7 +37,9 @@ const SampleResume = () => {
 				>
 					<AiOutlineExpand color='white' fontSize={'20px'} />
 				</DetailResume>
-				<Title detail={showDetail}>{resume.name || t('contactInformation') }</Title>
+				<Title detail={showDetail}>
+					{resume.name || t('contactInformation')}
+				</Title>
 				<hr />
 				<Text>
 					{resume.address},{resume.city},{resume.state},{resume.zip}
@@ -48,28 +49,30 @@ const SampleResume = () => {
 				<SubTtile detail={showDetail}>{t('summaryTtile')}</SubTtile>
 				<hr />
 				<List>
-				    {resume.summary && resume.summary.map((el) => (
-						<Text key={el}>{el}</Text>
-					))}
+					{resume.summary &&
+						resume.summary.map((el) => <Text key={el}>{el}</Text>)}
 				</List>
 				<SubTtile detail={showDetail}>{t('skills')}</SubTtile>
 				<hr />
 				<List>
-					{resume.skills && resume.skills.map((skill) => (
-						<Li key={skill.id}>{skill.skill}</Li>
-					))}
+					{resume.skills &&
+						resume.skills.map((skill) => (
+							<Li key={skill.id}>{skill.skill}</Li>
+						))}
 				</List>
 				<SubTtile detail={showDetail}>{t('experience')}</SubTtile>
 				<hr />
 				<Div>
 					<Address>{resume.jobTitle}</Address>
 					<Address>
-						{resume.startMonth}&nbsp;{resume.startYears},{resume.endMonth}&nbsp;
+						{resume.startMonth}&nbsp;{resume.startYears},
+						{resume.endMonth}&nbsp;
 						{resume.endYear}
 					</Address>
 				</Div>
 				<Address>
-					{resume.employer},{resume.experienceCity},{resume.experienceState}
+					{resume.employer},{resume.experienceCity},
+					{resume.experienceState}
 				</Address>
 				<Text>{resume.education}</Text>
 				<SubTtile detail={showDetail}>{t('education')}</SubTtile>
@@ -83,10 +86,12 @@ const SampleResume = () => {
 					</Address>
 				</Div>
 				<Address>
-					{resume.schoolName},{resume.educationCity},{resume.educationState}
+					{resume.schoolName},{resume.educationCity},
+					{resume.educationState}
 				</Address>
 			</ContainerResume>
 		</React.Fragment>
+	)
 }
 
 const DetailResume = styled.div`

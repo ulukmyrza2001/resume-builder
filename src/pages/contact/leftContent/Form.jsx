@@ -17,13 +17,14 @@ import {
 	BtnNext,
 } from '../../styles'
 
-const Form = () => {
+function Form() {
 	const dispatch = useDispatch()
 
 	const { t } = useTranslation()
 
-	const saveResumeDataToStore = (dataResume) => dispatch(resumeActions.createResume(dataResume))
-	
+	const saveResumeDataToStore = (dataResume) =>
+		dispatch(resumeActions.createResume(dataResume))
+
 	const input = useInput(saveResumeDataToStore)
 
 	return (

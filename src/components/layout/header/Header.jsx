@@ -10,11 +10,11 @@ const Header = () => {
 	return (
 		<HeaderStyled>
 			<ImgLogo src='https://cdnprod4.resumehelp.com/img/rh-logo.svg?v=1860' />
-			<Flex align = 'center'>
-				<Flex align = 'center'>
+			<Flex align='center'>
+				<Flex align='center'>
 					<Span className='first'>
-						<RiWechatLine className='icon' fontSize={'20px'} /> {t('liveChat')}{' '}
-						&nbsp;{' '}
+						<RiWechatLine className='icon' fontSize={'20px'} />
+						{t('liveChat')} &nbsp;
 					</Span>
 					<Span>{t('myAccount')}</Span>
 					<Language />
@@ -49,7 +49,7 @@ const Span = styled.span`
 	font-weight: 700;
 	display: flex;
 	align-items: center;
-	.icon{
+	.icon {
 		transform: translateX(-2px);
 	}
 `

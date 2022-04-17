@@ -18,7 +18,7 @@ const languages = [
 		icon: ruIcon,
 		name: 'Русский',
 	},
-    {
+	{
 		code: 'ky',
 		icon: kgIcon,
 		name: 'Kиргизский',
@@ -34,7 +34,7 @@ const Language = () => {
 	const changeLanguage = (code) => {
 		setLang(false)
 		i18n.changeLanguage(code)
-		saveToLocalStorage('lang',code)
+		saveToLocalStorage('lang', code)
 	}
 	return (
 		<LanguageStyled>
@@ -75,6 +75,5 @@ const IconLanguage = styled.img`
 	margin-left: 20px;
 	cursor: pointer;
 `
-
 
 export default Language

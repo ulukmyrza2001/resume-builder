@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
-
 const Chart = () => {
 	const [chart, setChart] = useState(100)
 	const { pathname } = useLocation()
-	
+	const { t } = useTranslation()
+
 	useLayoutEffect(() => {
 		if (pathname === '/contact') {
 			setChart(17)
@@ -23,7 +23,7 @@ const Chart = () => {
 			setChart(100)
 		}
 	}, [pathname])
-	const { t } = useTranslation()
+
 	return (
 		<ChartStyled>
 			<Div chart={chart}>
@@ -35,19 +35,19 @@ const Chart = () => {
 					<Title>{t('contact')}</Title>
 				</Step>
 				<Step className='step3'>
-					<Title>{t("experience")}</Title>
+					<Title>{t('experience')}</Title>
 				</Step>
 				<Step className='step4'>
-					<Title>{t("education")}</Title>
+					<Title>{t('education')}</Title>
 				</Step>
 				<Step className='step5'>
-					<Title>{t("skills")}</Title>
+					<Title>{t('skills')}</Title>
 				</Step>
 				<Step className='step6'>
-					<Title>{t("summary")}</Title>
+					<Title>{t('summary')}</Title>
 				</Step>
 				<Step className='step7'>
-					<Title>{t("finish")}</Title>
+					<Title>{t('finish')}</Title>
 				</Step>
 			</Div>
 		</ChartStyled>

@@ -6,10 +6,10 @@ export const saveToLocalStorage = (key, data) => {
 	}
 }
 
-export const getDataFromLocalStorage = (key) =>{
-    try{
-       return JSON.parse(localStorage.getItem(key))
-    }catch(error){
-        //--
-    }
+export const getDataFromLocalStorage = (key) => {
+	try {
+		return JSON.parse(localStorage.getItem(key))
+	} catch (error) {
+		//--
+	}
 }
