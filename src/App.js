@@ -12,6 +12,7 @@ function App() {
 	const { pathname } = useLocation()
 	const { i18n } = useTranslation()
 	const dispatch = useDispatch()
+	console.log('expample');
 	useEffect(() => {
 		const resumeData = getDataFromLocalStorage('resume')
 		dispatch(resumeActions.getDataFromLocalStorage(resumeData))
