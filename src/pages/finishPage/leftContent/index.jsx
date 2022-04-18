@@ -3,11 +3,11 @@ import Resume from '../Resume'
 import styled from 'styled-components'
 import { Preview } from 'react-html2pdf'
 
-const FinishPage = () => {
+const FinishPage = ({resumeIndex}) => {
 	return (
 		<Finish>
 			<Preview id={'resume'}>
-				<Resume />
+				<Resume item = {resumeIndex} />
 			</Preview>
 		</Finish>
 	)

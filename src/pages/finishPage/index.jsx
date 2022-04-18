@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import RightContent from './rightContent'
 import { PageStyled } from '../styles'
 import FinishPage from './leftContent'
@@ -7,23 +7,33 @@ import { BtnNext, BtnBack } from '../styles'
 import { MdFileDownload } from 'react-icons/md'
 import Flex from '../../components/UI/Flex'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { resumeActions } from '../../store/resumeSlice'
 import { print } from 'react-html2pdf'
 import styled from 'styled-components'
+import { getDataFromLocalStorage } from '../../utils/helpers/general'
 
 const Finish = () => {
 	const { t } = useTranslation()
 	const navigate = useNavigate()
-	const dispatch = useDispatch()
+	const [resumeIndex, setResumeIndex] = useState(null)
+
 	const downloadPDFhandler = () => print('a', 'resume')
 
 	const newResumeHandler = () => {
-		localStorage.removeItem('resume')
-		navigate('/contact')
-		dispatch(resumeActions.saveResume())
+		window.location.reload()
 	}
+	
+	const localDataResume = getDataFromLocalStorage('resume')
+
+	useEffect(() => {
+		if (!localDataResume) {
+			navigate('/')
+		}
+	}, [localDataResume,navigate])
+
+	const getResumeHandler = (index) => setResumeIndex(index)
+	
+	window.onbeforeunload = () => localStorage.removeItem('resume')
 	return (
 		<>
 			<HeaderFinishPage>
@@ -42,8 +52,8 @@ const Finish = () => {
 				</Flex>
 			</HeaderFinishPage>
 			<PageStyled>
-				<FinishPage />
-				<RightContent />
+				<FinishPage resumeIndex={resumeIndex} />
+				<RightContent getResume={getResumeHandler} />
 			</PageStyled>
 		</>
 	)

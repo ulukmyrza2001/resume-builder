@@ -2,6 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 // routes constants
 import { ROUTES } from '../utils/constants/routes'
+import PrivateRoute from './PrivateRoute'
 //react-lazy
 const Contact = React.lazy(() => import('../pages/contact'))
 const Experience = React.lazy(() => import('../pages/experience'))
@@ -20,7 +21,7 @@ function AppRoutes() {
 			<Route path={EDUCATION.path} element={<Education />} />
 			<Route path={SKILLS.path} element={<Skills />} />
 			<Route path={SUMMARY.path} element={<Summary />} />
-			<Route path={FINISH.path} element={<Finish />} />
+			<Route path={FINISH.path} element={<PrivateRoute><Finish/></PrivateRoute>} />
 		</Routes>
 	)
 }

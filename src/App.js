@@ -17,6 +17,7 @@ function App() {
 		dispatch(resumeActions.getDataFromLocalStorage(resumeData))
 		i18n.changeLanguage(getDataFromLocalStorage('lang'))
 	}, [dispatch, i18n])
+	
 	return (
 		<div>
 			<MainHeader>

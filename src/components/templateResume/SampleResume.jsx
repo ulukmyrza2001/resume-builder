@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
 import { GrClose } from 'react-icons/gr'
@@ -12,16 +12,18 @@ import Flex from '../UI/Flex'
 
 const SampleResume = () => {
 	const { t } = useTranslation()
+
 	const { resumeData: resume } = useSelector((state) => state.resume)
+
 	const [showDetail, setShowDetail] = useState(false)
 
 	const showDetailResumeHandler = () => setShowDetail(true)
 
 	const hideDetailResumeHandler = () => setShowDetail(false)
 
-	useEffect(() => {
-		saveToLocalStorage('resume', resume)
-	}, [resume])
+	window.onbeforeunload = (e) => {
+		if (resume) saveToLocalStorage('resume', resume)
+	}
 
 	return (
 		<React.Fragment>

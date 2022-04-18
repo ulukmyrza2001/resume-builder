@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { getDataFromLocalStorage } from '../utils/helpers/general'
 
 const initialState = {
-	resumeData: getDataFromLocalStorage('resume') || {
+	resumeData:  {
 		name: '',
 		address: '',
 		city: '',
@@ -28,7 +28,7 @@ const initialState = {
 		educationYear: '',
 		educationMonth: '',
 	},
-	resumes: [],
+	resumes:getDataFromLocalStorage('@resumes') || [],
 	color : '#464746',
 }
 
@@ -54,13 +54,23 @@ const resumeSlice = createSlice({
 			}
 		},
 		createSkill(state, action) {
-			state.resumeData = {
+			if(state.resumeData.skills){
+				state.resumeData = {
 				...state.resumeData,
 				skills: [
 					...state.resumeData.skills,
 					{ skill: action.payload, id: Math.random().toString() },
 				],
 			}
+			}else{
+				state.resumeData = {
+					...state.resumeData,
+					skills: [
+						{ skill: action.payload, id: Math.random().toString() },
+					],
+				}
+			}
+			
 		},
 		deleteSkill(state, action) {
 			const filteredSkills = state.resumeData.skills.filter(

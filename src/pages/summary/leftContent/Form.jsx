@@ -1,7 +1,14 @@
 import React from 'react'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
 import styled from 'styled-components'
-import { FormStyled, SubTxt, Title,BtnGroup,BtnNext,BtnBack } from '../../styles'
+import {
+	FormStyled,
+	SubTxt,
+	Title,
+	BtnGroup,
+	BtnNext,
+	BtnBack,
+} from '../../styles'
 import Flex from '../../../components/UI/Flex'
 import { Link } from 'react-router-dom'
 import useInput from '../../../hooks/useInput'
@@ -10,9 +17,12 @@ import { resumeActions } from '../../../store/resumeSlice'
 import { useTranslation } from 'react-i18next'
 
 const Form = () => {
-	const {t} = useTranslation()
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
-	const saveResumeDataToStore = (dataResume) => dispatch(resumeActions.createResume(dataResume))
+	const saveResumeDataToStore = (dataResume) =>
+		dispatch(resumeActions.createResume(dataResume))
+
+	const saveResumeHandler = () => dispatch(resumeActions.saveResume())
 
 	const input = useInput(saveResumeDataToStore)
 	return (
@@ -30,11 +40,17 @@ const Form = () => {
 				onChange={input.onChange}
 				cols='60'
 				rows='15'
-				name = 'summary'
+				name='summary'
 			></Textarea>
 			<BtnGroup>
-			    <Link to = '/skills'><BtnBack type='button'>{t('back')}</BtnBack></Link>
-				<Link to ='/finish'><BtnNext type = 'button'>{t('next')}</BtnNext></Link>
+				<Link to='/skills'>
+					<BtnBack type='button'>{t('back')}</BtnBack>
+				</Link>
+				<Link to='/finish'>
+					<BtnNext onClick={saveResumeHandler} type='button'>
+						{t('next')}
+					</BtnNext>
+				</Link>
 			</BtnGroup>
 		</FormStyled>
 	)

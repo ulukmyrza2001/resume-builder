@@ -162,7 +162,6 @@ const SubTtile = styled.h2`
 const Text = styled.p`
 	word-wrap: break-word;
 `
-
 const Cursiv = styled.address``
 
 const List = styled.ul``
