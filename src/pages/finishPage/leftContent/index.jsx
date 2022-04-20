@@ -1,14 +1,11 @@
 import React from 'react'
 import Resume from '../Resume'
 import styled from 'styled-components'
-import { Preview } from 'react-html2pdf'
 
-const FinishPage = ({resumeIndex}) => {
+const FinishPage = () => {
 	return (
 		<Finish>
-			<Preview id={'resume'}>
-				<Resume item = {resumeIndex} />
-			</Preview>
+				<Resume/>
 		</Finish>
 	)
 }

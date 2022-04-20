@@ -7,55 +7,61 @@ import Grid from '../../components/UI/Grid'
 import Flex from '../../components/UI/Flex'
 import { saveToLocalStorage } from '../../utils/helpers/general'
 
-const Resume = ({item}) => {
+const Resume = () => {
 	const { t } = useTranslation()
-	const { resumes: resume,color } = useSelector((state) => state.resume)
-    const lastItem = item || resume.length - 1
-	useEffect(()=>{
-		saveToLocalStorage('@resumes',resume)
-	},[resume])
+	const { resumes: resume, color } = useSelector((state) => state.resume)
+	const { item } = useSelector((state) => state.resume)
+
+	const lastItem = resume[resume.length - 1]
+
+	const currentItemResume = item ? item : lastItem
+	const { contact, education, experience, skills, summary } =
+		currentItemResume
+
+	useEffect(() => {
+		saveToLocalStorage('@resumes', resume)
+	}, [resume])
 	return (
 		<React.Fragment>
-			<GlobalStyle color = {color} />
+			<GlobalStyle color={color} />
 			<ContainerResume>
-				<Title>{resume[lastItem].name || t('contactInformation')}</Title>
+				<Title>{contact.name || t('contactInformation')}</Title>
 				<HR />
 				<Text>
 					<Grid columns='1fr 1fr'>
 						<div>
-							<b>{t('address')} : </b> {resume[lastItem].address}
+							<b>{t('address')} : </b> {contact.address}
 						</div>
 						<div>
-							<b>{t('city')} : </b> {resume[lastItem].city}
+							<b>{t('city')} : </b> {contact.city}
 						</div>
 					</Grid>
 				</Text>
 				<Grid columns='1fr 1fr'>
 					<Text>
-						<b>{t('state')} : </b> {resume[lastItem].state}
+						<b>{t('state')} : </b> {contact.state}
 					</Text>
 					<Text>
-						<b>{t('zipcode')} : </b> {resume[lastItem].zip}
+						<b>{t('zipcode')} : </b> {contact.zip}
 					</Text>
 				</Grid>
 				<Text>
-					<b>{t('email')} : </b> {resume[lastItem].email}
+					<b>{t('email')} : </b> {contact.email}
 				</Text>
 				<Text>
-					<b>{t('phone')} : </b> {resume[lastItem].phone}
+					<b>{t('phone')} : </b> {contact.phone}
 				</Text>
 				<SubTtile>{t('summaryTtile')}</SubTtile>
 				<HR />
 				<List>
-					{resume[lastItem].summary &&
-						resume[lastItem].summary.map((el) => <Text key={el}>{el}</Text>)}
+					{summary && summary.map((el) => <Text key={el}>{el}</Text>)}
 				</List>
 				<SubTtile>{t('skills')}</SubTtile>
 				<HR />
 				<List>
 					<Grid columns='2fr 2fr'>
-						{resume[lastItem].skills &&
-							resume[lastItem].skills.map((skill) => (
+						{skills &&
+							skills.map((skill) => (
 								<Li key={skill.id}>{skill.skill}</Li>
 							))}
 					</Grid>
@@ -64,45 +70,45 @@ const Resume = ({item}) => {
 				<HR />
 				<Flex justify='space-between'>
 					<Text>
-						<b>{t('jobTitle')} : </b> {resume[lastItem].jobTitle}
+						<b>{t('jobTitle')} : </b> {experience.jobTitle}
 					</Text>
 					<Cursiv>
-						{resume[lastItem].startMonth}&nbsp;{resume[lastItem].startYears},
-						{resume[lastItem].endMonth}&nbsp;
-						{resume[lastItem].endYear}
+						{experience.startMonth}&nbsp;{experience.startYears},
+						{experience.endMonth}&nbsp;
+						{experience.endYear}
 					</Cursiv>
 				</Flex>
 				<Text>
-					<b>{t('employer')} : </b> {resume[lastItem].employer}
+					<b>{t('employer')} : </b> {experience.employer}
 				</Text>
 				<Grid columns='1fr 1fr'>
 					<Text>
-						<b>{t('city')} : </b> {resume[lastItem].experienceCity}
+						<b>{t('city')} : </b> {experience.experienceCity}
 					</Text>
 					<Text>
-						<b>{t('state')} : </b> {resume[lastItem].experienceState}
+						<b>{t('state')} : </b> {experience.experienceState}
 					</Text>
 				</Grid>
-				<Text>{resume[lastItem].education}</Text>
 				<SubTtile>{t('education')}</SubTtile>
 				<HR />
 				<Flex justify='space-between'>
 					<Text>
-						<b>{t('field')} : </b> {resume[lastItem].field}
+						<b>{t('field')} : </b> {education.field}
 					</Text>
 					<Cursiv>
-						{resume[lastItem].educationMonth}&nbsp;{resume[lastItem].educationYear}
+						{education.educationMonth}&nbsp;
+						{education.educationYear}
 					</Cursiv>
 				</Flex>
 				<Text>
-					<b>{t('schoolName')} : </b> {resume[lastItem].schoolName}
+					<b>{t('schoolName')} : </b> {education.schoolName}
 				</Text>
 				<Grid columns='1.5fr 1.5fr'>
 					<Text>
-						<b>{t('state')} : </b> {resume[lastItem].educationState}
+						<b>{t('state')} : </b> {education.educationState}
 					</Text>
 					<Text>
-						<b>{t('city')} : </b> {resume[lastItem].educationCity}
+						<b>{t('city')} : </b> {education.educationCity}
 					</Text>
 				</Grid>
 			</ContainerResume>
@@ -129,7 +135,7 @@ const Title = styled.h1`
 `
 const SubTtile = styled.h2`
 	font-size: 30px;
-	margin: 10px 0 ;
+	margin: 10px 0;
 `
 const Text = styled.p`
 	word-wrap: break-word;
@@ -145,7 +151,7 @@ const Li = styled.li`
 
 const GlobalStyle = createGlobalStyle`
     h2,h1{
-		color : ${props=>props.color || '#464746'};
+		color : ${(props) => props.color || '#464746'};
 	}
     address,p,li{
 		font-size:  15px;

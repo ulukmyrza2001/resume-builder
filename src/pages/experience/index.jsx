@@ -1,14 +1,12 @@
 import React from 'react'
-import LeftContent from './leftContent'
-import RightContent from './rightContent'
-import { PageStyled } from '../styles'
+import ExperienceForm from '../../components/forms/experience/Form'
+import TemplatePage from '../../components/templatePages'
 
 const Experience = () => {
   return (
-    <PageStyled>
-      <LeftContent/>
-      <RightContent/>
-    </PageStyled>
+    <TemplatePage>
+       <ExperienceForm/>
+    </TemplatePage>
   )
 }
 

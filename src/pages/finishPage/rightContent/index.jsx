@@ -2,20 +2,21 @@ import React from 'react'
 import ChangeColor from '../../../components/changeColor/ChangeColor'
 import styled from 'styled-components'
 import Flex from '../../../components/UI/Flex'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import EditResume from '../../../components/editResume/EditResume'
+import { resumeActions } from '../../../store/resumeSlice'
 
-const RightContent = (props) => {
+const RightContent = () => {
 	const resumes = useSelector((state) => state.resume.resumes)
+	const dispatch = useDispatch()
+
 	const changeResumeHandler = (resume) => {
-		const indexResume = resumes.findIndex((el) => el === resume)
-		props.getResume(indexResume)
+		dispatch(resumeActions.findItem(resume))
 	}
 	return (
 		<BackgroundRightContent>
-			<Flex justify='center'>
+			<Flex justify='space-around'>
 				<ChangeColor />
-			</Flex>
-			<Flex justify='center'>
 				<Resumes>
 					<H2>Resumes</H2>
 					{resumes.map((resume, i) => (
@@ -23,16 +24,20 @@ const RightContent = (props) => {
 							onClick={() => changeResumeHandler(resume)}
 							key={i}
 						>
-							{resume.name}
+							{resume.contact.name}
 						</ResumeItem>
 					))}
 				</Resumes>
+			</Flex>
+			<Flex justify='center'>
+				<EditResume />
 			</Flex>
 		</BackgroundRightContent>
 	)
 }
 const H2 = styled.h2`
 	margin-bottom: 10px;
+	color: #263764;
 `
 const BackgroundRightContent = styled.div`
 	background-image: var(--left-content);
@@ -45,23 +50,25 @@ const BackgroundRightContent = styled.div`
 const Resumes = styled.div`
 	border-radius: 3px;
 	margin-top: 30px;
-	width: 470px;
+	width: 370px;
 	padding: 0.5rem;
-	max-height: 300px;
+	max-height: 500px;
 	background-color: whitesmoke;
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 	overflow-y: scroll;
 `
-const ResumeItem = styled.h2`
+const ResumeItem = styled.h4`
+	border-radius: 4px;
 	width: 100%;
-	padding: 1rem;
+	padding: 0.7rem;
 	background-color: white;
 	box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
 	margin-bottom: 10px;
 	text-transform: uppercase;
 	cursor: pointer;
 	transition: 0.2s;
-	&:hover{
+	color: #223f58;
+	&:hover {
 		opacity: 0.7;
 	}
 `

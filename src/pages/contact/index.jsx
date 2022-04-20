@@ -1,17 +1,13 @@
 import React from 'react'
-import LeftContent from './leftContent'
-import RightContent from './rightContent'
-import { PageStyled } from '../styles'
+import ContactForm from '../../components/forms/contact/Form'
+import TemplatePage from '../../components/templatePages'
 
 const Contact = () => {
-  return (
-    <PageStyled>
-      <LeftContent/>
-      <RightContent/>
-    </PageStyled>
-  )
+   return (
+      <TemplatePage>
+         <ContactForm/>
+      </TemplatePage>
+   )
 }
-
-
 
 export default Contact

@@ -1,19 +1,21 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
-import { createGlobalStyle } from 'styled-components'
+import React, { useEffect, useState } from 'react'
+import styled, { createGlobalStyle } from 'styled-components'
+
 import { GrClose } from 'react-icons/gr'
 import { AiOutlineExpand } from 'react-icons/ai'
-import Backdrop from '../UI/Backdrop'
 import { useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import Backdrop from '../UI/Backdrop'
 import { saveToLocalStorage } from '../../utils/helpers/general'
 import Grid from '../UI/Grid'
 import Flex from '../UI/Flex'
 
 const SampleResume = () => {
 	const { t } = useTranslation()
-
-	const { resumeData: resume } = useSelector((state) => state.resume)
+	const { contact, education, experience, skills, summary } = useSelector(
+		(state) => state.resume.resumeData,
+	)
+	const resume = useSelector((state) => state.resume.resumeData)
 
 	const [showDetail, setShowDetail] = useState(false)
 
@@ -21,12 +23,17 @@ const SampleResume = () => {
 
 	const hideDetailResumeHandler = () => setShowDetail(false)
 
-	window.onbeforeunload = (e) => {
-		if (resume) saveToLocalStorage('resume', resume)
-	}
+	useEffect(() => {
+		window.onbeforeunload = () => {
+			return saveToLocalStorage('resume', resume)
+		}
+	}, [resume])
+	useEffect(() => {
+		saveToLocalStorage('resume', resume)
+	}, [])
 
 	return (
-		<React.Fragment>
+		<>
 			{showDetail && <Backdrop />}
 			<GlobalStyle detail={showDetail} />
 			<ContainerResume detail={showDetail}>
@@ -39,48 +46,47 @@ const SampleResume = () => {
 					detail={showDetail}
 					onClick={showDetailResumeHandler}
 				>
-					<AiOutlineExpand color='white' fontSize={'20px'} />
+					<AiOutlineExpand color='white' fontSize='20px' />
 				</DetailResume>
 				<Title detail={showDetail}>
-					{resume.name || t('contactInformation')}
+					{contact.name || t('contactInformation')}
 				</Title>
 				<HR />
 				<Text>
 					<Grid columns='1fr 1fr'>
 						<div>
-							<b>{t('address')} : </b> {resume.address}
+							<b>{t('address')} : </b> {contact.address}
 						</div>
 						<div>
-							<b>{t('city')} : </b> {resume.city}
+							<b>{t('city')} : </b> {contact.city}
 						</div>
 					</Grid>
 				</Text>
 				<Grid columns='1fr 1fr'>
 					<Text>
-						<b>{t('state')} : </b> {resume.state}
+						<b>{t('state')} : </b> {contact.state}
 					</Text>
 					<Text>
-						<b>{t('zipcode')} : </b> {resume.zip}
+						<b>{t('zipcode')} : </b> {contact.zip}
 					</Text>
 				</Grid>
 				<Text>
-					<b>{t('email')} : </b> {resume.email}
+					<b>{t('email')} : </b> {contact.email}
 				</Text>
 				<Text>
-					<b>{t('phone')} : </b> {resume.phone}
+					<b>{t('phone')} : </b> {contact.phone}
 				</Text>
 				<SubTtile detail={showDetail}>{t('summaryTtile')}</SubTtile>
 				<HR />
 				<List>
-					{resume.summary &&
-						resume.summary.map((el) => <Text key={el}>{el}</Text>)}
+					{summary && summary.map((el) => <Text key={el}>{el}</Text>)}
 				</List>
 				<SubTtile detail={showDetail}>{t('skills')}</SubTtile>
 				<HR />
 				<List>
 					<Grid columns='2fr 2fr'>
-						{resume.skills &&
-							resume.skills.map((skill) => (
+						{skills &&
+							skills.map((skill) => (
 								<Li key={skill.id}>{skill.skill}</Li>
 							))}
 					</Grid>
@@ -89,49 +95,51 @@ const SampleResume = () => {
 				<HR />
 				<Flex justify='space-between'>
 					<Text>
-						<b>{t('jobTitle')} : </b> {resume.jobTitle}
+						<b>{t('jobTitle')} : </b> {experience.jobTitle}
 					</Text>
 					<Cursiv>
-						{resume.startMonth}&nbsp;{resume.startYears},
-						{resume.endMonth}&nbsp;
-						{resume.endYear}
+						{experience.startMonth}&nbsp;{experience.startYears},
+						{experience.endMonth}
+						&nbsp;
+						{experience.endYear}
 					</Cursiv>
 				</Flex>
 				<Text>
-					<b>{t('employer')} : </b> {resume.employer}
+					<b>{t('employer')} : </b> {experience.employer}
 				</Text>
 				<Grid columns='1fr 1fr'>
 					<Text>
-						<b>{t('city')} : </b> {resume.experienceCity}
+						<b>{t('city')} : </b> {experience.experienceCity}
 					</Text>
 					<Text>
-						<b>{t('state')} : </b> {resume.experienceState}
+						<b>{t('state')} : </b> {experience.experienceState}
 					</Text>
 				</Grid>
-				<Text>{resume.education}</Text>
+				<Text>{education.education}</Text>
 				<SubTtile detail={showDetail}>{t('education')}</SubTtile>
 				<HR />
 				<Flex justify='space-between'>
 					<Text>
-						<b>{t('field')} : </b> {resume.field}
+						<b>{t('field')} : </b> {education.field}
 					</Text>
 					<Cursiv>
-						{resume.educationMonth}&nbsp;{resume.educationYear}
+						{education.educationMonth}&nbsp;
+						{education.educationYear}
 					</Cursiv>
 				</Flex>
 				<Text>
-					<b>{t('schoolName')} : </b> {resume.schoolName}
+					<b>{t('schoolName')} : </b> {education.schoolName}
 				</Text>
 				<Grid columns='1.5fr 1.5fr'>
 					<Text>
-						<b>{t('state')} : </b> {resume.educationState}
+						<b>{t('state')} : </b> {education.educationState}
 					</Text>
 					<Text>
-						<b>{t('city')} : </b> {resume.educationCity}
+						<b>{t('city')} : </b> {education.educationCity}
 					</Text>
 				</Grid>
 			</ContainerResume>
-		</React.Fragment>
+		</>
 	)
 }
 const HR = styled.hr`
