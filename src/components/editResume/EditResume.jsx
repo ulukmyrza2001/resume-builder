@@ -35,19 +35,18 @@ const components = [
 
 const EditComponents = ({ editHandler }) => {
 	return components.map((component) => (
-		<EditItem
-			onClick={() => editHandler(component.component)}
-			key={component.title}
-		>
-			{component.title} <MdEdit />
+		<EditItem onClick={() => editHandler(component.component)} key={component.title}>
+			{component.title}
+			<MdEdit />
 		</EditItem>
 	))
 }
 
 const EditResume = () => {
-	const modal = useSelector((state) => state.modal.modal)
-	const [componentForEdit, setComponentForEdit] = useState(null)
 	const dispatch = useDispatch()
+	const modal = useSelector((state) => state.modal.modal)
+
+	const [componentForEdit, setComponentForEdit] = useState(null)
 
 	const editHandler = (component) => {
 		dispatch(showModal())
@@ -62,7 +61,7 @@ const EditResume = () => {
 }
 
 export const EditStyled = styled.div`
-    margin-top: 20px;
+	margin-top: 20px;
 	width: 90%;
 	height: 100%;
 	padding: 1rem;
@@ -73,9 +72,8 @@ export const EditStyled = styled.div`
 	flex-direction: column;
 	align-items: center;
 `
-
 const EditItem = styled.button`
-    width: 100%;
+	width: 100%;
 	margin-bottom: 6px;
 	padding: 0.6rem 1rem;
 	background-color: #ffffff;

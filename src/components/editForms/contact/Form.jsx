@@ -4,23 +4,17 @@ import { useDispatch, useSelector } from 'react-redux'
 import Input from '../../UI/Input'
 import useInput from '../../../hooks/useInput'
 import { resumeActions } from '../../../store/resumeSlice'
-import {
-	FormStyled,
-	FormControl,
-	Label,
-	Div,
-	BtnGroup,
-	BtnNext,
-} from '../styles'
 import { hideModal } from '../../../store/modalSlice'
+import Flex from '../../UI/Flex'
+import { FormStyled, FormControl, Label, BtnGroup, BtnNext } from '../styles'
 
 function ContactEditForm() {
+	const dispatch = useDispatch()
+	const { t } = useTranslation()
 	const { item } = useSelector((state) => state.resume)
 	const resumes = useSelector((state) => state.resume.resumes)
 	const resume = item || resumes[resumes.length - 1]
 	const { name, address, city, state, zip, email, phone } = resume.contact
-
-	const { t } = useTranslation()
 
 	const { values, onChange } = useInput({
 		name: name || '',
@@ -31,7 +25,6 @@ function ContactEditForm() {
 		email: email || '',
 		phone: phone || '',
 	})
-	const dispatch = useDispatch()
 
 	const editHandler = (id) => {
 		dispatch(resumeActions.editContact({ values, id }))
@@ -51,7 +44,7 @@ function ContactEditForm() {
 					name='address'
 				/>
 			</FormControl>
-			<Div>
+			<Flex align='center'>
 				<FormControl>
 					<Label>{t('city')}</Label>
 					<Input
@@ -74,8 +67,8 @@ function ContactEditForm() {
 					<Label>{t('zipcode')}</Label>
 					<Input value={values.zip} onChange={onChange} name='zip' />
 				</FormControl>
-			</Div>
-			<Div>
+			</Flex>
+			<Flex align='center'>
 				<FormControl>
 					<Label>{t('email')}</Label>
 					<Input
@@ -95,7 +88,7 @@ function ContactEditForm() {
 						type='number'
 					/>
 				</FormControl>
-			</Div>
+			</Flex>
 			<BtnGroup>
 				<BtnNext onClick={() => editHandler(resume.id)} type='button'>
 					{t('save')}

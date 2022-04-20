@@ -11,25 +11,16 @@ import { useTranslation } from 'react-i18next'
 import { hideModal } from '../../../store/modalSlice'
 
 const SummaryEditForm = () => {
+	const { t } = useTranslation()
+	const dispatch = useDispatch()
 	const { summaryValue } = useSelector((state) => state.resume.resumeData)
-	const resumes = useSelector((state) => state.resume.resumes)
-	const { item } = useSelector((state) => state.resume)
+	const { item, resumes } = useSelector((state) => state.resume)
 	const resume = item || resumes[resumes.length - 1]
 
-	const { t } = useTranslation()
+	const { values, onChange } = useInput({ summary: summaryValue || '' })
 
-	const dispatch = useDispatch()
-
-	const input = useInput({
-		summary: summaryValue || '',
-	})
 	const editHandler = () => {
-		dispatch(
-			resumeActions.editSummary({
-				value: input.values.summary,
-				id: resume.id,
-			}),
-		)
+		dispatch(resumeActions.editSummary({ value: values.summary, id: resume.id }),)
 		dispatch(hideModal())
 	}
 	return (
@@ -41,9 +32,9 @@ const SummaryEditForm = () => {
 				</Flex>
 			</AddSummary>
 			<Textarea
-				value={input.values.summary}
+				value={values.summary}
 				placeholder={t('summaryPlaceholder')}
-				onChange={input.onChange}
+				onChange={onChange}
 				cols='60'
 				rows='15'
 				name='summary'

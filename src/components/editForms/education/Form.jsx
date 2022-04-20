@@ -8,7 +8,6 @@ import {
 	FormStyled,
 	FormControl,
 	Label,
-	Div,
 	BtnGroup,
 	BtnNext,
 } from '../styles'
@@ -30,9 +29,9 @@ const Selection = ({ data, width, margin, onChange, name }) => {
 }
 
 const EducationEditForm = () => {
-	const { item } = useSelector((state) => state.resume)
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
+	const { item } = useSelector((state) => state.resume)
 	const resumes = useSelector((state) => state.resume.resumes)
 	const resume = item || resumes[resumes.length - 1]
 	const {
@@ -72,7 +71,7 @@ const EducationEditForm = () => {
 					type='text'
 				/>
 			</FormControl>
-			<Div>
+			<Flex align='center'>
 				<FormControl>
 					<Label>{t('eduCity')}</Label>
 					<Input
@@ -92,7 +91,7 @@ const EducationEditForm = () => {
 						type='text'
 					/>
 				</FormControl>
-			</Div>
+			</Flex>
 			<FormControl>
 				<Label>{t('field')}</Label>
 				<Input
@@ -105,7 +104,7 @@ const EducationEditForm = () => {
 			<Flex direction={'column'}>
 				<Flex align='center' justify='space-between'>
 					<Label>{t('graduationDate')}</Label>
-					<Div>
+					<Flex align='center'>
 						<Selection
 							value={values.educationMonth}
 							onChange={onChange}
@@ -118,7 +117,7 @@ const EducationEditForm = () => {
 							name='educationYear'
 							data={years}
 						/>
-					</Div>
+					</Flex>
 				</Flex>
 			</Flex>
 			<BtnGroup>

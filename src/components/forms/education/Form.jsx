@@ -11,7 +11,6 @@ import {
 	SubTxt,
 	Title,
 	Label,
-	Div,
 	BtnGroup,
 	BtnBack,
 	BtnNext,
@@ -32,7 +31,9 @@ const Selection = ({ data, width, margin, onChange, name }) => {
 	)
 }
 
-const EducationForm = ({ noTitle }) => {
+const EducationForm = () => {
+	const { t } = useTranslation()
+	const dispatch = useDispatch()
 	const {
 		schoolName,
 		educationCity,
@@ -42,10 +43,6 @@ const EducationForm = ({ noTitle }) => {
 		educationYear,
 		educationMonth,
 	} = useSelector((state) => state.resume.resumeData.education)
-
-	const { t } = useTranslation()
-
-	const dispatch = useDispatch()
 
 	const { values, onChange } = useInput({
 		schoolName: schoolName || '',
@@ -64,12 +61,8 @@ const EducationForm = ({ noTitle }) => {
 	const years = generateArrayOfYears()
 	return (
 		<FormStyled>
-			{!noTitle && (
-				<React.Fragment>
-					<Title>{t('educationTitle')}</Title>
-					<SubTxt>{t('educationSubText')}</SubTxt>
-				</React.Fragment>
-			)}
+			<Title>{t('educationTitle')}</Title>
+			<SubTxt>{t('educationSubText')}</SubTxt>
 			<FormControl>
 				<Label>{t('schoolName')}</Label>
 				<Input
@@ -79,7 +72,7 @@ const EducationForm = ({ noTitle }) => {
 					type='text'
 				/>
 			</FormControl>
-			<Div>
+			<Flex align='center'>
 				<FormControl>
 					<Label>{t('eduCity')}</Label>
 					<Input
@@ -99,7 +92,7 @@ const EducationForm = ({ noTitle }) => {
 						type='text'
 					/>
 				</FormControl>
-			</Div>
+			</Flex>
 			<FormControl>
 				<Label>{t('field')}</Label>
 				<Input
@@ -112,7 +105,7 @@ const EducationForm = ({ noTitle }) => {
 			<Flex direction={'column'}>
 				<Flex align='center' justify='space-between'>
 					<Label>{t('graduationDate')}</Label>
-					<Div>
+					<Flex align='center'>
 						<Selection
 							value={values.educationMonth}
 							onChange={onChange}
@@ -125,7 +118,7 @@ const EducationForm = ({ noTitle }) => {
 							name='educationYear'
 							data={years}
 						/>
-					</Div>
+					</Flex>
 				</Flex>
 			</Flex>
 			<BtnGroup>

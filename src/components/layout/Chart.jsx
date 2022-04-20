@@ -105,6 +105,7 @@ const DivItem = styled.div`
    height: 100%;
    background-color: #00c293;
    position: absolute;
+   transition: 1s;
 `
 const Step = styled.div`
    width: 16px;
@@ -114,6 +115,8 @@ const Step = styled.div`
    display: flex;
    justify-content: center;
    position: relative;
+   transition: 3s;
+
 `
 const Title = styled.h3`
    position: absolute;

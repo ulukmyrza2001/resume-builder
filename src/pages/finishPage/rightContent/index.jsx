@@ -6,13 +6,20 @@ import { useDispatch, useSelector } from 'react-redux'
 import EditResume from '../../../components/editResume/EditResume'
 import { resumeActions } from '../../../store/resumeSlice'
 
-const RightContent = () => {
-	const resumes = useSelector((state) => state.resume.resumes)
-	const dispatch = useDispatch()
+const Resume = ({ changeResumeHandler, resumes }) => {
+	return resumes.map((resume, i) => (
+		<ResumeItem onClick={() => changeResumeHandler(resume)} key={i}>
+			{resume.contact.name}
+		</ResumeItem>
+	))
+}
 
-	const changeResumeHandler = (resume) => {
-		dispatch(resumeActions.findItem(resume))
-	}
+const RightContent = () => {
+	const dispatch = useDispatch()
+	const resumes = useSelector((state) => state.resume.resumes)
+
+	const changeResumeHandler = (resume) => dispatch(resumeActions.findItem(resume))
+
 	return (
 		<BackgroundRightContent>
 			<Flex justify='center'>
@@ -22,17 +29,9 @@ const RightContent = () => {
 				<ChangeColor />
 				<Resumes>
 					<H2>Resumes</H2>
-					{resumes.map((resume, i) => (
-						<ResumeItem
-							onClick={() => changeResumeHandler(resume)}
-							key={i}
-						>
-							{resume.contact.name}
-						</ResumeItem>
-					))}
+					<Resume changeResumeHandler={changeResumeHandler} resumes={resumes}/>
 				</Resumes>
 			</Flex>
-			
 		</BackgroundRightContent>
 	)
 }

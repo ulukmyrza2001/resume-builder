@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
-
 import { GrClose } from 'react-icons/gr'
 import { AiOutlineExpand } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
@@ -12,10 +11,8 @@ import Flex from '../UI/Flex'
 
 const SampleResume = () => {
 	const { t } = useTranslation()
-	const { contact, education, experience, skills, summary } = useSelector(
-		(state) => state.resume.resumeData,
-	)
 	const resume = useSelector((state) => state.resume.resumeData)
+	const { contact, education, experience, skills, summary } = useSelector((state) => state.resume.resumeData)
 
 	const [showDetail, setShowDetail] = useState(false)
 
@@ -24,10 +21,9 @@ const SampleResume = () => {
 	const hideDetailResumeHandler = () => setShowDetail(false)
 
 	useEffect(() => {
-		window.onbeforeunload = () => {
-			return saveToLocalStorage('resume', resume)
-		}
+		window.onbeforeunload = () => saveToLocalStorage('resume', resume)
 	}, [resume])
+
 	useEffect(() => {
 		saveToLocalStorage('resume', resume)
 	}, [])

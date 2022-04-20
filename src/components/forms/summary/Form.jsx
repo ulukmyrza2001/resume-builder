@@ -17,17 +17,14 @@ import { resumeActions } from '../../../store/resumeSlice'
 import { useTranslation } from 'react-i18next'
 
 const SummaryForm = () => {
+	const { t } = useTranslation()
+	const dispatch = useDispatch()
 	const { summaryValue } = useSelector((state) => state.resume.resumeData)
 
-	const { t } = useTranslation()
-
-	const dispatch = useDispatch()
+	const input = useInput({ summary: summaryValue || '' })
 
 	const saveResumeHandler = () => dispatch(resumeActions.saveResume())
 
-	const input = useInput({
-		summary: summaryValue || '',
-	})
 	useEffect(() => {
 		if (input.values) {
 			dispatch(resumeActions.createSummaryResume(input.values))
@@ -35,10 +32,10 @@ const SummaryForm = () => {
 	}, [input.values, dispatch])
 	return (
 		<FormStyled>
-				<React.Fragment>
-					<Title>{t('summaryTtile')}</Title>
-					<SubTxt>{t('summarySubText')}</SubTxt>
-				</React.Fragment>
+			<React.Fragment>
+				<Title>{t('summaryTtile')}</Title>
+				<SubTxt>{t('summarySubText')}</SubTxt>
+			</React.Fragment>
 			<AddSummary>
 				<Flex align='center' justify='end'>
 					<AiOutlinePlusCircle />

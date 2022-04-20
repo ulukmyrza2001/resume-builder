@@ -4,7 +4,6 @@ const useInput = (defaultValue) => {
 	const [names,setNames] = useState('')
 	const [values, setValues] = useState(defaultValue)
 	
-
 	return {
 		onChange: (e) => {
 			const { name, value } = e.target

@@ -7,7 +7,6 @@ import {
 	FormStyled,
 	FormControl,
 	Label,
-	Div,
 	BtnGroup,
 	BtnNext,
 	Select,
@@ -83,7 +82,7 @@ const ExperienceEditForm = () => {
 					type='text'
 				/>
 			</FormControl>
-			<Div>
+			<Flex align='center'>
 				<FormControl>
 					<Label>{t('expCity')}</Label>
 					<Input
@@ -103,11 +102,11 @@ const ExperienceEditForm = () => {
 						type='text'
 					/>
 				</FormControl>
-			</Div>
+			</Flex>
 			<Flex direction={'column'}>
 				<Flex align='center' justify='space-between'>
 					<Label>{t('startDate')}</Label>
-					<Div>
+					<Flex align='center'>
 						<Selection
 							value={values.startMonth}
 							onChange={onChange}
@@ -120,11 +119,11 @@ const ExperienceEditForm = () => {
 							name='startYears'
 							data={years}
 						/>
-					</Div>
+					</Flex>
 				</Flex>
 				<Flex align='center' justify='space-between'>
 					<Label>{t('endDate')}</Label>
-					<Div>
+					<Flex align='center'>
 						<Selection
 							value={values.endMonth}
 							onChange={onChange}
@@ -137,7 +136,7 @@ const ExperienceEditForm = () => {
 							name='endYear'
 							data={years}
 						/>
-					</Div>
+					</Flex>
 				</Flex>
 			</Flex>
 			<BtnGroup>

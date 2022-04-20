@@ -1,4 +1,4 @@
-import React,{ useState } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { IoIosClose } from 'react-icons/io'
@@ -28,7 +28,7 @@ const Skills = ({ skills = [], onClick }) => {
 	))
 }
 
-const SkillsForm = ({noTitle}) => {
+const SkillsForm = () => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const skills = useSelector((state) => state.resume.resumeData.skills)
@@ -49,12 +49,8 @@ const SkillsForm = ({noTitle}) => {
 	}
 	return (
 		<FormStyled>
-			{!noTitle && (
-				<React.Fragment>
-					<Title>{t('skillsTitle')}</Title>
-					<SubTxt>{t('skillsSubTitle')}</SubTxt>
-				</React.Fragment>
-			)}
+			<Title>{t('skillsTitle')}</Title>
+			<SubTxt>{t('skillsSubTitle')}</SubTxt>
 			<Flex wrap='wrap' gap='5px'>
 				<Skills skills={skills} onClick={deleteSkills} />
 			</Flex>

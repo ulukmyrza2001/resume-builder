@@ -10,7 +10,6 @@ import {
 	SubTxt,
 	Title,
 	Label,
-	Div,
 	BtnGroup,
 	BtnBack,
 	BtnNext,
@@ -32,7 +31,9 @@ const Selection = ({ data, width, margin, name, onChange }) => {
 	)
 }
 
-const ExperienceForm = ({ noTitle }) => {
+const ExperienceForm = () => {
+	const dispatch = useDispatch()
+	const { t } = useTranslation()
 	const {
 		jobTitle,
 		employer,
@@ -44,8 +45,6 @@ const ExperienceForm = ({ noTitle }) => {
 		endMonth,
 	} = useSelector((state) => state.resume.resumeData.experience)
 
-	const dispatch = useDispatch()
-	const { t } = useTranslation()
 	const { values, onChange } = useInput({
 		jobTitle: jobTitle || '',
 		employer: employer || '',
@@ -60,15 +59,12 @@ const ExperienceForm = ({ noTitle }) => {
 	useEffect(() => {
 		dispatch(resumeActions.createExperienceResume(values))
 	}, [values, dispatch])
+
 	const years = generateArrayOfYears()
 	return (
 		<FormStyled>
-			{!noTitle && (
-				<React.Fragment>
-					<Title>{t('experienceTitle')}</Title>
-					<SubTxt>{t('experienceSubText')}</SubTxt>
-				</React.Fragment>
-			)}
+			<Title>{t('experienceTitle')}</Title>
+			<SubTxt>{t('experienceSubText')}</SubTxt>
 			<FormControl>
 				<Label>{t('jobTitle')}</Label>
 				<Input
@@ -87,7 +83,7 @@ const ExperienceForm = ({ noTitle }) => {
 					type='text'
 				/>
 			</FormControl>
-			<Div>
+			<Flex align='center'>
 				<FormControl>
 					<Label>{t('expCity')}</Label>
 					<Input
@@ -107,11 +103,11 @@ const ExperienceForm = ({ noTitle }) => {
 						type='text'
 					/>
 				</FormControl>
-			</Div>
+			</Flex>
 			<Flex direction={'column'}>
 				<Flex align='center' justify='space-between'>
 					<Label>{t('startDate')}</Label>
-					<Div>
+					<Flex align='center'>
 						<Selection
 							value={values.startMonth}
 							onChange={onChange}
@@ -124,11 +120,11 @@ const ExperienceForm = ({ noTitle }) => {
 							name='startYears'
 							data={years}
 						/>
-					</Div>
+					</Flex>
 				</Flex>
 				<Flex align='center' justify='space-between'>
 					<Label>{t('endDate')}</Label>
-					<Div>
+					<Flex align='center'>
 						<Selection
 							value={values.endMonth}
 							onChange={onChange}
@@ -141,7 +137,7 @@ const ExperienceForm = ({ noTitle }) => {
 							name='endYear'
 							data={years}
 						/>
-					</Div>
+					</Flex>
 				</Flex>
 			</Flex>
 			<BtnGroup>

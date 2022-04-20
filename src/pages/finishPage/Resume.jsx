@@ -10,25 +10,21 @@ import { RiDeleteBin7Fill } from 'react-icons/ri'
 import { resumeActions } from '../../store/resumeSlice'
 
 const Resume = React.forwardRef((props, ref) => {
-	console.log(ref.componentRef)
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
-	const { resumes: resume, color } = useSelector((state) => state.resume)
-	const { item } = useSelector((state) => state.resume)
+	const { item, resumes, color } = useSelector((state) => state.resume)
 
-	const lastItem = resume[resume.length - 1]
+	const lastItem = resumes[resumes.length - 1]
 
 	const currentItemResume = item ? item : lastItem
-	const { contact, education, experience, skills, summary } =
-		currentItemResume
+
+	const { contact, education, experience, skills, summary } = currentItemResume
 
 	useEffect(() => {
-		saveToLocalStorage('@resumes', resume)
-	}, [resume])
+		saveToLocalStorage('@resumes', resumes)
+	}, [resumes])
 
-	const deleteResumeHandler = () => {
-		dispatch(resumeActions.deleteResume(currentItemResume.id))
-	}
+	const deleteResumeHandler = () => dispatch(resumeActions.deleteResume(currentItemResume.id))
 
 	return (
 		<React.Fragment>

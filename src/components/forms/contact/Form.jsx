@@ -11,18 +11,18 @@ import {
 	SubTxt,
 	Title,
 	Label,
-	Div,
 	BtnGroup,
 	BtnBack,
 	BtnNext,
 } from '../styles'
+import Flex from '../../UI/Flex'
 
-function ContactForm({ noTitle = false }) {
+function ContactForm() {
+	const dispatch = useDispatch()
+	const { t } = useTranslation()
 	const { name, address, city, state, zip, email, phone } = useSelector(
 		(state) => state.resume.resumeData.contact,
 	)
-
-	const { t } = useTranslation()
 
 	const { values, onChange } = useInput({
 		name: name || '',
@@ -33,20 +33,15 @@ function ContactForm({ noTitle = false }) {
 		email: email || '',
 		phone: phone || '',
 	})
-	const dispatch = useDispatch()
-     
+
 	useEffect(() => {
-		if(!noTitle) dispatch(resumeActions.createContactResume(values))
-	}, [values, dispatch,noTitle])
+		dispatch(resumeActions.createContactResume(values))
+	}, [values, dispatch])
 
 	return (
 		<FormStyled>
-			{!noTitle && (
-				<React.Fragment>
-					<Title>{t('contactTitle')}</Title>
-					<SubTxt>{t('contactSubText')}</SubTxt>
-				</React.Fragment>
-			)}
+			<Title>{t('contactTitle')}</Title>
+			<SubTxt>{t('contactSubText')}</SubTxt>
 			<FormControl>
 				<Label>{t('name')}</Label>
 				<Input value={values.name} onChange={onChange} name='name' />
@@ -59,7 +54,7 @@ function ContactForm({ noTitle = false }) {
 					name='address'
 				/>
 			</FormControl>
-			<Div>
+			<Flex align='center'>
 				<FormControl>
 					<Label>{t('city')}</Label>
 					<Input
@@ -82,8 +77,8 @@ function ContactForm({ noTitle = false }) {
 					<Label>{t('zipcode')}</Label>
 					<Input value={values.zip} onChange={onChange} name='zip' />
 				</FormControl>
-			</Div>
-			<Div>
+			</Flex>
+			<Flex align='center'>
 				<FormControl>
 					<Label>{t('email')}</Label>
 					<Input
@@ -103,15 +98,13 @@ function ContactForm({ noTitle = false }) {
 						type='number'
 					/>
 				</FormControl>
-			</Div>
-			{!noTitle && (
-				<BtnGroup>
-					<BtnBack>{t('back')}</BtnBack>
-					<Link to='/experience'>
-						<BtnNext type='button'>{t('next')}</BtnNext>
-					</Link>
-				</BtnGroup>
-			)}
+			</Flex>
+			<BtnGroup>
+				<BtnBack>{t('back')}</BtnBack>
+				<Link to='/experience'>
+					<BtnNext type='button'>{t('next')}</BtnNext>
+				</Link>
+			</BtnGroup>
 		</FormStyled>
 	)
 }

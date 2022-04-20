@@ -4,36 +4,11 @@ import { getDataFromLocalStorage } from '../utils/helpers/general'
 const initialState = {
 	resumeData: getDataFromLocalStorage('resume') || {
 		summaryValue: null,
-		contact: {
-			name: '',
-			address: '',
-			city: '',
-			state: '',
-			zip: '',
-			email: '',
-			phone: '',
-		},
+		contact: {},
 		summary: [],
 		skills: [],
-		experience: {
-			jobTitle: '',
-			employer: '',
-			experienceCity: '',
-			experienceState: '',
-			startYears: '',
-			startMonth: '',
-			endYear: '',
-			endMonth: '',
-		},
-		education: {
-			schoolName: '',
-			educationCity: '',
-			educationState: '',
-			educationDegree: '',
-			field: '',
-			educationYear: '',
-			educationMonth: '',
-		},
+		experience: {},
+		education: {},
 	},
 	resumes: getDataFromLocalStorage('@resumes') || [],
 	color: '#464746',
@@ -46,9 +21,6 @@ const resumeSlice = createSlice({
 	reducers: {
 		findItem(state, action) {
 			state.item = action.payload
-		},
-		getDataFromLocalStorage(state, action) {
-			state.resumeData = action.payload
 		},
 		createContactResume(state, action) {
 			state.resumeData.contact = action.payload
@@ -71,13 +43,8 @@ const resumeSlice = createSlice({
 			]
 		},
 		deleteSkill(state, action) {
-			const filteredSkills = state.resumeData.skills.filter(
-				(el) => el.id !== action.payload,
-			)
-			state.resumeData = {
-				...state.resumeData,
-				skills: filteredSkills,
-			}
+			const filteredSkills = state.resumeData.skills.filter((el) => el.id !== action.payload)
+			state.resumeData.skills = filteredSkills
 		},
 		saveResume(state) {
 			state.resumes = [
@@ -103,19 +70,18 @@ const resumeSlice = createSlice({
 				if (el.id === action.payload.id) {
 					el.education = action.payload.values
 				}
-				if (state.item) state.item.education = action.payload.values
 				return el
 			})
+			if (state.item) state.item.education = action.payload.values
 		},
 		editExperience(state, action) {
-			console.log(action.payload)
 			state.resumes = state.resumes.map((el) => {
 				if (el.id === action.payload.id) {
 					el.experience = action.payload.values
 				}
-				if (state.item) state.item.experience = action.payload.values
 				return el
 			})
+			if (state.item) state.item.experience = action.payload.values
 		},
 		editSkill(state, action) {
 			state.resumes = state.resumes.map((el) => {
@@ -124,14 +90,13 @@ const resumeSlice = createSlice({
 						skill: action.payload.value,
 						id: Math.random().toString(),
 					})
-					if (state.item)
-						state.item.skills.push({
-							skill: action.payload.value,
-							id: Math.random().toString(),
-						})
 				}
 				return el
 			})
+			if (state.item) state.item.skills.push({
+					skill: action.payload.value,
+					id: Math.random().toString(),
+				})
 		},
 		editSummary(state, action) {
 			const summarySplited = action.payload.value.split(/\n/)
@@ -139,9 +104,9 @@ const resumeSlice = createSlice({
 				if (el.id === action.payload.id) {
 					el.summary = [...summarySplited]
 				}
-				if (state.item) state.item.summary = [...summarySplited]
 				return el
 			})
+			if (state.item) state.item.summary = [...summarySplited]
 		},
 		deleteResume(state, action) {
 			state.resumes = state.resumes.filter(

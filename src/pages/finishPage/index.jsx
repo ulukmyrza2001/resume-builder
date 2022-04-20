@@ -29,7 +29,7 @@ const Finish = () => {
 	}, [localDataResume, navigate])
 
 	return (
-		<>
+		<React.Fragment>
 			<HeaderFinishPage>
 				<Flex justify='space-between'>
 					<ReactToPrint
@@ -41,7 +41,6 @@ const Finish = () => {
 						)}
 						content={() => componentRef.current}
 					/>
-
 					<BtnNext onClick={newResumeHandler}>
 						{t('newResume')}
 					</BtnNext>
@@ -51,7 +50,7 @@ const Finish = () => {
 				<FinishPage ref={componentRef} />
 				<RightContent />
 			</PageStyled>
-		</>
+		</React.Fragment>
 	)
 }
 const HeaderFinishPage = styled.div`
