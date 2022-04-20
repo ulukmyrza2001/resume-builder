@@ -14,7 +14,7 @@ const ChangeColor = () => {
 	return (
 		<ColorsContainer>
 			<H2>Color</H2>
-			<Flex wrap='wrap' justify='center' gap='3px'>
+			<Flex wrap='wrap' justify='center' gap='5px'>
 				{COLORS.map((color) => (
 					<ColorsItem
 						isColor={color === resumeColor}
@@ -29,19 +29,19 @@ const ChangeColor = () => {
 }
 const H2 = styled.h2`
 	margin-bottom: 10px;
+	color: #3c364b;
 `
 const ColorsContainer = styled.div`
-	width: 470px;
-	padding: 1rem;
+	width: 120px;
+	padding: 0.3rem;
 	background-color: whitesmoke;
 	border-radius: 4px;
-	gap: 3px;
-	margin-top: 50px;
+   margin-top: 30px;
 `
 const ColorsItem = styled.button`
 	border: none;
-	width: 70px;
-	height: 70px;
+	width: 50px;
+	height: 50px;
 	transition: 0.2s;
 	background-color: ${(props) => props.color};
 	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);

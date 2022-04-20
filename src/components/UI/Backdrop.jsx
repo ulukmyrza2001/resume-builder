@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+
 const Backdrop = () => {
-  return (
-    <BackdropStyled/>
-  )
+   return <BackdropStyled />
 }
 
 const BackdropStyled = styled.div`
@@ -12,7 +11,7 @@ const BackdropStyled = styled.div`
    top: 0;
    left: 0;
    bottom: 0;
-   right: 0;  
+   right: 0;
    background-color: #1f4e58ea;
    z-index: 10;
 `

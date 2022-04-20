@@ -1,39 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import RightContent from './rightContent'
-import { PageStyled } from '../styles'
+import { PageStyled } from '../../components/templatePages/styles'
 import FinishPage from './leftContent'
 import { MdOutlineKeyboardBackspace } from 'react-icons/md'
-import { BtnNext, BtnBack } from '../styles'
+import { BtnNext, BtnBack } from '../../components/forms/styles'
 import { MdFileDownload } from 'react-icons/md'
 import Flex from '../../components/UI/Flex'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { print } from 'react-html2pdf'
 import styled from 'styled-components'
 import { getDataFromLocalStorage } from '../../utils/helpers/general'
 
 const Finish = () => {
 	const { t } = useTranslation()
 	const navigate = useNavigate()
-	const [resumeIndex, setResumeIndex] = useState(null)
 
-	const downloadPDFhandler = () => print('a', 'resume')
+	const downloadPDFhandler = () => window.print()
 
 	const newResumeHandler = () => {
 		window.location.reload()
+		localStorage.removeItem('resume')
 	}
-	
-	const localDataResume = getDataFromLocalStorage('resume')
 
+	const localDataResume = getDataFromLocalStorage('resume')
 	useEffect(() => {
 		if (!localDataResume) {
 			navigate('/')
 		}
-	}, [localDataResume,navigate])
+	}, [localDataResume, navigate])
 
-	const getResumeHandler = (index) => setResumeIndex(index)
-	
-	window.onbeforeunload = () => localStorage.removeItem('resume')
 	return (
 		<>
 			<HeaderFinishPage>
@@ -52,8 +47,8 @@ const Finish = () => {
 				</Flex>
 			</HeaderFinishPage>
 			<PageStyled>
-				<FinishPage resumeIndex={resumeIndex} />
-				<RightContent getResume={getResumeHandler} />
+				<FinishPage />
+				<RightContent />
 			</PageStyled>
 		</>
 	)

@@ -43,5 +43,6 @@
 			"next" : "NEXT",
 			"liveChat" : "LIVE CHAT",
 			"myAccount" : "MY ACCOUNT",
-			"contactInformation" : "CONTACT INFORMATION"
+			"contactInformation" : "CONTACT INFORMATION",
+			"save" : "save"
 }

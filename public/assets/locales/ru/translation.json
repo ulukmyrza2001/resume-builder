@@ -43,5 +43,6 @@
 	"next": "СЛЕДУЮЩИЙ",
 	"liveChat": "ЖИВОЙ ЧАТ",
 	"myAccount": "МОЙ АККАУНТ",
-	"contactInformation": "КОНТАКТЫ"
+	"contactInformation": "КОНТАКТЫ",
+	"save" : "сохранить"
 }
