@@ -54,6 +54,9 @@ const SummaryEditForm = () => {
 						{t('save')}
 					</BtnNext>
 				</Link>
+				<BtnNext onClick={() => dispatch(hideModal())} type='button'>
+					{t('cancel')}
+				</BtnNext>
 			</BtnGroup>
 		</FormStyled>
 	)

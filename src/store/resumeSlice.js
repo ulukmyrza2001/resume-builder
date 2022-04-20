@@ -143,7 +143,12 @@ const resumeSlice = createSlice({
 				return el
 			})
 		},
-		// deleteResume(state,action)
+		deleteResume(state, action) {
+			state.resumes = state.resumes.filter(
+				(el) => el.id !== action.payload,
+			)
+			state.item = state.resumes[state.resumes.length - 1]
+		},
 	},
 })
 export const resumeActions = resumeSlice.actions

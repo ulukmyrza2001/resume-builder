@@ -15,6 +15,9 @@ const RightContent = () => {
 	}
 	return (
 		<BackgroundRightContent>
+			<Flex justify='center'>
+				<EditResume />
+			</Flex>
 			<Flex justify='space-around'>
 				<ChangeColor />
 				<Resumes>
@@ -29,9 +32,7 @@ const RightContent = () => {
 					))}
 				</Resumes>
 			</Flex>
-			<Flex justify='center'>
-				<EditResume />
-			</Flex>
+			
 		</BackgroundRightContent>
 	)
 }

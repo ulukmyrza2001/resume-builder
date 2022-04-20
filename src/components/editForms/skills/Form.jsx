@@ -69,6 +69,9 @@ const SkillsEditForm = () => {
 				<BtnNext onClick={() => dispatch(hideModal())} type='button'>
 					{t('save')}
 				</BtnNext>
+				<BtnNext onClick={() => dispatch(hideModal())} type='button'>
+					{t('cancel')}
+				</BtnNext>
 			</BtnGroup>
 		</FormStyled>
 	)

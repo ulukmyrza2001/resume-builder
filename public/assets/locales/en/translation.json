@@ -44,5 +44,6 @@
 			"liveChat" : "LIVE CHAT",
 			"myAccount" : "MY ACCOUNT",
 			"contactInformation" : "CONTACT INFORMATION",
-			"save" : "save"
+			"save" : "save",
+			"cancel" : "cancel"
 }

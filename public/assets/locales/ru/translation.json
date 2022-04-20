@@ -44,5 +44,6 @@
 	"liveChat": "ЖИВОЙ ЧАТ",
 	"myAccount": "МОЙ АККАУНТ",
 	"contactInformation": "КОНТАКТЫ",
-	"save" : "сохранить"
+	"save" : "сохранить",
+	"cancel" : "отмена"
 }

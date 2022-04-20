@@ -73,27 +73,27 @@ const Div = styled.div`
 
    .step1 {
       background-color: ${(props) =>
-         props.chart > 0 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
+         props.chart > 0 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
    }
    .step2 {
       background-color: ${(props) =>
-         props.chart >= 17 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 17 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
    }
    .step3 {
       background-color: ${(props) =>
-         props.chart >= 34 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 34 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
    }
    .step4 {
       background-color: ${(props) =>
-         props.chart >= 50 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 50 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
    }
    .step5 {
       background-color: ${(props) =>
-         props.chart >= 66 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 66 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
    }
    .step6 {
       background-color: ${(props) =>
-         props.chart >= 83 && props.chart < 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 83 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
    }
    .step7 {
       background-color: ${(props) =>

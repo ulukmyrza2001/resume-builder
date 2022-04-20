@@ -2,15 +2,15 @@ import React from 'react'
 import Resume from '../Resume'
 import styled from 'styled-components'
 
-const FinishPage = () => {
+const FinishPage = React.forwardRef((props, ref) => {
 	return (
 		<Finish>
-				<Resume/>
+			<Resume ref={ref} />
 		</Finish>
 	)
-}
+})
 const Finish = styled.div`
-	background-color: #023642;
+	background-color: #ffffff;
 	width: 60%;
 `
 

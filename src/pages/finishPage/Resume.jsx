@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { createGlobalStyle } from 'styled-components'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Grid from '../../components/UI/Grid'
 import Flex from '../../components/UI/Flex'
 import { saveToLocalStorage } from '../../utils/helpers/general'
+import { RiDeleteBin7Fill } from 'react-icons/ri'
+import { resumeActions } from '../../store/resumeSlice'
 
-const Resume = () => {
+const Resume = React.forwardRef((props, ref) => {
+	console.log(ref.componentRef)
+	const dispatch = useDispatch()
 	const { t } = useTranslation()
 	const { resumes: resume, color } = useSelector((state) => state.resume)
 	const { item } = useSelector((state) => state.resume)
@@ -21,10 +25,20 @@ const Resume = () => {
 	useEffect(() => {
 		saveToLocalStorage('@resumes', resume)
 	}, [resume])
+
+	const deleteResumeHandler = () => {
+		dispatch(resumeActions.deleteResume(currentItemResume.id))
+	}
+
 	return (
 		<React.Fragment>
 			<GlobalStyle color={color} />
-			<ContainerResume>
+			<Flex justify='center'>
+				<DeleteResume onClick={deleteResumeHandler}>
+					<RiDeleteBin7Fill /> Delete This Resume
+				</DeleteResume>
+			</Flex>
+			<ContainerResume ref={ref}>
 				<Title>{contact.name || t('contactInformation')}</Title>
 				<HR />
 				<Text>
@@ -114,18 +128,36 @@ const Resume = () => {
 			</ContainerResume>
 		</React.Fragment>
 	)
-}
+})
+const DeleteResume = styled.button`
+	width: 800px;
+	box-shadow: 15px 15px 50px rgba(0, 0, 0, 0.3);
+	padding: 0.5rem 2.8rem;
+	font-size: 18px;
+	color: #243a50;
+	border: none;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	transition: 0.2s;
+	cursor: pointer;
+	&:hover {
+		background-color: #bd141494;
+	}
+`
 const HR = styled.hr`
 	color: #b9b9b9;
 	margin-top: 10px;
 `
 const ContainerResume = styled.div`
+	position: relative;
 	width: 800px;
 	height: 1100px;
 	padding: 50px;
 	background-color: #ffff;
-	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-	margin: 2rem auto;
+	box-shadow: 15px 15px 50px rgba(0, 0, 0, 0.3);
+	margin: 0 auto;
 `
 const Title = styled.h1`
 	font-size: 40px;
@@ -140,7 +172,6 @@ const SubTtile = styled.h2`
 const Text = styled.p`
 	word-wrap: break-word;
 `
-
 const Cursiv = styled.address``
 
 const List = styled.ul``
@@ -148,7 +179,6 @@ const List = styled.ul``
 const Li = styled.li`
 	margin-left: 20px;
 `
-
 const GlobalStyle = createGlobalStyle`
     h2,h1{
 		color : ${(props) => props.color || '#464746'};
