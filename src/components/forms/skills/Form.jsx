@@ -48,6 +48,9 @@ const SkillsForm = () => {
       setValue(e.target.textContent)
       setShowSearchList(false)
    }
+   const onKeyPressHandler = (e) => {
+      if (e.key === 'Enter') handleSubmit()
+   }
    return (
       <FormStyled>
          <Title>{t('skillsTitle')}</Title>
@@ -63,6 +66,7 @@ const SkillsForm = () => {
                   placeholder={t('placeHolderSkills')}
                   name="skills"
                   onChange={(e) => setValue(e.target.value)}
+                  onKeyDown={onKeyPressHandler}
                />
                <BtnNext onClick={handleSubmit}>{t('addSkills')}</BtnNext>
             </Flex>

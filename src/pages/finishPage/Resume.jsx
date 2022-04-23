@@ -7,16 +7,17 @@ import { RiDeleteBin7Fill } from 'react-icons/ri'
 import Grid from '../../components/UI/Grid'
 import Flex from '../../components/UI/Flex'
 import { saveToLocalStorage } from '../../utils/helpers/general'
-import { resumeActions } from '../../store/resumeSlice'
+import { resumesActions } from '../../store/resumesSlice'
 
 const Resume = React.forwardRef((props, ref) => {
    const dispatch = useDispatch()
    const { t } = useTranslation()
-   const { item, resumes, color } = useSelector((state) => state.resume)
+   const { itemId, resumes } = useSelector((state) => state.resumes)
+   const { color } = useSelector((state) => state.resume)
 
    const lastItem = resumes[resumes.length - 1]
 
-   const currentItemResume = item || lastItem
+   const currentItemResume = resumes.find((el) => el.id === itemId) || lastItem
 
    const { contact, education, experience, skills, summary } = currentItemResume
 
@@ -25,7 +26,7 @@ const Resume = React.forwardRef((props, ref) => {
    }, [resumes])
 
    const deleteResumeHandler = () =>
-      dispatch(resumeActions.deleteResume(currentItemResume.id))
+      dispatch(resumesActions.deleteResume(currentItemResume.id))
 
    return (
       <>

@@ -6,7 +6,7 @@ import { createGlobalStyle } from 'styled-components'
 import InputMask from 'react-input-mask'
 import Input from '../../UI/Input'
 import useInput from '../../../hooks/useInput'
-import { resumeActions } from '../../../store/resumeSlice'
+import { resumesActions } from '../../../store/resumesSlice'
 import { hideModal } from '../../../store/modalSlice'
 import Flex from '../../UI/Flex'
 import { FormStyled, FormControl, Label, BtnGroup, BtnNext } from '../styles'
@@ -14,9 +14,10 @@ import { FormStyled, FormControl, Label, BtnGroup, BtnNext } from '../styles'
 function ContactEditForm() {
    const dispatch = useDispatch()
    const { t } = useTranslation()
-   const { item } = useSelector((state) => state.resume)
-   const resumes = useSelector((state) => state.resume.resumes)
-   const resume = item || resumes[resumes.length - 1]
+   const { itemId, resumes } = useSelector((state) => state.resumes)
+   const resume =
+      resumes.find((el) => el.id === itemId) || resumes[resumes.length - 1]
+
    const { name, address, city, state, zip, email, phone } = resume.contact
 
    const { values, onChange } = useInput({
@@ -30,7 +31,7 @@ function ContactEditForm() {
    })
 
    const editHandler = (id) => {
-      dispatch(resumeActions.editContact({ values, id }))
+      dispatch(resumesActions.editContact({ values, id }))
       dispatch(hideModal())
    }
    return (
@@ -85,7 +86,8 @@ function ContactEditForm() {
                   value={values.phone}
                   onChange={onChange}
                   name="phone"
-                  mask="(+996) 999 999"
+                  mask={'+\\9\\9\\6\\ (999) 999 999'}
+                  className="input"
                />
             </FormControl>
          </Flex>
@@ -102,6 +104,7 @@ function ContactEditForm() {
 }
 const GlobalStyle = createGlobalStyle`
 .input {
+   width: 100%;
    padding: 0.7rem 1rem;
    margin-right: 10px;
    outline: none;

@@ -24,8 +24,6 @@ const SummaryForm = () => {
 
    const input = useInput({ summary: summaryValue || '' })
 
-   const saveResumeHandler = () => dispatch(resumeActions.saveResume())
-
    useEffect(() => {
       if (input.values) {
          dispatch(resumeActions.createSummaryResume(input.values))
@@ -48,16 +46,14 @@ const SummaryForm = () => {
             cols="6"
             rows="15"
             name="summary"
-            maxlength="9"
+            maxLength="300"
          />
          <BtnGroup>
             <Link to="/contact">
                <BtnBack type="button">{t('back')}</BtnBack>
             </Link>
             <Link to="/skills">
-               <BtnNext onClick={saveResumeHandler} type="button">
-                  {t('next')}
-               </BtnNext>
+               <BtnNext type="button">{t('next')}</BtnNext>
             </Link>
          </BtnGroup>
       </FormStyled>

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { Navigate } from 'react-router-dom'
 
 const PrivateRoute = ({ children }) => {
-   const { resumes } = useSelector((state) => state.resume)
+   const { resumes } = useSelector((state) => state.resumes)
    if (resumes.length === 0) {
       return <Navigate to="/" />
    }

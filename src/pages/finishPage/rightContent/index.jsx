@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import ChangeColor from '../../../components/changeColor/ChangeColor'
 import Flex from '../../../components/UI/Flex'
 import EditResume from '../../../components/editResume/EditResume'
-import { resumeActions } from '../../../store/resumeSlice'
+import { resumesActions } from '../../../store/resumesSlice'
 
-const Resume = ({ changeResumeHandler, resumes }) => {
+export const Resume = ({ changeResumeHandler, resumes }) => {
    return resumes.map((resume) => (
-      <ResumeItem onClick={() => changeResumeHandler(resume)} key={resume.id}>
+      <ResumeItem
+         onClick={() => changeResumeHandler(resume.id)}
+         key={resume.id}
+      >
          {resume.contact.name}
       </ResumeItem>
    ))
@@ -16,10 +19,9 @@ const Resume = ({ changeResumeHandler, resumes }) => {
 
 const RightContent = () => {
    const dispatch = useDispatch()
-   const resumes = useSelector((state) => state.resume.resumes)
+   const resumes = useSelector((state) => state.resumes.resumes)
 
-   const changeResumeHandler = (resume) =>
-      dispatch(resumeActions.findItem(resume))
+   const changeResumeHandler = (id) => dispatch(resumesActions.findResumeId(id))
 
    return (
       <BackgroundRightContent>

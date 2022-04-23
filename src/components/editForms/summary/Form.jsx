@@ -8,21 +8,22 @@ import { useTranslation } from 'react-i18next'
 import { FormStyled, BtnGroup, BtnNext } from '../styles'
 import Flex from '../../UI/Flex'
 import useInput from '../../../hooks/useInput'
-import { resumeActions } from '../../../store/resumeSlice'
 import { hideModal } from '../../../store/modalSlice'
+import { resumesActions } from '../../../store/resumesSlice'
 
 const SummaryEditForm = () => {
    const { t } = useTranslation()
    const dispatch = useDispatch()
    const { summaryValue } = useSelector((state) => state.resume.resumeData)
-   const { item, resumes } = useSelector((state) => state.resume)
-   const resume = item || resumes[resumes.length - 1]
+   const { itemId, resumes } = useSelector((state) => state.resumes)
+   const resume =
+      resumes.find((el) => el.id === itemId) || resumes[resumes.length - 1]
 
    const { values, onChange } = useInput({ summary: summaryValue || '' })
 
    const editHandler = () => {
       dispatch(
-         resumeActions.editSummary({ value: values.summary, id: resume.id })
+         resumesActions.editSummary({ value: values.summary, id: resume.id })
       )
       dispatch(hideModal())
    }

@@ -20,10 +20,12 @@ import {
 import Flex from '../../UI/Flex'
 import useInput from '../../../hooks/useInput'
 import { resumeActions } from '../../../store/resumeSlice'
+import { resumesActions } from '../../../store/resumesSlice'
 
 const EducationForm = () => {
    const { t } = useTranslation()
    const dispatch = useDispatch()
+   const resumeData = useSelector((state) => state.resume.resumeData)
    const {
       schoolName,
       educationCity,
@@ -43,6 +45,9 @@ const EducationForm = () => {
       educationYear: educationYear || '',
       educationMonth: educationMonth || '',
    })
+
+   const saveResumeHandler = () =>
+      dispatch(resumesActions.saveResume(resumeData))
 
    useEffect(() => {
       dispatch(resumeActions.createEducationResume(values))
@@ -116,7 +121,9 @@ const EducationForm = () => {
                <BtnBack type="button">{t('back')}</BtnBack>
             </Link>
             <Link to="/finish">
-               <BtnNext type="button">{t('next')}</BtnNext>
+               <BtnNext onClick={saveResumeHandler} type="button">
+                  {t('next')}
+               </BtnNext>
             </Link>
          </BtnGroup>
       </FormStyled>

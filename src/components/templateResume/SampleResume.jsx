@@ -156,6 +156,7 @@ const DetailResume = styled.div`
    cursor: pointer;
 `
 const ContainerResume = styled.div`
+   transition: all 0.3s;
    width: ${(props) => (props.detail ? '800px' : '350px')};
    height: ${(props) => (props.detail ? '900px' : '500px')};
    padding: ${(props) => (props.detail ? '50px' : '20px')};
@@ -168,7 +169,7 @@ const ContainerResume = styled.div`
    &:hover ${DetailResume} {
       opacity: ${(props) => (props.detail ? '0' : '1')};
    }
-   z-index: 10;
+   z-index: ${(props) => (props.detail ? '1' : '0')};
 `
 const Title = styled.h1`
    font-size: ${(props) => (props.detail ? '40px' : '19px')};

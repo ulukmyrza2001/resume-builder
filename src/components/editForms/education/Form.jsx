@@ -8,16 +8,16 @@ import { month } from '../../../utils/constants/constants'
 import { FormStyled, FormControl, Label, BtnGroup, BtnNext } from '../styles'
 import Flex from '../../UI/Flex'
 import useInput from '../../../hooks/useInput'
-import { resumeActions } from '../../../store/resumeSlice'
 import { hideModal } from '../../../store/modalSlice'
 import Selection from '../../select/Select'
+import { resumesActions } from '../../../store/resumesSlice'
 
 const EducationEditForm = () => {
    const dispatch = useDispatch()
    const { t } = useTranslation()
-   const { item } = useSelector((state) => state.resume)
-   const resumes = useSelector((state) => state.resume.resumes)
-   const resume = item || resumes[resumes.length - 1]
+   const { itemId, resumes } = useSelector((state) => state.resumes)
+   const resume =
+      resumes.find((el) => el.id === itemId) || resumes[resumes.length - 1]
    const {
       schoolName,
       educationCity,
@@ -39,7 +39,7 @@ const EducationEditForm = () => {
    })
 
    const editHandler = (id) => {
-      dispatch(resumeActions.editEducation({ values, id }))
+      dispatch(resumesActions.editEducation({ values, id }))
       dispatch(hideModal())
    }
 

@@ -7,9 +7,9 @@ import { useTranslation } from 'react-i18next'
 import Flex from '../../UI/Flex'
 import Input from '../../UI/Input'
 import { FormStyled, FormControl, Label, BtnGroup, BtnNext } from '../styles'
-import { resumeActions } from '../../../store/resumeSlice'
 import SearchSkills from './SearchSkills'
 import { hideModal } from '../../../store/modalSlice'
+import { resumesActions } from '../../../store/resumesSlice'
 
 const Skills = ({ skills = [], onClick }) => {
    return skills.map((el) => (
@@ -23,20 +23,21 @@ const Skills = ({ skills = [], onClick }) => {
 const SkillsEditForm = () => {
    const { t } = useTranslation()
    const dispatch = useDispatch()
-   const resumes = useSelector((state) => state.resume.resumes)
-   const { item } = useSelector((state) => state.resume)
+   const { itemId, resumes } = useSelector((state) => state.resumes)
    const [value, setValue] = useState('')
    const [showSearchList, setShowSearchList] = useState(true)
 
-   const resume = item || resumes[resumes.length - 1]
+   const resume =
+      resumes.find((el) => el.id === itemId) || resumes[resumes.length - 1]
 
    const handleSubmit = () => {
       if (value.trim() === '') return
-      dispatch(resumeActions.editSkill({ value, id: resume.id }))
+      dispatch(resumesActions.editSkill({ value, id: resume.id }))
       setShowSearchList(true)
       setValue('')
    }
-   const deleteSkills = (id) => dispatch(resumeActions.deleteEditSkill(id))
+   const deleteSkills = (id) =>
+      dispatch(resumesActions.deleteEditSkill({ id, resumeId: resume.id }))
 
    const addSkillsSearchingHandler = (e) => {
       setValue(e.target.textContent)

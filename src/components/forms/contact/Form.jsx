@@ -96,7 +96,7 @@ function ContactForm() {
                   value={values.phone}
                   onChange={onChange}
                   name="phone"
-                  mask="(+996) 999 999"
+                  mask={'+\\9\\9\\6\\ (999) 999 999'}
                />
             </FormControl>
          </Flex>
