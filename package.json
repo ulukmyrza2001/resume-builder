@@ -16,6 +16,7 @@
       "react-html2pdf": "^1.0.1",
       "react-i18next": "^11.16.6",
       "react-icons": "^4.3.1",
+      "react-input-mask": "^2.0.4",
       "react-redux": "^7.2.8",
       "react-router-dom": "^6.3.0",
       "react-scripts": "4.0.3",
@@ -46,5 +47,18 @@
          "last 1 firefox version",
          "last 1 safari version"
       ]
+   },
+   "devDependencies": {
+      "@babel/eslint-parser": "^7.17.0",
+      "@babel/preset-react": "^7.16.7",
+      "eslint": "^7.32.0",
+      "eslint-config-airbnb": "^19.0.4",
+      "eslint-config-prettier": "^8.5.0",
+      "eslint-plugin-import": "^2.26.0",
+      "eslint-plugin-jsx-a11y": "^6.5.1",
+      "eslint-plugin-prettier": "^4.0.0",
+      "eslint-plugin-react": "^7.29.4",
+      "eslint-plugin-react-hooks": "^4.4.0",
+      "prettier": "^2.6.2"
    }
 }

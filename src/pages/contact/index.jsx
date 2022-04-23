@@ -5,7 +5,7 @@ import TemplatePage from '../../components/templatePages'
 const Contact = () => {
    return (
       <TemplatePage>
-         <ContactForm/>
+         <ContactForm />
       </TemplatePage>
    )
 }

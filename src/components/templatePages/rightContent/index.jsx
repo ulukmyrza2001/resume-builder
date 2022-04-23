@@ -2,7 +2,7 @@ import React from 'react'
 import { BackgroundRightContent } from '../styles'
 
 const RightContent = () => {
-	return <BackgroundRightContent />
+   return <BackgroundRightContent />
 }
 
 export default RightContent

@@ -7,6 +7,14 @@ export const ROUTES = {
       path: '/contact',
       label: 'contact',
    },
+   SUMMARY: {
+      path: '/summary',
+      label: 'summary',
+   },
+   SKILLS: {
+      path: '/skills',
+      label: 'skills',
+   },
    EXPERIENCE: {
       path: '/experience',
       label: 'experience',
@@ -14,14 +22,6 @@ export const ROUTES = {
    EDUCATION: {
       path: '/education',
       label: 'education',
-   },
-   SKILLS: {
-      path: '/skills',
-      label: 'skills',
-   },
-   SUMMARY: {
-      path: '/summary',
-      label: 'summary',
    },
    FINISH: {
       path: '/finish',

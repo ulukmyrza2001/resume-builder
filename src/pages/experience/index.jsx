@@ -3,13 +3,11 @@ import ExperienceForm from '../../components/forms/experience/Form'
 import TemplatePage from '../../components/templatePages'
 
 const Experience = () => {
-  return (
-    <TemplatePage>
-       <ExperienceForm/>
-    </TemplatePage>
-  )
+   return (
+      <TemplatePage>
+         <ExperienceForm />
+      </TemplatePage>
+   )
 }
-
-
 
 export default Experience

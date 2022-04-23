@@ -4,20 +4,20 @@ import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Chart = () => {
-   const [chart, setChart] = useState(100)
+   const [chart, setChart] = useState(0)
    const { pathname } = useLocation()
    const { t } = useTranslation()
 
    useLayoutEffect(() => {
       if (pathname === '/contact') {
          setChart(17)
-      } else if (pathname === '/experience') {
-         setChart(34)
-      } else if (pathname === '/education') {
-         setChart(50)
-      } else if (pathname === '/skills') {
-         setChart(66)
       } else if (pathname === '/summary') {
+         setChart(34)
+      } else if (pathname === '/skills') {
+         setChart(50)
+      } else if (pathname === '/experience') {
+         setChart(66)
+      } else if (pathname === '/education') {
          setChart(83)
       } else if (pathname === '/finish') {
          setChart(100)
@@ -35,16 +35,16 @@ const Chart = () => {
                <Title>{t('contact')}</Title>
             </Step>
             <Step className="step3">
-               <Title>{t('experience')}</Title>
+               <Title>{t('summary')}</Title>
             </Step>
             <Step className="step4">
-               <Title>{t('education')}</Title>
-            </Step>
-            <Step className="step5">
                <Title>{t('skills')}</Title>
             </Step>
+            <Step className="step5">
+               <Title>{t('experience')}</Title>
+            </Step>
             <Step className="step6">
-               <Title>{t('summary')}</Title>
+               <Title>{t('education')}</Title>
             </Step>
             <Step className="step7">
                <Title>{t('finish')}</Title>
@@ -116,7 +116,6 @@ const Step = styled.div`
    justify-content: center;
    position: relative;
    transition: 3s;
-
 `
 const Title = styled.h3`
    position: absolute;
