@@ -22,9 +22,9 @@ const SampleResume = () => {
 
    const hideDetailResumeHandler = () => setShowDetail(false)
 
-   // useEffect(() => {
-   //    window.onbeforeunload = () => saveToLocalStorage('resume', resume)
-   // }, [resume])
+   useEffect(() => {
+      window.onbeforeunload = () => saveToLocalStorage('resume', resume)
+   }, [resume])
 
    useEffect(() => {
       saveToLocalStorage('resume', resume)
