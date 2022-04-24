@@ -7,7 +7,7 @@ import ReactToPrint from 'react-to-print'
 import RightContent from './rightContent'
 import { PageStyled } from '../../components/templatePages/styles'
 import FinishPage from './leftContent'
-import { BtnNext } from '../../components/forms/styles'
+import { BtnNext } from '../../styles/stylesForms'
 import Flex from '../../components/UI/Flex'
 import { getDataFromLocalStorage } from '../../utils/helpers/general'
 
@@ -52,8 +52,9 @@ const Finish = () => {
    )
 }
 const HeaderFinishPage = styled.div`
+   transition: all 0.4s;
    padding: 1rem 2rem;
-   background-color: white;
+   background-color: var(--background);
 `
 const BtnDownload = styled(BtnNext)`
    display: flex;

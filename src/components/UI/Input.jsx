@@ -10,7 +10,12 @@ const InputStyled = styled.input`
    padding: 0.7rem 1rem;
    margin-right: 10px;
    outline: none;
-   border: 1px solid #cacaca;
+   color: var(--color-sub-title);
+   background-color: var(--bckground);
+   border: ${(props) =>
+      props.isValid === false
+         ? '1px solid red'
+         : '1px solid var(--border-input)'};
    &:focus {
       border-color: #00c293;
    }

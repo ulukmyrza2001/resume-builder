@@ -66,8 +66,12 @@
 			"off",
 			{ "allowAsProps": true }
 		],
-		"no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
+		"no-plusplus": ["off", { "allowForLoopAfterthoughts": true }],
 		"consistent-return": ["off", { "treatUndefinedAsUnspecified": true }],
-		"import/no-named-as-default": 0
+		"import/no-named-as-default": 0,
+		"no-unused-expressions": "off",
+		"no-const-assign": "off",
+		"prefer-const": "off",
+		"import/no-unresolved": [2, { "caseSensitiveStrict": false }]
 	}
 }

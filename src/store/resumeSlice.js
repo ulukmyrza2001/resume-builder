@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import { createSlice } from '@reduxjs/toolkit'
 import { getDataFromLocalStorage } from '../utils/helpers/general'
 
@@ -7,11 +8,12 @@ const initialState = {
       contact: {},
       summary: [],
       skills: [],
-      experience: {},
+      experience: [],
       education: {},
+      experienceId: null,
    },
+
    color: '#464746',
-   item: null,
 }
 
 const resumeSlice = createSlice({
@@ -25,7 +27,23 @@ const resumeSlice = createSlice({
          state.resumeData.education = action.payload
       },
       createExperienceResume(state, action) {
-         state.resumeData.experience = action.payload
+         const currentIndexExperience = state.resumeData.experience.findIndex(
+            (el) => el.id === state.resumeData.experienceId
+         )
+         if (currentIndexExperience >= 0) {
+            state.resumeData.experience = state.resumeData.experience.map(
+               (el) => {
+                  if (el.id === state.resumeData.experienceId) {
+                     el = action.payload
+                  }
+                  return el
+               }
+            )
+         } else {
+            state.resumeData.experience = state.resumeData.experience.concat(
+               action.payload
+            )
+         }
       },
       createSummaryResume(state, action) {
          const summarySplited = action.payload.summary.split(/\n/)
@@ -47,6 +65,17 @@ const resumeSlice = createSlice({
       },
       changeColor(state, action) {
          state.color = action.payload
+      },
+      deleteExperience(state, action) {
+         state.resumeData.experience = state.resumeData.experience.filter(
+            (el) => el.id !== action.payload
+         )
+      },
+      saveIdExpereience(state, action) {
+         state.resumeData.experienceId = action.payload
+      },
+      removeExperienceItem(state) {
+         state.experienceId = null
       },
    },
 })

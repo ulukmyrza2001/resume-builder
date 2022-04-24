@@ -29,12 +29,12 @@ const ChangeColor = () => {
 }
 const H2 = styled.h2`
    margin-bottom: 10px;
-   color: #3c364b;
+   color: var(--color-sub-title);
 `
 const ColorsContainer = styled.div`
    width: 120px;
    padding: 0.3rem;
-   background-color: whitesmoke;
+   background-color: var(--background-container);
    border-radius: 4px;
    margin-top: 30px;
 `

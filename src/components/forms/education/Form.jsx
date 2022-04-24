@@ -16,7 +16,7 @@ import {
    BtnGroup,
    BtnBack,
    BtnNext,
-} from '../styles'
+} from '../../../styles/stylesForms'
 import Flex from '../../UI/Flex'
 import useInput from '../../../hooks/useInput'
 import { resumeActions } from '../../../store/resumeSlice'
@@ -47,7 +47,12 @@ const EducationForm = () => {
    })
 
    const saveResumeHandler = () =>
-      dispatch(resumesActions.saveResume(resumeData))
+      dispatch(
+         resumesActions.saveResume({
+            ...resumeData,
+            id: Date.now().toString(),
+         })
+      )
 
    useEffect(() => {
       dispatch(resumeActions.createEducationResume(values))

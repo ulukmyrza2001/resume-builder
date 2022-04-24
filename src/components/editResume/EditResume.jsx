@@ -76,13 +76,14 @@ export const EditStyled = styled.div`
    align-items: center;
 `
 const EditItem = styled.button`
+   transition: all 0.4s;
    width: 100%;
    margin-bottom: 6px;
    padding: 0.6rem 1rem;
-   background-color: #ffffff;
+   background-color: var(--background-container);
    font-size: 20px;
    font-weight: bold;
-   color: #1b2357;
+   color: var(--color-resumes);
    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
    border-radius: 4px;
    cursor: pointer;

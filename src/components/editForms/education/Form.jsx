@@ -5,7 +5,13 @@ import { useTranslation } from 'react-i18next'
 import Input from '../../UI/Input'
 import { generateArrayOfYears } from '../../../utils/helpers/generatedYear'
 import { month } from '../../../utils/constants/constants'
-import { FormStyled, FormControl, Label, BtnGroup, BtnNext } from '../styles'
+import {
+   FormStyled,
+   FormControl,
+   Label,
+   BtnGroup,
+   BtnNext,
+} from '../../../styles/stylesForms'
 import Flex from '../../UI/Flex'
 import useInput from '../../../hooks/useInput'
 import { hideModal } from '../../../store/modalSlice'

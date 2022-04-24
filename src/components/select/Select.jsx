@@ -20,8 +20,10 @@ export const SelectStyled = styled.select`
    width: ${(props) => props.width || '150px'};
    padding: 0.7rem;
    outline: none;
+   color: var(--color-sub-title);
+   background-color: var(--bckground);
    margin: ${(props) => props.margin || '10px 0 0 10px'};
-   border: 1px solid #cacaca;
+   border: 1px solid var(--border-input);
    &:focus {
       border-color: #00c293;
    }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
 import { GrClose } from 'react-icons/gr'
 import { AiOutlineExpand } from 'react-icons/ai'
@@ -22,9 +22,9 @@ const SampleResume = () => {
 
    const hideDetailResumeHandler = () => setShowDetail(false)
 
-   useEffect(() => {
-      window.onbeforeunload = () => saveToLocalStorage('resume', resume)
-   }, [resume])
+   // useEffect(() => {
+   //    window.onbeforeunload = () => saveToLocalStorage('resume', resume)
+   // }, [resume])
 
    useEffect(() => {
       saveToLocalStorage('resume', resume)
@@ -87,29 +87,33 @@ const SampleResume = () => {
                </Grid>
             </List>
             <SubTtile detail={showDetail}>{t('experience')}</SubTtile>
-            <HR />
-            <Flex justify="space-between">
-               <Text>
-                  <b>{t('jobTitle')} : </b> {experience.jobTitle}
-               </Text>
-               <Cursiv>
-                  {experience.startMonth}&nbsp;{experience.startYears},
-                  {experience.endMonth}
-                  &nbsp;
-                  {experience.endYear}
-               </Cursiv>
-            </Flex>
-            <Text>
-               <b>{t('employer')} : </b> {experience.employer}
-            </Text>
-            <Grid columns="1fr 1fr">
-               <Text>
-                  <b>{t('city')} : </b> {experience.experienceCity}
-               </Text>
-               <Text>
-                  <b>{t('state')} : </b> {experience.experienceState}
-               </Text>
-            </Grid>
+            {experience.length > 0 &&
+               experience.map((el) => (
+                  <Fragment key={el.id}>
+                     <HR />
+                     <Flex justify="space-between">
+                        <Text>
+                           <b>{t('jobTitle')} : </b> {el.jobTitle}
+                        </Text>
+                        <Cursiv>
+                           {el.startMonth}&nbsp;{el.startYears},{el.endMonth}
+                           &nbsp;
+                           {el.endYear}
+                        </Cursiv>
+                     </Flex>
+                     <Text>
+                        <b>{t('employer')} : </b> {el.employer}
+                     </Text>
+                     <Grid columns="1fr 1fr">
+                        <Text>
+                           <b>{t('city')} : </b> {el.experienceCity}
+                        </Text>
+                        <Text>
+                           <b>{t('state')} : </b> {el.experienceState}
+                        </Text>
+                     </Grid>
+                  </Fragment>
+               ))}
             <Text>{education.education}</Text>
             <SubTtile detail={showDetail}>{t('education')}</SubTtile>
             <HR />
@@ -144,7 +148,7 @@ const HR = styled.hr`
 const DetailResume = styled.div`
    width: 50px;
    height: 50px;
-   background-color: #00c293;
+   background-color: #3771b1;
    padding: 15px;
    border-radius: 50%;
    position: absolute;

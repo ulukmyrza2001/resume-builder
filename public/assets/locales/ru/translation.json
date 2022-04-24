@@ -45,5 +45,8 @@
 	"myAccount": "МОЙ АККАУНТ",
 	"contactInformation": "КОНТАКТЫ",
 	"save": "сохранить",
-	"cancel": "отмена"
+	"cancel": "отмена",
+	"addMore": "добавить ещё",
+	"errorMessage": "Введите Email",
+	"errorRegex" : "Email должно содержать от 6 до 30 символов"
 }

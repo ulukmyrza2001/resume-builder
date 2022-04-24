@@ -45,5 +45,9 @@
 	"myAccount": "MY ACCOUNT",
 	"contactInformation": "CONTACT INFORMATION",
 	"save": "save",
-	"cancel": "cancel"
+	"cancel": "cancel",
+	"addMore": "add more",
+	"errorMessage": "enter email",
+	"errorRegex" : "Email must be between 6 and 30 characters long"
+
 }

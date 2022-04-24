@@ -11,10 +11,7 @@ const resumesSlice = createSlice({
    initialState,
    reducers: {
       saveResume(state, action) {
-         state.resumes = [
-            ...state.resumes,
-            { ...action.payload, id: Math.random().toString() },
-         ]
+         state.resumes = state.resumes.concat(action.payload)
       },
       // edit//
       editContact(state, action) {
@@ -34,9 +31,31 @@ const resumesSlice = createSlice({
          })
       },
       editExperience(state, action) {
+         const { values, resumeId, experienceId } = action.payload
          state.resumes = state.resumes.map((el) => {
-            if (el.id === action.payload.id) {
-               el.experience = action.payload.values
+            if (el.id === resumeId) {
+               const currentIndex = el.experience.findIndex(
+                  (el) => el.id === experienceId
+               )
+               if (currentIndex >= 0) {
+                  el.experience = el.experience.map((el) => {
+                     if (el.id === experienceId) {
+                        el = values
+                     }
+                     return el
+                  })
+               } else {
+                  el.experience = el.experience.concat(values)
+               }
+            }
+            return el
+         })
+      },
+      deleteExperience(state, action) {
+         const { resumeId, id } = action.payload
+         state.resumes = state.resumes.map((el) => {
+            if (el.id === resumeId) {
+               el.experience = el.experience.filter((el) => el.id !== id)
             }
             return el
          })
@@ -44,7 +63,7 @@ const resumesSlice = createSlice({
       editSkill(state, action) {
          state.resumes = state.resumes.map((el) => {
             if (el.id === action.payload.id && el.skills.length < 8) {
-               el.skills.push({
+               el.skills = el.skills.concat({
                   skill: action.payload.value,
                   id: Math.random().toString(),
                })

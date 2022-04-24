@@ -1,10 +1,10 @@
 /* eslint-disable import/no-named-as-default-member */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import InputMask from 'react-input-mask'
-import { createGlobalStyle } from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 import Input from '../../UI/Input'
 import useInput from '../../../hooks/useInput'
 import { resumeActions } from '../../../store/resumeSlice'
@@ -17,15 +17,21 @@ import {
    BtnGroup,
    BtnBack,
    BtnNext,
-} from '../styles'
+} from '../../../styles/stylesForms'
 import Flex from '../../UI/Flex'
+import { REGEX_EMAIL } from '../../../utils/constants/regex'
 
 function ContactForm() {
+   const navigate = useNavigate()
    const dispatch = useDispatch()
    const { t } = useTranslation()
    const { name, address, city, state, zip, email, phone } = useSelector(
       (state) => state.resume.resumeData.contact
    )
+   const [isValid, setIsValid] = useState({
+      errorMessage: null,
+      isValidEmail: null,
+   })
 
    const { values, onChange } = useInput({
       name: name || '',
@@ -41,6 +47,25 @@ function ContactForm() {
       dispatch(resumeActions.createContactResume(values))
    }, [values, dispatch])
 
+   const nextSaveHandler = () => {
+      if (REGEX_EMAIL.test(values.email)) {
+         setIsValid({
+            isValidEmail: true,
+            errorMessage: null,
+         })
+         navigate('/summary')
+      } else if (!values.email) {
+         setIsValid({
+            isValidEmail: false,
+            errorMessage: t('errorMessage'),
+         })
+      } else {
+         setIsValid({
+            isValidEmail: false,
+            errorMessage: t('errorRegex'),
+         })
+      }
+   }
    return (
       <FormStyled>
          <GlobalStyle />
@@ -82,12 +107,14 @@ function ContactForm() {
             <FormControl>
                <Label>{t('email')}</Label>
                <Input
+                  isValid={isValid.isValidEmail}
                   value={values.email}
                   onChange={onChange}
                   name="email"
                   type="email"
                   width="260px"
                />
+               <ErrorMessage>{isValid.errorMessage}</ErrorMessage>
             </FormControl>
             <FormControl>
                <Label>{t('phone')}</Label>
@@ -102,9 +129,9 @@ function ContactForm() {
          </Flex>
          <BtnGroup>
             <BtnBack>{t('back')}</BtnBack>
-            <Link to="/summary">
-               <BtnNext type="button">{t('next')}</BtnNext>
-            </Link>
+            <BtnNext onClick={nextSaveHandler} type="button">
+               {t('next')}
+            </BtnNext>
          </BtnGroup>
       </FormStyled>
    )
@@ -116,11 +143,20 @@ const GlobalStyle = createGlobalStyle`
    padding: 0.7rem 1rem;
    margin-right: 10px;
    outline: none;
-   border: 1px solid #cacaca;
+   border: 1px solid var(--border-input);
+   color: var(--color-sub-title);
+   background-color: var(--bckground);
+   
 }
 .input:focus {
    border-color: #00c293;
 }
+`
+const ErrorMessage = styled.p`
+   font-size: 14px;
+   position: absolute;
+   top: 4.7rem;
+   color: tomato;
 `
 
 export default ContactForm
