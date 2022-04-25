@@ -1,5 +1,5 @@
 /* eslint-disable import/no-named-as-default-member */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -20,12 +20,19 @@ import {
 } from '../../../styles/stylesForms'
 import Flex from '../../UI/Flex'
 import { resumeActions } from '../../../store/resumeSlice'
+import {
+   getDataFromLocalStorage,
+   saveToLocalStorage,
+} from '../../../utils/helpers/general'
 
 const ExperienceForm = () => {
    const dispatch = useDispatch()
    const { t } = useTranslation()
    const { experience, experienceId } = useSelector(
       (state) => state.resume.resumeData
+   )
+   const [currentDate, setCurrentDate] = useState(
+      getDataFromLocalStorage('current') || false
    )
    const currentItem = experience.find((el) => el.id === experienceId) || {}
 
@@ -40,7 +47,7 @@ const ExperienceForm = () => {
       endMonth,
    } = currentItem
 
-   const { values, onChange } = useInput({
+   const { values, onChange, setValues } = useInput({
       jobTitle: jobTitle || '',
       employer: employer || '',
       experienceCity: experienceCity || '',
@@ -68,6 +75,19 @@ const ExperienceForm = () => {
          )
       }
    }
+   const currentDateHandler = () => {
+      setCurrentDate((prev) => {
+         return !prev
+      })
+   }
+   useEffect(() => {
+      if (currentDate) {
+         setValues({ ...values, endMonth: 'current', endYear: '' })
+      } else {
+         setValues({ ...values, endMonth: '', endYear: '' })
+      }
+      saveToLocalStorage('current', currentDate)
+   }, [currentDate])
 
    const years = generateArrayOfYears()
    return (
@@ -139,14 +159,24 @@ const ExperienceForm = () => {
                      onChange={onChange}
                      name="endMonth"
                      data={month}
+                     currentDate={currentDate}
                   />
                   <Selection
                      value={values.endYear}
                      onChange={onChange}
                      name="endYear"
                      data={years}
+                     currentDate={currentDate}
                   />
                </Flex>
+            </Flex>
+            <Flex margin="20px 0 0 0" align="center" gap="5px" justify="end">
+               <Label>I currently work here</Label>
+               <input
+                  type="checkbox"
+                  checked={currentDate}
+                  onChange={currentDateHandler}
+               />
             </Flex>
          </Flex>
          <BtnGroup>

@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 
-const Selection = ({ data, width, margin, onChange, name }) => {
+const Selection = ({ data, width, margin, onChange, name, currentDate }) => {
    return (
       <SelectStyled
          name={name}
          onChange={onChange}
          width={width}
          margin={margin}
+         disabled={currentDate}
       >
          {data.map((el) => (
             <Option key={el}>{el}</Option>

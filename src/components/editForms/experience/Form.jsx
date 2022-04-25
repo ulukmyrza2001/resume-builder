@@ -1,5 +1,5 @@
 /* eslint-disable import/no-named-as-default-member */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Input from '../../UI/Input'
@@ -25,6 +25,7 @@ const ExperienceEditForm = () => {
    const { showFormOrList } = useSelector((state) => state.modal)
    const { itemId, resumes } = useSelector((state) => state.resumes)
    const { experienceId } = useSelector((state) => state.resume.resumeData)
+   const [currentDate, setCurrentDate] = useState(false)
 
    const resume =
       resumes.find((el) => el.id === itemId) || resumes[resumes.length - 1]
@@ -34,6 +35,19 @@ const ExperienceEditForm = () => {
    useEffect(() => {
       setValues(resume.experience.find((el) => el.id === experienceId) || {})
    }, [experienceId])
+
+   const currentDateHandler = () => {
+      setCurrentDate((prev) => {
+         return !prev
+      })
+   }
+   useEffect(() => {
+      if (currentDate) {
+         setValues({ ...values, endMonth: 'current', endYear: '' })
+      } else {
+         setValues({ ...values, endMonth: '', endYear: '' })
+      }
+   }, [currentDate])
 
    const editHandler = (id) => {
       if (
@@ -122,14 +136,24 @@ const ExperienceEditForm = () => {
                      onChange={onChange}
                      name="endMonth"
                      data={month}
+                     currentDate={currentDate}
                   />
                   <Selection
                      value={values.endYear}
                      onChange={onChange}
                      name="endYear"
                      data={years}
+                     currentDate={currentDate}
                   />
                </Flex>
+            </Flex>
+            <Flex margin="20px 0 0 0" align="center" gap="5px" justify="end">
+               <Label>I currently work here</Label>
+               <input
+                  type="checkbox"
+                  checked={currentDate}
+                  onChange={currentDateHandler}
+               />
             </Flex>
          </Flex>
          <BtnGroup>
