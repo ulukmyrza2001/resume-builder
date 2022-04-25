@@ -1,8 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo:wght@700&family=Montserrat:wght@500&display=swap');
-:root {
-   --left-content: url(./assets/images/photo-1539571696357-5a69c17a67c6.avif);
-}
+
 /* */
 
 code {
@@ -17,4 +15,35 @@ code {
 }
 a {
    text-decoration: none;
+}
+
+html.light {
+   --left-content: url(./assets/images/Sound\ Wave\ \(2\).svg);
+   --background: #ffffff;
+   --color-title: #333333;
+   --color-sub-title: #686868;
+   --background-header: #0e2a47;
+   --background-chart: #d9d9d9;
+   --box-shadow-chart: none;
+   --border-input: rgb(209, 209, 209);
+   --background-container: #e3e3e3;
+   --color-resumes: #223f58;
+   --box-shadow-resumes: 3px 3px 10px rgba(0, 0, 0, 0.3);
+   --background-btn-next: #3771b1;
+   --border-btn: 1px solid #cacaca;
+}
+html.dark {
+   --left-content: url(./assets/images/Sound\ Wave\ \(1\).svg);
+   --background: #0d1117;
+   --color-title: rgb(137, 147, 192);
+   --color-sub-title: rgb(149, 172, 199);
+   --background-header: #0d1117;
+   --background-chart: rgb(156, 156, 156);
+   --box-shadow-chart: 2px 2px 8px rgba(132, 230, 149, 0.856);
+   --border-input: rgb(105, 105, 105);
+   --background-container: #1c2a38;
+   --color-resumes: gray;
+   --box-shadow-resumes: 3px 3px 10px rgba(168, 101, 245, 0.3);
+   --background-btn-next: rgb(47, 65, 97);
+   --border-btn: none;
 }

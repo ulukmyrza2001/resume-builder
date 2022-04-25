@@ -9,7 +9,13 @@ import useInput from '../../../hooks/useInput'
 import { resumesActions } from '../../../store/resumesSlice'
 import { hideModal } from '../../../store/modalSlice'
 import Flex from '../../UI/Flex'
-import { FormStyled, FormControl, Label, BtnGroup, BtnNext } from '../styles'
+import {
+   FormStyled,
+   FormControl,
+   Label,
+   BtnGroup,
+   BtnNext,
+} from '../../../styles/stylesForms'
 
 function ContactEditForm() {
    const dispatch = useDispatch()
@@ -108,7 +114,9 @@ const GlobalStyle = createGlobalStyle`
    padding: 0.7rem 1rem;
    margin-right: 10px;
    outline: none;
-   border: 1px solid #cacaca;
+   border: 1px solid var(--border-input);
+   color: var(--color-sub-title);
+   background-color: var(--bckground);
 }
 .input:focus {
    border-color: #00c293;

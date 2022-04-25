@@ -19,7 +19,7 @@ const Modal = ({ children }) => {
 const ModalStyled = styled.div`
    padding: 1rem;
    box-shadow: 4px 4px 14px rgba(0, 0, 0, 0.2);
-   background-color: whitesmoke;
+   background-color: var(--background-container);
    animation: MODAL ease-in-out 0.4s;
    @keyframes MODAL {
       0% {

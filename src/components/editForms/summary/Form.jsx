@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { FormStyled, BtnGroup, BtnNext } from '../styles'
+import { FormStyled, BtnGroup, BtnNext } from '../../../styles/stylesForms'
 import Flex from '../../UI/Flex'
 import useInput from '../../../hooks/useInput'
 import { hideModal } from '../../../store/modalSlice'
@@ -42,6 +42,7 @@ const SummaryEditForm = () => {
             cols="60"
             rows="15"
             name="summary"
+            maxLength="300"
          />
          <BtnGroup>
             <Link to="/finish">
@@ -63,7 +64,9 @@ const Textarea = styled.textarea`
    outline: none;
    resize: none;
    font-family: 'Source Sans Pro', Arial, sans-serif;
-   border: 1px solid #cacaca;
+   border: 1px solid var(--border-input);
+   color: var(--color-sub-title);
+   background-color: var(--bckground);
    line-height: 20px;
    &:focus {
       border-color: #00c293;

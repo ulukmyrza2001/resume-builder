@@ -6,7 +6,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import Flex from '../../UI/Flex'
 import Input from '../../UI/Input'
-import { FormStyled, FormControl, Label, BtnGroup, BtnNext } from '../styles'
+import {
+   FormStyled,
+   FormControl,
+   Label,
+   BtnGroup,
+   BtnNext,
+} from '../../../styles/stylesForms'
 import SearchSkills from './SearchSkills'
 import { hideModal } from '../../../store/modalSlice'
 import { resumesActions } from '../../../store/resumesSlice'

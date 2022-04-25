@@ -10,7 +10,8 @@ const FinishPage = React.forwardRef((props, ref) => {
    )
 })
 const Finish = styled.div`
-   background-color: #ffffff;
+   transition: all 0.4s;
+   background-color: var(--background);
    width: 60%;
 `
 

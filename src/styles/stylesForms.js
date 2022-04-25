@@ -3,14 +3,23 @@ import styled from 'styled-components'
 
 export const FormStyled = styled.div`
    width: 450px;
+   animation: form 0.6s ease-in-out;
+   @keyframes form {
+      0% {
+         opacity: 0;
+      }
+      100% {
+         opacity: 1;
+      }
+   }
 `
 export const Title = styled.h1`
-   color: #333333;
+   color: var(--color-title);
    line-height: 40px;
    margin-bottom: 15px;
 `
 export const SubTxt = styled.div`
-   color: #405375;
+   color: var(--color-sub-title);
    margin-bottom: 20px;
 `
 export const FormControl = styled.div`
@@ -26,17 +35,18 @@ export const Label = styled.label`
    font-size: 14px;
    font-weight: 500;
    margin: 9px 0 4px 0;
+   color: var(--color-title);
 `
 
 export const BtnGroup = styled.div`
    width: 100%;
    display: flex;
    justify-content: space-between;
-   margin: 30px 0 50px 0;
+   margin: 40px 0 0 0;
 `
 export const BtnBack = styled.button`
    min-width: 180px;
-   border: 1px solid #cacaca;
+   border: var(--border-btn);
    padding: 1rem;
    text-transform: uppercase;
    font-weight: bold;
@@ -46,6 +56,8 @@ export const BtnBack = styled.button`
    align-items: center;
    justify-content: center;
    gap: 5px;
+   color: var(--color-title);
+   outline: none;
    cursor: pointer;
    &:hover {
       border-color: #c5c5c5;
@@ -53,24 +65,10 @@ export const BtnBack = styled.button`
    }
 `
 export const BtnNext = styled(BtnBack)`
-   background-color: #00c293;
-   color: #ffffff;
+   background-color: var(--background-btn-next);
+   color: whitesmoke;
    &:hover {
       border-color: #c5c5c5;
-      background-color: #03a57d;
+      background-color: #0e2a47;
    }
 `
-
-// selectStyled//
-
-export const Select = styled.select`
-   width: ${(props) => props.width || '150px'};
-   padding: 0.7rem;
-   outline: none;
-   margin: ${(props) => props.margin || '10px 0 0 10px'};
-   border: 1px solid #cacaca;
-   &:focus {
-      border-color: #00c293;
-   }
-`
-export const Option = styled.option``

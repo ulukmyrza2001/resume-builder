@@ -16,7 +16,7 @@ const BackdropStyled = styled.div`
    left: 0;
    bottom: 0;
    right: 0;
-   background-color: ${(props) => props.background || ' #1f4e58ea'};
+   background-color: rgba(0, 0, 0, 0.4);
    z-index: 0;
 `
 export default Backdrop

@@ -16,7 +16,7 @@ import {
    BtnGroup,
    BtnBack,
    BtnNext,
-} from '../styles'
+} from '../../../styles/stylesForms'
 import { resumeActions } from '../../../store/resumeSlice'
 import SearchSkills from './SearchSkills'
 

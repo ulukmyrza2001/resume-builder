@@ -9,6 +9,7 @@ import Flex from '../../UI/Flex'
 import { getDataFromLocalStorage } from '../../../utils/helpers/general'
 import Modal from '../../UI/Modal'
 import notFound from '../../../assets/icons/notFound.png'
+import ChangeTheme from '../../changeTheme/index'
 
 const Header = () => {
    const { t, i18n } = useTranslation()
@@ -21,7 +22,10 @@ const Header = () => {
    }, [i18n])
 
    const showResumesHandler = () => {
-      if (resumes.length === 0) setShowModal(true)
+      if (resumes.length === 0) {
+         setShowModal(true)
+         return
+      }
       navigate('/finish')
    }
    return (
@@ -38,6 +42,7 @@ const Header = () => {
          <ImgLogo src="https://cdnprod4.resumehelp.com/img/rh-logo.svg?v=1860" />
          <Flex align="center">
             <Flex align="center">
+               <ChangeTheme />
                {pathname !== '/finish' && (
                   <Span onClick={showResumesHandler} className="first">
                      <FaListAlt className="icon" fontSize="20px" />
@@ -84,7 +89,7 @@ const BtnOk = styled.button`
    }
 `
 const H2 = styled.h2`
-   color: #474872;
+   color: var(--color-sub-title);
    font-weight: bold;
    font-size: 20px;
    text-transform: uppercase;
@@ -93,7 +98,7 @@ const H2 = styled.h2`
 const HeaderStyled = styled.header`
    height: 4rem;
    padding: 0.3rem 1.6rem;
-   background-color: #023642;
+   background-color: var(--background-header);
    display: flex;
    align-items: center;
    justify-content: space-between;

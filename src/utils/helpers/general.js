@@ -13,3 +13,6 @@ export const getDataFromLocalStorage = (key) => {
       console.error(error)
    }
 }
+export const counterGenerated = (step) => {
+   return step + 1
+}

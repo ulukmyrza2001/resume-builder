@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import styled, { createGlobalStyle } from 'styled-components'
-
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
 import { RiDeleteBin7Fill } from 'react-icons/ri'
@@ -25,8 +24,13 @@ const Resume = React.forwardRef((props, ref) => {
       saveToLocalStorage('@resumes', resumes)
    }, [resumes])
 
-   const deleteResumeHandler = () =>
+   const deleteResumeHandler = () => {
       dispatch(resumesActions.deleteResume(currentItemResume.id))
+      if (resumes.length === 1) {
+         localStorage.clear()
+         // window.location.reload()
+      }
+   }
 
    return (
       <>
@@ -79,28 +83,31 @@ const Resume = React.forwardRef((props, ref) => {
                </Grid>
             </List>
             <SubTtile>{t('experience')}</SubTtile>
-            <HR />
-            <Flex justify="space-between">
-               <Text>
-                  <b>{t('jobTitle')} : </b> {experience.jobTitle}
-               </Text>
-               <Cursiv>
-                  {experience.startMonth}&nbsp;{experience.startYears},
-                  {experience.endMonth}&nbsp;
-                  {experience.endYear}
-               </Cursiv>
-            </Flex>
-            <Text>
-               <b>{t('employer')} : </b> {experience.employer}
-            </Text>
-            <Grid columns="1fr 1fr">
-               <Text>
-                  <b>{t('city')} : </b> {experience.experienceCity}
-               </Text>
-               <Text>
-                  <b>{t('state')} : </b> {experience.experienceState}
-               </Text>
-            </Grid>
+            {experience.map((el) => (
+               <Fragment key={el.id}>
+                  <HR />
+                  <Flex justify="space-between">
+                     <Text>
+                        <b>{t('jobTitle')} : </b> {el.jobTitle}
+                     </Text>
+                     <Cursiv>
+                        {el.startMonth}&nbsp;{el.startYears},{el.endMonth}&nbsp;
+                        {el.endYear}
+                     </Cursiv>
+                  </Flex>
+                  <Text>
+                     <b>{t('employer')} : </b> {el.employer}
+                  </Text>
+                  <Grid columns="1fr 1fr">
+                     <Text>
+                        <b>{t('city')} : </b> {Element.experienceCity}
+                     </Text>
+                     <Text>
+                        <b>{t('state')} : </b> {el.experienceState}
+                     </Text>
+                  </Grid>
+               </Fragment>
+            ))}
             <SubTtile>{t('education')}</SubTtile>
             <HR />
             <Flex justify="space-between">

@@ -3,10 +3,6 @@ export const ROUTES = {
       path: '/',
       label: 'index',
    },
-   START: {
-      path: '/start',
-      label: 'start',
-   },
    CONTACT: {
       path: '/contact',
       label: 'contact',
@@ -22,6 +18,10 @@ export const ROUTES = {
    EXPERIENCE: {
       path: '/experience',
       label: 'experience',
+   },
+   EXPERIENCEREVIEW: {
+      path: '/experience-review',
+      label: 'experienceReview',
    },
    EDUCATION: {
       path: '/education',

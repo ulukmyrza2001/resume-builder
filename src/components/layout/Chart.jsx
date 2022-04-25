@@ -59,13 +59,14 @@ const ChartStyled = styled.div`
    padding: 2.6rem 1.6rem 0 1.6rem;
    display: flex;
    justify-content: center;
-   border-bottom: 1px solid #d9d9d9;
+   border-bottom: 1px solid var(--background);
+   background-color: var(--background);
 `
 const Div = styled.div`
    width: 92%;
    height: 3px;
    border-radius: 20px;
-   background-color: #d9d9d9;
+   background-color: var(--background-chart);
    display: flex;
    align-items: center;
    justify-content: space-between;
@@ -73,45 +74,74 @@ const Div = styled.div`
 
    .step1 {
       background-color: ${(props) =>
-         props.chart > 0 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
+         props.chart > 0 && props.chart <= 100 ? '#1c2a38' : '#d9d9d9'};
+      box-shadow: ${(props) =>
+         props.chart > 0 && props.chart <= 100
+            ? 'var(--box-shadow-chart)'
+            : '#d9d9d9'};
    }
    .step2 {
+      box-shadow: ${(props) =>
+         props.chart > 17 && props.chart <= 100
+            ? 'var(--box-shadow-chart)'
+            : '#d9d9d9'};
       background-color: ${(props) =>
-         props.chart >= 17 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 17 && props.chart <= 100 ? '#1c2a38' : '#d9d9d9'};
    }
    .step3 {
+      box-shadow: ${(props) =>
+         props.chart > 34 && props.chart <= 100
+            ? 'var(--box-shadow-chart)'
+            : '#d9d9d9'};
       background-color: ${(props) =>
-         props.chart >= 34 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 34 && props.chart <= 100 ? '#1c2a38' : '#d9d9d9'};
    }
    .step4 {
+      box-shadow: ${(props) =>
+         props.chart > 50 && props.chart <= 100
+            ? 'var(--box-shadow-chart)'
+            : '#d9d9d9'};
       background-color: ${(props) =>
-         props.chart >= 50 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 50 && props.chart <= 100 ? '#1c2a38' : '#d9d9d9'};
    }
    .step5 {
+      box-shadow: ${(props) =>
+         props.chart > 66 && props.chart <= 100
+            ? 'var(--box-shadow-chart)'
+            : '#d9d9d9'};
       background-color: ${(props) =>
-         props.chart >= 66 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 66 && props.chart <= 100 ? '#1c2a38' : '#d9d9d9'};
    }
    .step6 {
+      box-shadow: ${(props) =>
+         props.chart > 83 && props.chart <= 100
+            ? 'var(--box-shadow-chart)'
+            : '#d9d9d9'};
       background-color: ${(props) =>
-         props.chart >= 83 && props.chart <= 100 ? '#00c293' : '#d9d9d9'};
+         props.chart >= 83 && props.chart <= 100 ? '#1c2a38' : '#d9d9d9'};
    }
    .step7 {
+      box-shadow: ${(props) =>
+         props.chart > 100 && props.chart <= 100
+            ? 'var(--box-shadow-chart)'
+            : '#d9d9d9'};
       background-color: ${(props) =>
-         props.chart === 100 ? '#00c293' : '#d9d9d9'};
+         props.chart === 100 ? '#1c2a38' : '#d9d9d9'};
    }
 `
 const DivItem = styled.div`
    width: ${({ chart }) => `${chart}%`};
    height: 100%;
-   background-color: #00c293;
+   background-color: #1c2a38;
    position: absolute;
    transition: 1s;
+   box-shadow: var(--box-shadow-chart);
 `
 const Step = styled.div`
    width: 16px;
    height: 16px;
    border-radius: 50%;
-   background-color: #d9d9d9;
+   background-color: var(--background-chart);
    display: flex;
    justify-content: center;
    position: relative;
@@ -120,7 +150,7 @@ const Step = styled.div`
 const Title = styled.h3`
    position: absolute;
    bottom: 25px;
-   color: #333340;
+   color: var(--color-title);
    font-family: 'Source Sans Pro', Arial, sans-serif;
    font-size: 15px;
    font-weight: 600;

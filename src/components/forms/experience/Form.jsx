@@ -1,5 +1,5 @@
 /* eslint-disable import/no-named-as-default-member */
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
@@ -17,13 +17,18 @@ import {
    BtnGroup,
    BtnBack,
    BtnNext,
-} from '../styles'
+} from '../../../styles/stylesForms'
 import Flex from '../../UI/Flex'
 import { resumeActions } from '../../../store/resumeSlice'
 
 const ExperienceForm = () => {
    const dispatch = useDispatch()
    const { t } = useTranslation()
+   const { experience, experienceId } = useSelector(
+      (state) => state.resume.resumeData
+   )
+   const currentItem = experience.find((el) => el.id === experienceId) || {}
+
    const {
       jobTitle,
       employer,
@@ -33,7 +38,7 @@ const ExperienceForm = () => {
       startMonth,
       endYear,
       endMonth,
-   } = useSelector((state) => state.resume.resumeData.experience)
+   } = currentItem
 
    const { values, onChange } = useInput({
       jobTitle: jobTitle || '',
@@ -46,9 +51,23 @@ const ExperienceForm = () => {
       endMonth: endMonth || '',
    })
 
-   useEffect(() => {
-      dispatch(resumeActions.createExperienceResume(values))
-   }, [values, dispatch])
+   const handleSubmit = () => {
+      if (
+         values.jobTitle ||
+         values.employer ||
+         values.startMonth ||
+         values.startYears ||
+         values.endMonth ||
+         values.endYear
+      ) {
+         dispatch(
+            resumeActions.createExperienceResume({
+               ...values,
+               id: Date.now().toString(),
+            })
+         )
+      }
+   }
 
    const years = generateArrayOfYears()
    return (
@@ -134,8 +153,10 @@ const ExperienceForm = () => {
             <Link to="/skills">
                <BtnBack type="button">{t('back')}</BtnBack>
             </Link>
-            <Link to="/education">
-               <BtnNext type="button">{t('next')}</BtnNext>
+            <Link to="/experience-review">
+               <BtnNext onClick={handleSubmit} type="button">
+                  {t('next')}
+               </BtnNext>
             </Link>
          </BtnGroup>
       </FormStyled>

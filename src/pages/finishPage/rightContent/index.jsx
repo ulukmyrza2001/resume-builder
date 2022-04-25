@@ -6,7 +6,7 @@ import Flex from '../../../components/UI/Flex'
 import EditResume from '../../../components/editResume/EditResume'
 import { resumesActions } from '../../../store/resumesSlice'
 
-export const Resume = ({ changeResumeHandler, resumes }) => {
+const Resume = ({ changeResumeHandler, resumes }) => {
    return resumes.map((resume) => (
       <ResumeItem
          onClick={() => changeResumeHandler(resume.id)}
@@ -43,7 +43,7 @@ const RightContent = () => {
 }
 const H2 = styled.h2`
    margin-bottom: 10px;
-   color: #263764;
+   color: var(--color-title);
 `
 const BackgroundRightContent = styled.div`
    background-image: var(--left-content);
@@ -59,21 +59,21 @@ const Resumes = styled.div`
    width: 370px;
    padding: 0.5rem;
    max-height: 500px;
-   background-color: whitesmoke;
-   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+   background-color: var(--background-container);
+   box-shadow: var(--box-shadow-resumes);
    overflow-y: scroll;
 `
 const ResumeItem = styled.h4`
    border-radius: 4px;
    width: 100%;
    padding: 0.7rem;
-   background-color: white;
-   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+   background-color: var(--background);
+   box-shadow: var(--box-shadow-resumes);
    margin-bottom: 10px;
    text-transform: uppercase;
    cursor: pointer;
    transition: 0.2s;
-   color: #223f58;
+   color: var(--color-resumes);
    &:hover {
       opacity: 0.7;
    }
