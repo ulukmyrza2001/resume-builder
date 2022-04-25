@@ -167,7 +167,7 @@ const ContainerResume = styled.div`
    position: absolute;
    background-color: #ffff;
    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-   top: ${(props) => (props.detail ? '90%' : '25%')};
+   top: ${(props) => (props.detail ? '70%' : '25%')};
    left: ${(props) => (props.detail ? '50%' : '58%')};
    transform: ${(props) => (props.detail ? 'translate(-50%,-50%)' : '')};
    &:hover ${DetailResume} {

@@ -117,6 +117,7 @@ const AboutExperience = styled.strong`
    width: 300px;
    word-wrap: break-word;
    font-size: 14px;
+   color: var(--color-title);
 `
 const DateExperience = styled.p`
    line-height: 25px;

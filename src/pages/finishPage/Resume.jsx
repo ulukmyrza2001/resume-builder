@@ -24,8 +24,13 @@ const Resume = React.forwardRef((props, ref) => {
       saveToLocalStorage('@resumes', resumes)
    }, [resumes])
 
-   const deleteResumeHandler = () =>
+   const deleteResumeHandler = () => {
       dispatch(resumesActions.deleteResume(currentItemResume.id))
+      if (resumes.length === 1) {
+         localStorage.clear()
+         // window.location.reload()
+      }
+   }
 
    return (
       <>
